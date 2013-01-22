@@ -28,6 +28,7 @@
         </ul>
       </header>
       <section>
+	<h2>Overview</h2>
 	<p>Developed at DSTO Australia, replay was originally created
 	to visualize the Annex Object-Capability System - to help
 	developers understand and debug the system as it was created.
@@ -67,10 +68,18 @@
 	<h2>Packages</h2>
 	<p>Packages for Fedora coming soon...</p>
 
-	<h2>Publications</h2>
+	<h2>Compiling from source</h2>
+	<p>To build replay from git:</p>
+	<pre><code>git checkout https://github.com/alexmurray/replay.git
+cd replay
+./autogen.sh --prefix=/usr --enable-gtk-doc --enable-debug # for 64-bit Fedora add --libdir=/usr/lib64
+make
+sudo make install</code></pre>
 
+	<h2>Publications</h2>
 	<p><a href="http://acsw2013.cis.unisa.edu.au/body/accepted_papers_body.html">replay: Visualising the Structure and Behaviour of Interconnected Systems </a></p>
       </section>
+
       <footer>
         <p>This project is maintained by <a href="https://github.com/alexmurray">alexmurray</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
