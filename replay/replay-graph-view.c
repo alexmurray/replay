@@ -4961,7 +4961,7 @@ static gboolean replay_graph_view_button_release_event(GtkWidget *widget,
 
   priv = REPLAY_GRAPH_VIEW(widget)->priv;
 
-  if (priv->selecting && event->button == 1)
+  if (priv->selecting)
   {
     priv->selecting = FALSE;
     /* re-animate */
@@ -4970,7 +4970,7 @@ static gboolean replay_graph_view_button_release_event(GtkWidget *widget,
     priv->y2 = (float)event->y;
     handled = TRUE;
   }
-  if (priv->moving && event->button == 1)
+  else if (priv->moving)
   {
     priv->moving = FALSE;
     /* if we hovered an node, remove it from selected table */
@@ -4983,12 +4983,12 @@ static gboolean replay_graph_view_button_release_event(GtkWidget *widget,
     priv->hovered_node = NULL;
     handled = TRUE;
   }
-  if (priv->rotating && event->button == 2)
+  else if (priv->rotating)
   {
     priv->rotating = FALSE;
     handled = TRUE;
   }
-  if (priv->panning && event->button == 2)
+  else if (priv->panning)
   {
     priv->panning = FALSE;
     handled = TRUE;
@@ -4999,16 +4999,188 @@ static gboolean replay_graph_view_button_release_event(GtkWidget *widget,
                               priv->selected_nodes);
   return handled;
 }
+
+static void
+handle_2button_press_event(ReplayGraphView *self,
+                           GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv;
+  guint modifiers;
+
+  priv = self->priv;
+  modifiers = gtk_accelerator_get_default_mod_mask();
+
+  /* if double click with control, pan back to 0, 0 */
+  if ((event->state & modifiers) == GDK_CONTROL_MASK)
+  {
+    priv->x = 0;
+    priv->y = 0;
+  }
+  else
+  {
+    /* for double clicks, recenter on node if one is under cursor,
+     * otherwise recenter on 0,0,0 */
+    if (!pick_and_select(self,
+                         (double)event->x, (double)event->y,
+                         5.0, 5.0,
+                         FALSE,  /* select */
+                         FALSE,  /* select single nodes */
+                         TRUE,   /* recenter */
+                         FALSE)) /* don't pick edges */
+    {
+      /* no node picked so reset to zero */
+      priv->pIx = &zero;
+      priv->pIy = &zero;
+      priv->pIz = &zero;
+    }
+  }
+}
+
+static void
+start_moving_hovered_node(ReplayGraphView *self,
+                          GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv = self->priv;
+
+  /* unset hovered_node if is already in selected */
+  if (g_hash_table_lookup(priv->selected_nodes,
+                          priv->hovered_node->name))
+  {
+    priv->hovered_node = NULL;
+  }
+  else
+  {
+    g_hash_table_insert(priv->selected_nodes,
+                        priv->hovered_node->name,
+                        priv->hovered_node);
+  }
+  priv->moving = TRUE;
+  priv->x1 = (float)event->x;
+  priv->y1 = (float)event->y;
+  priv->x2 = (float)event->x;
+  priv->y2 = (float)event->y;
+}
+
+static void
+start_selecting(ReplayGraphView *self,
+                GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv = self->priv;
+
+  /* try and select a single node from a 5x5 region at the current
+   * cursor position */
+  if (!pick_and_select(self,
+                       (double)event->x, (double)event->y,
+                       5.0, 5.0,
+                       FALSE, /* select not hover */
+                       FALSE, /* select single nodes */
+                       FALSE, /* don't recenter view */
+                       FALSE)) /* don't pick edges */
+  {
+    unselect_all_nodes(self);
+  }
+  /* stop animation */
+  replay_graph_view_stop_animation(self);
+  priv->selecting = TRUE;
+  priv->x1 = (float)event->x;
+  priv->y1 = (float)event->y;
+  priv->x2 = (float)event->x;
+  priv->y2 = (float)event->y;
+}
+
+static void
+start_panning(ReplayGraphView *self,
+              GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv = self->priv;
+
+  priv->panning = TRUE;
+
+  /* save this start event so we can offset pans using it */
+  priv->x1 = (float)event->x;
+  priv->y1 = (float)event->y;
+}
+
+static void
+start_rotating(ReplayGraphView *self,
+               GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv = self->priv;
+  GtkWidget *widget = GTK_WIDGET(self);
+
+  priv->rotating = TRUE;
+
+  /* save this start event so we can offset drags using it */
+  priv->x1 = (float)event->x;
+  priv->y1 = (float)event->y;
+
+  /* assume we start though at the centre of the screen since this way
+   * you can drag in a horizontal line from anywhere on the screen to
+   * make it rotate in xy plane and vice-versa for vertical line -
+   * doesn't have to pass through middle of the graph */
+  point_to_vector(widget,
+                  (GLdouble)gtk_widget_get_allocated_width(widget) / 2.0,
+                  (GLdouble)gtk_widget_get_allocated_height(widget) / 2.0,
+                  priv->start_pos);
+}
+
+static void
+handle_1button_press_event(ReplayGraphView *self,
+                           GdkEventButton *event)
+{
+  ReplayGraphViewPrivate *priv;
+  guint modifiers;
+
+  priv = self->priv;
+
+  modifiers = gtk_accelerator_get_default_mod_mask();
+
+  /* button 1 with control is the same as button 2 to emulate for trackpads
+   * etc */
+  if ((event->button == 1 &&
+       (event->state & modifiers) & GDK_CONTROL_MASK) ||
+      event->button == 2)
+  {
+    if ((event->state & modifiers) & GDK_SHIFT_MASK)
+    {
+      start_panning(self, event);
+    }
+    else
+    {
+      start_rotating(self, event);
+    }
+  }
+  else if (event->button == 1)
+  {
+    /* if we have a hovered node, user has clicked over an node, so is
+     * trying to select a single node - add to selected nodes hash
+     * table and set moving */
+    if (priv->hovered_node)
+    {
+      start_moving_hovered_node(self, event);
+    }
+    else
+    {
+      start_selecting(self, event);
+    }
+  }
+  else if (event->button == 3)
+  {
+    do_popup_menu(self, event);
+  }
+}
+
 static gboolean replay_graph_view_button_press_event(GtkWidget *widget,
                                                   GdkEventButton *event)
 {
+  ReplayGraphView *self;
   ReplayGraphViewPrivate *priv;
   gboolean handled = FALSE;
-  guint modifiers;
 
   g_return_val_if_fail(REPLAY_IS_GRAPH_VIEW(widget), handled);
 
-  priv = REPLAY_GRAPH_VIEW(widget)->priv;
+  self = REPLAY_GRAPH_VIEW(widget);
+  priv = self->priv;
 
   if (priv->gl_config)
   {
@@ -5017,126 +5189,17 @@ static gboolean replay_graph_view_button_press_event(GtkWidget *widget,
 
     if (priv->visible_nodes->len > 0)
     {
-      modifiers = gtk_accelerator_get_default_mod_mask();
       if (event->type == GDK_2BUTTON_PRESS)
       {
-        /* if double click with control, pan back to 0, 0 */
-        if ((event->state & modifiers) == GDK_CONTROL_MASK)
-        {
-          priv->x = 0;
-          priv->y = 0;
-          handled = TRUE;
-        }
-        else
-        {
-          /* for double clicks, recenter on node if one is under cursor,
-           * otherwise recenter on 0,0,0 */
-          if (!pick_and_select(REPLAY_GRAPH_VIEW(widget),
-                               (double)event->x, (double)event->y,
-                               5.0, 5.0,
-                               FALSE,  /* select */
-                               FALSE,  /* select single nodes */
-                               TRUE,   /* recenter */
-                               FALSE)) /* don't pick edges */
-          {
-            /* no node picked so reset to zero */
-            priv->pIx = &zero;
-            priv->pIy = &zero;
-            priv->pIz = &zero;
-          }
-          handled = TRUE;
-        }
+        handle_2button_press_event(self, event);
       }
       else if (event->type == GDK_BUTTON_PRESS)
       {
-        if (event->button == 1)
-        {
-          /* if we have a hovered node, user has clicked over an node, so is
-           * trying to select a single node - add to selected nodes hash
-           * table and set moving */
-          if (priv->hovered_node)
-          {
-            /* unset hovered_node if is already in selected */
-            if (g_hash_table_lookup(priv->selected_nodes,
-                                    priv->hovered_node->name))
-            {
-              priv->hovered_node = NULL;
-            }
-            else
-            {
-              g_hash_table_insert(priv->selected_nodes,
-                                  priv->hovered_node->name,
-                                  priv->hovered_node);
-            }
-            priv->moving = TRUE;
-            priv->x1 = (float)event->x;
-            priv->y1 = (float)event->y;
-            priv->x2 = (float)event->x;
-            priv->y2 = (float)event->y;
-            handled = TRUE;
-          }
-          else
-          {
-            /* try and select a single node from a 5x5 region at the current
-             * cursor position */
-            if (!pick_and_select(REPLAY_GRAPH_VIEW(widget),
-                                 (double)event->x, (double)event->y,
-                                 5.0, 5.0,
-                                 FALSE, /* select not hover */
-                                 FALSE, /* select single nodes */
-                                 FALSE, /* don't recenter view */
-                                 FALSE)) /* don't pick edges */
-            {
-              unselect_all_nodes(REPLAY_GRAPH_VIEW(widget));
-            }
-            /* stop animation */
-            replay_graph_view_stop_animation(REPLAY_GRAPH_VIEW(widget));
-            priv->selecting = TRUE;
-            priv->x1 = (float)event->x;
-            priv->y1 = (float)event->y;
-            priv->x2 = (float)event->x;
-            priv->y2 = (float)event->y;
-            handled = TRUE;
-          }
-        }
-        else if (event->button == 2)
-        {
-          if ((event->state & modifiers) == GDK_CONTROL_MASK)
-          {
-            priv->panning = TRUE;
-
-            /* save this start event so we can offset pans using it */
-            priv->x1 = (float)event->x;
-            priv->y1 = (float)event->y;
-          }
-          else
-          {
-            priv->rotating = TRUE;
-
-            /* save this start event so we can offset drags using it */
-            priv->x1 = (float)event->x;
-            priv->y1 = (float)event->y;
-
-            /* assume we start though at the centre of the screen since this way
-             * you can drag in a horizontal line from anywhere on the screen to
-             * make it rotate in xy plane and vice-versa for vertical line -
-             * doesn't have to pass through middle of the graph */
-            point_to_vector(widget,
-                            (GLdouble)gtk_widget_get_allocated_width(widget) / 2.0,
-                            (GLdouble)gtk_widget_get_allocated_height(widget) / 2.0,
-                            priv->start_pos);
-            handled = TRUE;
-          }
-        }
-        else if (event->button == 3)
-        {
-          do_popup_menu(REPLAY_GRAPH_VIEW(widget), event);
-          handled = TRUE;
-        }
+        handle_1button_press_event(self, event);
       }
     }
   }
-  return handled;
+  return TRUE;
 }
 
 static gboolean replay_graph_view_scroll_event(GtkWidget *widget,
