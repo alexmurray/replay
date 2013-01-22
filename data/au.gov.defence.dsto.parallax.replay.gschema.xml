@@ -1,0 +1,103 @@
+<schemalist>
+  <enum id="au.gov.defence.dsto.parallax.replay.time-scale">
+    <value nick="seconds" value="0"/>
+    <value nick="milliseconds" value="1"/>
+  </enum>
+  <schema id="au.gov.defence.dsto.parallax.replay" path="/au/gov/defence/dsto/parallax/replay/">
+    <key name="window-width" type="i">
+      <default>1600</default>
+      <summary>Width of Replay window</summary>
+      <description>The width of the main Replay window in pixels</description>
+    </key>
+    <key name="window-height" type="i">
+      <default>1060</default>
+      <summary>Height of Replay window</summary>
+      <description>The height of the main Replay window in pixels</description>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Whether main Replay window is maximized</summary>
+      <description>The maximization state for the main Replay window</description>
+    </key>
+    <key name="hpaned-position" type="i">
+      <default>700</default>
+      <summary>Position of horizontal pane</summary>
+      <description>The position of the horizontal pane which divides the message tree view from the graph view</description>
+    </key>
+    <key name="vpaned-position" type="i">
+      <default>300</default>
+      <summary>Position of vertical pane</summary>
+      <description>The position of the vertical pane which divides the timeline view from the message tree and graph views</description>
+    </key>
+    <key name="timeline-hpaned-position" type="i">
+      <default>123</default>
+      <summary>Position of horizontal pane in timeline view</summary>
+      <description>The position of the horizontal pane which divides the node list from the main canvas of the timeline view</description>
+    </key>
+    <key name="timeline-vpaned-position" type="i">
+      <default>230</default>
+      <summary>Position of vertical pane in timeline view</summary>
+      <description>The position of the vertical pane which divides the main canvas of the timeline view from the timeline itself</description>
+    </key>
+    <key name="absolute-time" type="b">
+      <default>false</default>
+      <summary>Whether to display times as absolute or relative to start time</summary>
+      <description>Whether to display times as absolute or relative to start time</description>
+    </key>
+    <key name="time-scale" enum="au.gov.defence.dsto.parallax.replay.time-scale">
+      <default>'seconds'</default>
+      <summary>Time scale</summary>
+      <description>The time scale to use when showing time values</description>
+    </key>
+    <key name="label-nodes" type="b">
+      <default>false</default>
+      <summary>Always label all nodes in graph view</summary>
+      <description>Whether the graph view should always draw labels for all nodes</description>
+    </key>
+    <key name="label-edges" type="b">
+      <default>false</default>
+      <summary>Always label all edges in graph view</summary>
+      <description>Whether the graph view should always draw labels for all edges</description>
+    </key>
+    <key name="label-messages" type="b">
+      <default>true</default>
+      <summary>Label mesasges in the timeline view</summary>
+      <description>Whether the timeline view should show descriptions for messages</description>
+    </key>
+    <child name="plugin-engine" schema="au.gov.defence.dsto.parallax.replay.plugin-engine" />
+  </schema>
+  <schema id="au.gov.defence.dsto.parallax.replay.plugin-engine" path="/au/gov/defence/dsto/parallax/replay/plugin-engine/">
+    <key name="active-plugins" type="as">
+      <default>[ 'parallax', 'filters', 'graphviz', 'playback', 'search' ]</default>
+      <summary>The currently active plugins</summary>
+      <description>The list of currently active plugins</description>
+    </key>
+  </schema>
+  <schema id="au.gov.defence.dsto.parallax.replay.graph-view" path="/au/gov/defence/dsto/parallax/replay/graph-view/">
+    <key name="attract-constant" type="d">
+      <default>-0.5</default>
+      <summary>Attraction force constant (should be negative)</summary>
+      <description>Attraction force constant which multiplies the force between connected nodes (should be negative)</description>
+    </key>
+    <key name="repel-constant" type="d">
+      <default>100.0</default>
+      <summary>Repulsion force constant (should be positive)</summary>
+      <description>Repulsion force constant which multiplies the force between all nodes (should be positive)</description>
+    </key>
+    <key name="central-pull-constant" type="d">
+      <default>-0.005</default>
+      <summary>Central pull force constant (should be negative)</summary>
+      <description>An attractive force constant which acts on all nodes to pull them towards the centre of the graph (should be negative)</description>
+    </key>
+    <key name="friction-constant" type="d">
+      <default>2.0</default>
+      <summary>Friction force constant (should be positive)</summary>
+      <description>A friction-like drag constant which acts on all nodes to slow their velocity (should be positive)</description>
+    </key>
+    <key name="spring-length" type="d">
+      <default>60.0</default>
+      <summary>Ideal spring length (should be positive)</summary>
+      <description>The attractive force between connected nodes is modelled on a spring, and this length defines the point at which the force stops acting as a spring and instead applies as a constant (should be positive)</description>
+    </key>
+  </schema>
+</schemalist>

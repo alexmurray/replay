@@ -1,0 +1,8 @@
+[Plugin]
+Module=graphviz
+_Name=Graphviz Plugin
+_Description=Visualizes graphs from graphviz dot files
+Icon=dot
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia
+Version=0.1

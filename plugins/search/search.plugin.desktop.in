@@ -1,0 +1,8 @@
+[Plugin]
+Module=search
+_Name=Search Plugin
+_Description=Provides support to search for messages by their description
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia
+Version=0.1
+Icon=gtk-find

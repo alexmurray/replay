@@ -1,0 +1,408 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+	  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+	  <!ENTITY appversion "0.1">
+	  <!ENTITY manrevision "2.0">
+	  <!ENTITY date "October 2008">
+	  <!ENTITY appname "Replay">
+	  <!ENTITY app "Replay">
+	  <!ENTITY author-name "Alex Murray">
+	  <!ENTITY author-email "murray.alex@gmail.com">
+	  <!ENTITY project-webpage "http://alexmurray.github.com/replay/">
+	  <!-- Information about the entities.
+	       Use the appversion entity to specify the version of the app.
+	       Use the manrevision entity to specify the revision number of this manual.
+	       Use the date entity to specify the release date of this manual.
+	       Use the app entity to specify the name of the app. -->
+
+	  ]>
+<!--
+   (Do not remove this comment block.)
+   Maintained by the GNOME Documentation Project
+   http://developer.gnome.org/projects/gdp
+   Template version: 2.0 beta
+   Template last modified Feb 06, 2003
+  -->
+<!-- =============Document Header ============================= -->
+<article id="index" lang="en">
+  <!-- please do not change the id; for translations, change lang to -->
+  <!-- appropriate code -->
+  <articleinfo>
+    <title><application>&app;</application> Manual V&manrevision;</title>
+    <copyright>
+      <year>2008</year>
+      <holder>DSTO</holder>
+    </copyright>
+    <abstract role="description">
+      <para><application>&app;</application> analyses and graphs the events
+	produced from the linuxtcb kernel simulator</para>
+    </abstract>
+
+    <!-- translators: uncomment this:
+
+	 <copyright>
+	   <year>2002</year>
+	   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+	 </copyright>
+
+	 -->
+    <!-- An address can be added to the publisher information.  If a role is
+	 not specified, the publisher/author is the same for all versions of the
+	 document.
+	 <publisher>
+	   <publishername> GNOME Documentation Project </publishername>
+	 </publisher>
+	 -->
+    <!-- This file  contains link to license for the documentation (GNU FDL), and
+	 other legal stuff such as "NO WARRANTY" statement. Please do not change
+	 any of this. -->
+
+    <authorgroup>
+      <author role="maintainer">
+	<firstname>Alex</firstname>
+	<surname>Murray</surname>
+	<affiliation>
+	  <!-- <orgname>GNOME Documentation
+	       Project</orgname> -->
+	  <!-- The email address of the author is optional and is commented out by default.
+	       <address> <email>doc-writer2@gnome.org</email> </address>
+	       -->
+	</affiliation>
+      </author>
+      <!-- This is appropriate place for other contributors: translators,
+	   maintainers,  etc. Commented out by default.
+	   <othercredit role="translator">
+	     <firstname>Latin</firstname>
+	     <surname>Translator 1</surname>
+	     <affiliation>
+	       <orgname>Latin Translation Team</orgname>
+	       <address> <email>translator@gnome.org</email> </address>
+	     </affiliation>
+	     <contrib>Latin translation</contrib>
+	   </othercredit>
+	   -->
+    </authorgroup>
+    <!-- According to GNU FDL, revision history is mandatory if you are -->
+    <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
+    <!-- Remember to remove the &manrevision; entity from the revision entries other
+      -->
+    <!-- than the current revision. -->
+    <!-- The revision numbering system for GNOME manuals is as follows: -->
+    <!-- * the revision number consists of two components -->
+    <!-- * the first component of the revision number reflects the release version of the GNOME desktop. -->
+    <!-- * the second component of the revision number is a decimal unit that is incremented with each revision of the manual. -->
+    <!-- For example, if the GNOME desktop release is V2.x, the first version of the manual that -->
+    <!-- is written in that desktop timeframe is V2.0, the second version of the manual is V2.1, etc. -->
+    <!-- When the desktop release version changes to V3.x, the revision number of the manual changes -->
+    <!-- to V3.0, and so on. -->
+    <revhistory>
+      <revision>
+	<revnumber>&app; Manual V&manrevision;</revnumber>
+	<date>&date;</date>
+	<revdescription>
+	  <para role="author">&author-name;
+
+	    <email>&author-email;</email>
+	  </para>
+	  <!-- <para role="publisher">GNOME Documentation Project</para> -->
+	</revdescription>
+      </revision>
+    </revhistory>
+    <releaseinfo> This manual describes version &appversion; of &app;.
+    </releaseinfo>
+    <legalnotice>
+      <title>Feedback</title>
+      <para> To report a bug or make a suggestion regarding <application>&app;</application> or this
+	manual, follow the directions at the
+	<ulink url="&project-webpage;"
+	       type="http"><application>&app;</application> Project Homepage</ulink>. </para>
+
+    </legalnotice>
+  </articleinfo>
+  <indexterm zone="index">
+    <primary><application>&app;</application></primary>
+  </indexterm>
+  <!-- ============= Document Body ============================= -->
+  <!-- ============= Introduction ============================== -->
+  <sect1 id="replay-introduction">
+    <title>Introduction</title>
+    <!-- ==== Figure ============================================= -->
+    <figure id="replay-fig">
+      <title><application>&app;</application></title>
+      <screenshot>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="figures/replay.png" format="PNG"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase><application>&app;</application> with displaying the timeline view.</phrase>
+	  </textobject>
+	</mediaobject>
+      </screenshot>
+    </figure>
+    <!-- ==== End of Figure ======================================= -->
+    <para>
+      <application>&app;</application>
+    </para>
+    <para>To run <application>&app;</application> select
+      <menuchoice>
+	<guimenu>Accessories</guimenu>
+	<guimenuitem>Replay</guimenuitem>
+      </menuchoice>
+      from the desktop menu. <application>&app;</application> can also be run
+      from a terminal which allows the user to also specify the location of the
+      events log file to be analysed.</para>
+  </sect1>
+  <!-- ================ Usage ================================ -->
+  <!-- Use this section to describe how to use Replay to perform the tasks for
+       which the app is designed. -->
+  <sect1 id="replay-usage">
+    <title>Usage</title>
+    <para>When you run <application>&app;</application> an events log file can
+      be opened from either the toolbar, or from the
+      <menuchoice>
+	<guimenu>File</guimenu>
+	<guimenuitem>Open</guimenuitem>
+      </menuchoice>
+      menu.
+    </para>
+  </sect1>
+  <!-- ============= Preferences ============================= -->
+  <!-- Use this section to describe how to customize the app. -->
+  <sect1 id="replay-preferences">
+    <title>Preferences</title>
+    <para>To configure <application>&app;</application>…</para>
+    <para>The
+      <menuchoice><guimenuitem>Preferences</guimenuitem></menuchoice>
+      window contains the following tabbed sections: </para>
+    <itemizedlist>
+      <listitem>
+	<para>
+	  <xref linkend="replay-general-prefs"/>
+	</para>
+      </listitem>
+      <listitem>
+	<para>
+	  <xref linkend="replay-filters"/>
+	</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  <!-- =============== Customization Subsection ================ -->
+  <!-- Use a new section to describe different tabbed sections on the Settings
+       or Preferences dialog. -->
+  <sect1 id="replay-general-prefs">
+    <title>General Preferences</title>
+    <variablelist>
+      <varlistentry>
+	<term>
+	  <guilabel>Time scale</guilabel>
+	</term>
+	<listitem>
+	  <para>Choose which time scale to display events times. Can be either
+	    seconds or milliseconds.</para>
+	  <para>Default: seconds.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <guilabel>Display absolute time</guilabel>
+	</term>
+	<listitem>
+	  <para>Display time values as either their absolute value, or their
+	    relative value (relative to the first event in the event log)</para>
+	  <para>Default: relative value.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <guilabel>Label objects</guilabel>
+	</term>
+	<listitem>
+	  <para>Whether to label objects within the 3-D object capability
+	    graph.</para>
+	  <para>Default: false.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <guilabel>Label capabilities</guilabel>
+	</term>
+	<listitem>
+	  <para>Whether to label capabilities within the 3-D object capability
+	    graph.</para>
+	  <para>Default: false.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>
+	  <guilabel>Label events</guilabel>
+	</term>
+	<listitem>
+	  <para>Whether to label the object and capabilities related to
+	    the current event only within the 3-D object capability
+	    graph.</para>
+	  <para>Default: false.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+  <!-- ============= Customization Subsection ===================== -->
+  <!-- Another tabbed section on the Preferences dialog. -->
+  <sect1 id="replay-filters">
+    <title>Filters</title>
+    <para>The Filters tab within the preferences window provides the
+      options for adding, removing and editing object filters. Filters are used
+      to apply properties to objects, and to group objects together. Objects
+      can be matched by a filter using two different methods: pattern and
+      specific object selection.
+      <variablelist>
+	<varlistentry>
+	  <term>
+	    <guilabel>Pattern</guilabel>
+	  </term>
+	  <listitem>
+	    <para>Pattern allows objects to be matched against their executable
+	      path using glob-style patterns wildcards * and ?, and will apply
+	      the filter properties to all objects which match the given
+	      pattern.</para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel>Specific Object Selection</guilabel>
+	  </term>
+	  <listitem>
+	    <para>Specific objects can be selected, and the filter properties
+	      will be applied to all the selected objects. Only those objects not
+	      already in a group will be listed as possible choices.</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+    </para>
+    <para>
+      Once a number of objects has been selected / a pattern has been supplied,
+      the filter can then be used to apply properties to those objects. The
+      primary use-case is the group property.
+      <variablelist>
+	<varlistentry>
+	  <term>
+	    <guilabel>Group</guilabel>
+	  </term>
+	  <listitem>
+	    <para>Specifies a name to group all the matching objects
+	    under.</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+    </para>
+    <para>
+      Another use case is to apply particular properties to the object.
+      <variablelist>
+	<varlistentry>
+	  <term>
+	    <guilabel>Ignore Caps to Object</guilabel>
+	  </term>
+	  <listitem>
+	    <para>The 3-D object capability graph will draw all capabilities
+	      which reference the matching objects as ignored</para>
+	  </listitem>
+	</varlistentry>
+	<varlistentry>
+	  <term>
+	    <guilabel>Ignore Caps from Object</guilabel>
+	  </term>
+	  <listitem>
+	    <para>The 3-D object capability graph will draw all capabilities
+	      which the object possesses as ignored</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+      <note>
+	<para>
+	  Ignored capabilities are drawn as almost invisible and do not
+	  have any effect in the gravity model.
+	</para>
+      </note>
+    </para>
+  </sect1>
+  <!-- ============= FAQ ================================== -->
+  <sect1 id="replay-faq">
+    <title>Frequently Asked Questions (FAQ)</title>
+      <variablelist>
+	<varlistentry>
+	  <term>Why does <application>&app;</application> run really slow on
+	  my computer?</term>
+	  <listitem>
+	    <para><application>&app;</application> requires 3d acceleration to
+	    draw the object capability graph. By default under Linux this is
+	    provided by the Mesa software OpenGL implementation, which is quite
+	    slow. It is recommended to use hardware acceleration, such as an
+	    NVIDIA graphics card with the proprietary NVIDIA drivers, as this
+	    provides the best OpenGL implementation for Linux.</para>
+	    <tip>
+	      <para>
+		If you are using an NVIDIA graphics with the proprietary NVIDIA
+		drivers, make sure you have the option
+		<screen><userinput><command>Option "RenderAccel" "TRUE"</command></userinput></screen>
+		set in <filename>/etc/X11/xorg.conf</filename> under the
+		<emphasis>Drivers</emphasis> section.
+	      </para>
+	    </tip>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+  </sect1>
+  <!-- ============= Bugs ================================== -->
+  <!-- This section is optional and is commented out by default.
+       You can use it to describe known bugs and limitations of the
+       program if there are any - please be frank and list all
+       problems you know of.
+
+       <sect1 id="replay-bugs">
+	 <title>Known Bugs and Limitations</title>
+	 <para> </para>
+       </sect1>
+       -->
+  <!-- ============= About ================================== -->
+  <!-- This section contains info about the program (not docs), such as
+       author's name(s), web page, license, feedback address. This
+       section is optional: primary place for this info is "About.." box of
+       the program. However, if you do wish to include this info in the
+       manual, this is the place to put it. Alternatively, you can put this
+       information in the title page.-->
+
+  <sect1 id="replay-about">
+    <title>About <application>&app;</application></title>
+    <para>
+      <application>&app;</application> was written by &author-name;
+      (<email>&author-email;</email>). To find more information about
+      <application>&app;</application>, please visit the <ulink
+				 url="&project-webpage;" type="http"><application>&app;</application> Project
+        Homepage</ulink>.
+    </para>
+    <para> To report a bug or make a suggestion regarding <application>&app;</application> or this
+      manual, follow the directions at the
+      <ulink url="&project-webpage;"
+	     type="http">project homepage</ulink>. </para>
+
+    <!-- For translations: uncomment this:
+
+	 <para>
+	   Latin translation was done by ME
+	   (<email>MYNAME@MYADDRESS</email>). Please send all  comments  and
+	   suggestions regarding this translation to SOMEWHERE.
+	 </para>
+
+	 -->
+
+  </sect1>
+
+</article>
+<!-- OVERRIDE DICTIONARY SETTING SO THAT USE AMERICAN ENGLISH STYLE - -->
+<!-- FROM GNOME HIG -->
+<!-- Local IspellDict: english -->
+<!-- LocalWords: hddtemp filesystem proc lm README Inspiron windtunnel -->
+<!-- LocalWords: ibm ACPI sysfs PowerPC adt Omnibook NVIDIA -->
+<!-- LocalWords: libNVCtrl libsensors nvidia esdplay aplay ALSA zenity -->
+<!-- LocalWords: acpi iMac Windfarm nvidia gconftool GConf bool -->

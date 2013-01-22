@@ -1,0 +1,8 @@
+[Plugin]
+Module=playback
+_Name=Playback Plugin
+_Description=Provides support for playing forwards / backwards through events
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia
+Version=0.1
+Icon=media-playback-start-symbolic

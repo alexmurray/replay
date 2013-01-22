@@ -1,0 +1,61 @@
+Replay
+------
+
+Replay is a software system designed to visualise the connectivity of,
+and interactions between components within arbitrary systems.
+
+
+License
+-------
+
+Replay is Copyright (C) 2012 Commonwealth of Australia.
+
+Replay is licensed under the GNU General Public License version 3
+(GPLv3) with extensions as allowed under clause 7 of GPL v3 to clarify
+issues of indemnity and liability.
+
+Please see the COPYING file distributed with Replay for futher
+details.
+
+
+gtkglext-3
+----------
+
+Replay requires gtkglext-3 - this is available from
+https://github.com/tdz/gtkglext
+
+git clone https://github.com/tdz/gtkglext
+cd gtkglext
+./bootstrap
+./configure --prefix=/usr
+make
+sudo make install
+
+
+Compiling Replay from git
+-------------------------
+
+When compiling Replay from git (as opposed to using a source tarball),
+you will need to use the autogen.sh script instead of configure (as
+configure is only built when distributing source tarballs).
+
+
+Fedora
+------
+
+When compiling on Fedora a couple more options are required - when
+building both gtkglext-3 and Replay for x86-64, ensure the flag:
+
+--libdir=/usr/lib64
+
+is appended to the autogen.sh / ./configure command for both gtkglext
+and Replay.
+
+Also to ensure Replay is able to find gtkglext-3, the following
+environment variable is required to be set when running autogen.sh /
+configure on Fedora:
+
+PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/usr/lib/pkgconfig/
+
+For more information on installing from a source tarball refer to the
+INSTALL file

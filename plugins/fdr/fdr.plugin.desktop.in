@@ -1,0 +1,7 @@
+[Plugin]
+Module=fdr
+Loader=python
+_Name=FDR Trace Loader
+_Description=Loads FDR traces
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia

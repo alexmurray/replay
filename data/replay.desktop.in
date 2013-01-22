@@ -1,0 +1,12 @@
+[Desktop Entry]
+_Name=Replay
+_X-GNOME-FullName=Replay Systems Visualizer
+_Comment=Visualize Interconnected Systems
+_Keywords=visualization;graph;timeline;
+TryExec=replay
+Exec=replay %f
+Icon=replay
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=GTK;GNOME;Utility;

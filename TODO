@@ -1,0 +1,61 @@
+* Indicate multiple concurrent activities on nodes
+
+   Both timeline-view and graph-view will need to do this - for
+   timeline-view we should make each node have its own interval-list
+   containing its own intervals, then have a global one for message
+   passes. We can then query each nodes interval list for activities,
+   and for each activity we draw we look for another activity which
+   starts during the same time and draw each concurrent one at reduced
+   height. For the graph-view we draw each active node glow ontop of
+   each other but we use a mask / stencil to allow each to occupy a
+   segment of the texture. We could either do this with cairo (and
+   hence draw the entire node glow as a cairo radial gradient into the
+   texture and use cairo's masking stuff to implement this), or
+   instead try and use opengl's stencil buffer - at this stage I think
+   cairo may be the better first start
+
+* Reuse node / edge 'properties' to implement filters
+   based on property values, and to use filters to set properties as
+   well
+
+   - We should then look at perhaps making 'hidden' and 'group' one of
+   these properties to allow dynamic hiding / grouping by specifying
+   particular events in the event log.
+
+   - Filters would then become a mechanism for simply overriding these
+   or other properties.
+
+* Refactor graph out of ReplayGraphView into separate object
+   so plugins can analyse the graph structure
+
+* Dramatically improve performance of text rendering in ReplayGraphView
+   by allocating a texture for each text element, then rendering the
+   text using pango (which is slow) to the texture only when the text
+   changes. Then each frame we only need to map the textures at the
+   text location, rather than re-rendering the (most likely unchanged)
+   text each time.
+
+   - See existing code for HUD texture + cairo and text - basically
+   reuse this
+
+   - Could have a problem though that as we are using a texture and
+   not glDrawPixels() now that text will scale as we zoom in / out -
+   do we want this???
+
+* Do smarter force calculation for connectivity graph (Barnes-Hut or better)
+   - Current algorithm is O(n2) which will be too slow to scale to
+   large numbers of nodes but is 100% accurate
+
+   - Barnes-Hut is O(n log n) which is faster but is less accurate
+   (only about 99% accurate)
+
+   - Accuracy is not really needed (this isn't an astrophysical
+   simulation)
+
+   - We don't even use a proper gravity model anyway (since the graph
+   quickly becomes unstable)
+
+   - Could even investigate apparent O(n) algorithms as well
+
+   - Also have seen some references on the web to papers describing
+   using GPUs to calculate N-body forces (could we do this??)

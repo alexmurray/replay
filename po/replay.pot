@@ -1,0 +1,796 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-18 12:33+1030\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/replay.desktop.in.h:1
+msgid "Replay"
+msgstr ""
+
+#: ../data/replay.desktop.in.h:2
+msgid "Replay Systems Visualizer"
+msgstr ""
+
+#: ../data/replay.desktop.in.h:3
+msgid "Visualize Interconnected Systems"
+msgstr ""
+
+#: ../data/replay.desktop.in.h:4
+msgid "visualization;graph;timeline;"
+msgstr ""
+
+#: ../plugins/fdr/fdr.plugin.desktop.in.h:1
+msgid "FDR Trace Loader"
+msgstr ""
+
+#: ../plugins/fdr/fdr.plugin.desktop.in.h:2
+msgid "Loads FDR traces"
+msgstr ""
+
+#: ../plugins/filters/filters.plugin.desktop.in.h:1
+msgid "Filters Plugin"
+msgstr ""
+
+#: ../plugins/filters/filters.plugin.desktop.in.h:2
+msgid "Provides support for filtering out nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-list.c:1584
+msgid "Invalid action"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-list.c:1589
+msgid "Group nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-list.c:1593
+msgid "Hide nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-list.c:1597
+msgid "Set node properties"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-list-group-dialog.c:67
+msgid "Select / create group"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:1
+msgid "<b>Filtered Nodes</b>"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:2
+msgid "<b>Group Properties</b>"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:3
+msgid "Group name and color"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:4
+msgid "<b>Node Properties</b>"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:5
+msgid "Ignore edges from node"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:6
+msgid "Ignore edges to node"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:7
+msgid "Override node color"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:8
+msgid "<b>Filter Action</b>"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:9
+msgid "Specific nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:10
+msgid "Nodes matching pattern"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:344
+#: ../plugins/filters/replay-filters-dialog.c:455
+msgid "Error creating new filter"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:345
+msgid "Invalid group name"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:456
+msgid "No pattern or specific nodes specified"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:776
+msgid "Enabled"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:780
+msgid "Pattern"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:784
+msgid "Action"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:788
+msgid "Group Name"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:829
+msgid "Select Node"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-dialog.c:838
+msgid "Node"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:74
+msgid "Edit F_ilters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:75
+msgid "Edit the current list of filters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:76
+msgid "Import Filters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:77
+msgid "Import previously exported filters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:78
+msgid "Export Filters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:79
+msgid "Export the current list of filters"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:83
+msgid "_Hide nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:84
+msgid "Hide the currently selected nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:85
+msgid "_Group nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:86
+msgid "Group the currently selected nodes"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:96
+msgid "Filters to load from file"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:97
+msgid "FILTER"
+msgstr ""
+
+#: ../plugins/graphviz/graphviz.plugin.desktop.in.h:1
+msgid "Graphviz Plugin"
+msgstr ""
+
+#: ../plugins/graphviz/graphviz.plugin.desktop.in.h:2
+msgid "Visualizes graphs from graphviz dot files"
+msgstr ""
+
+#: ../plugins/graphviz/replay-graphviz-file-loader.c:172
+#, c-format
+msgid "Error reading graph from file '%s'"
+msgstr ""
+
+#: ../plugins/graphviz/replay-graphviz-file-loader.c:180
+#, c-format
+msgid "Error opening graph file '%s'"
+msgstr ""
+
+#: ../plugins/graphviz/replay-graphviz-file-loader.c:203
+msgid "Graphviz Dot Files"
+msgstr ""
+
+#: ../plugins/playback/playback.plugin.desktop.in.h:1
+msgid "Playback Plugin"
+msgstr ""
+
+#: ../plugins/playback/playback.plugin.desktop.in.h:2
+msgid "Provides support for playing forwards / backwards through events"
+msgstr ""
+
+#. Playback menu
+#: ../plugins/playback/replay-playback-plugin.c:70
+msgid "_Playback"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:71
+msgid "Jump To Start"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:72
+msgid "Jump to start of event log"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:74
+msgid "Jump To End"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:75
+msgid "Jump to end of event log"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:76
+msgid "Step Back"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:77
+msgid "Step back to previous event"
+msgstr ""
+
+#. would have backwards action here but cant since is a toggle action - will
+#. * add separately later
+#: ../plugins/playback/replay-playback-plugin.c:80
+msgid "Stop Playback"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:81
+msgid "Stop playback of events"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:82
+msgid "Step Forward"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:83
+msgid "Step forward to next event"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:84
+msgid "Increase Playback Speed"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:85
+msgid "Increase speed of playback"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:86
+msgid "Decrease Playback Speed"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:87
+msgid "Decrease speed of playback"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:94
+msgid "Run Backwards"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:95
+msgid "Play through event log in reverse"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:96
+msgid "Run Forwards"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:97
+msgid "Play forwards through event log"
+msgstr ""
+
+#: ../plugins/playback/replay-playback-plugin.c:680
+msgid "Playback speed"
+msgstr ""
+
+#: ../plugins/search/search.plugin.desktop.in.h:1
+msgid "Search Plugin"
+msgstr ""
+
+#: ../plugins/search/search.plugin.desktop.in.h:2
+msgid "Provides support to search for messages by their description"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:65
+msgid "Find..."
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:66
+msgid "Find a specific event"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:67
+msgid "Find next"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:68
+msgid "Find next matching event"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:69
+msgid "Find previous"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:70
+msgid "Find previous matching event"
+msgstr ""
+
+#: ../plugins/search/replay-search-plugin.c:195
+msgid "Error stripping message description of markup to match against"
+msgstr ""
+
+#: ../replay/replay-application.c:85
+#, c-format
+msgid "Bug report for Replay version %s"
+msgstr ""
+
+#: ../replay/replay-application.c:88
+msgid ""
+"Please describe the problem / issue you are reporting including any "
+"instructions to reproduce it."
+msgstr ""
+
+#: ../replay/replay-application.c:129
+msgid "About Replay"
+msgstr ""
+
+#: ../replay/replay-application.c:135
+msgid "Replay homepage"
+msgstr ""
+
+#: ../replay/replay-application.c:159
+msgid "[FILE]"
+msgstr ""
+
+#. Setup command line options
+#: ../replay/replay-application.c:178 ../replay/replay-application.c:387
+msgid " - Visualize"
+msgstr ""
+
+#: ../replay/replay-application.c:194
+#, c-format
+msgid ""
+"%s\n"
+"Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:222
+msgid "Event Processor"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:250
+#, c-format
+msgid "Name is empty string"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:256
+#, c-format
+msgid "Name is NULL"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:274
+#, c-format
+msgid "Unable to parse color '%s'"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:280
+#, c-format
+msgid "Color is empty string"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:330
+#, c-format
+msgid "Node '%s' does not exist"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:352
+#, c-format
+msgid "Node '%s' already exists"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:389
+#, c-format
+msgid "Activity '%s' does not exist for node '%s'"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:412
+#, c-format
+msgid "Activity '%s' already exists for node '%s'"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:427
+#, c-format
+msgid ""
+"level %f is invalid, must be greater than 0.0 and less than or equal to 1.0"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:460
+#, c-format
+msgid "Edge '%s' does not exist"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:482
+#, c-format
+msgid "Edge '%s' already exists"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:515
+#, c-format
+msgid "Message '%s' already exists"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:537
+#, c-format
+msgid "Message '%s' must already exist"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:562
+#, c-format
+msgid "%s property must be of type G_TYPE_STRING"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:591
+#, c-format
+msgid "color property must be of type G_TYPE_STRING"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:609
+#, c-format
+msgid "level property must be of type G_TYPE_DOUBLE"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:665
+#, c-format
+msgid "Invalid event: Timestamp is prior to last event"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:675
+msgid "Invalid node create event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:681
+#: ../replay/replay-event-processor.c:722
+#: ../replay/replay-event-processor.c:728
+#: ../replay/replay-event-processor.c:748
+msgid "Invalid node properties event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:690
+msgid "Invalid node delete event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:699
+msgid "Invalid edge create event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:705
+msgid "Invalid edge create event: Tail node: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:714
+msgid "Invalid edge delete event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:738
+#: ../replay/replay-event-processor.c:743
+msgid "Invalid activity start event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:757
+#: ../replay/replay-event-processor.c:762
+msgid "Invalid activity end event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:769
+#: ../replay/replay-event-processor.c:775
+msgid "Invalid edge properties event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:785
+#: ../replay/replay-event-processor.c:793
+#: ../replay/replay-event-processor.c:802
+#: ../replay/replay-event-processor.c:809
+msgid "Invalid message send event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:818
+#: ../replay/replay-event-processor.c:825
+msgid "Invalid message recv event: "
+msgstr ""
+
+#: ../replay/replay-event-processor.c:830
+#, c-format
+msgid "Invalid event: Unknown type %s"
+msgstr ""
+
+#: ../replay/replay-event-processor.c:927
+#: ../replay/replay-event-processor.c:948
+#, c-format
+msgid "Automatically generated by Replay source code %s: %d"
+msgstr ""
+
+#: ../replay/replay-graph-view.c:537
+msgid "Invert selection"
+msgstr ""
+
+#: ../replay/replay-graph-view.c:543
+msgid "View 2D mode"
+msgstr ""
+
+#: ../replay/replay-graph-view.c:3135
+msgid "Processing events…"
+msgstr ""
+
+#. name, stock_id, label, accelerator, tooltip, callback
+#: ../replay/replay-log-window.c:59
+msgid "_Save As"
+msgstr ""
+
+#: ../replay/replay-log-window.c:60
+msgid "Save error log"
+msgstr ""
+
+#: ../replay/replay-log-window.c:61
+msgid "_Clear All"
+msgstr ""
+
+#: ../replay/replay-log-window.c:62
+msgid "Clear error log"
+msgstr ""
+
+#: ../replay/replay-log-window.c:205
+msgid "Time"
+msgstr ""
+
+#: ../replay/replay-log-window.c:214
+msgid "Source"
+msgstr ""
+
+#: ../replay/replay-log-window.c:223
+msgid "Message"
+msgstr ""
+
+#. add label and spin_button to toolbar
+#: ../replay/replay-log-window.c:271
+msgid "Log Level"
+msgstr ""
+
+#: ../replay/replay-log-window.c:305
+msgid "Replay Log"
+msgstr ""
+
+#: ../replay/replay-log.c:145
+msgid "Error"
+msgstr ""
+
+#: ../replay/replay-log.c:145
+msgid "Information"
+msgstr ""
+
+#: ../replay/replay-log.c:145
+msgid "Debug"
+msgstr ""
+
+#. name, stock_id, label, accelerator, tooltip, callback
+#. File Menu
+#: ../replay/replay-window.c:228
+msgid "_File"
+msgstr ""
+
+#: ../replay/replay-window.c:229
+msgid "_Open…"
+msgstr ""
+
+#: ../replay/replay-window.c:230
+msgid "Open an file"
+msgstr ""
+
+#: ../replay/replay-window.c:231
+msgid "_Close"
+msgstr ""
+
+#: ../replay/replay-window.c:232
+msgid "Close this window"
+msgstr ""
+
+#. Edit Menu
+#: ../replay/replay-window.c:235
+msgid "_Edit"
+msgstr ""
+
+#: ../replay/replay-window.c:236
+msgid "P_lugins"
+msgstr ""
+
+#: ../replay/replay-window.c:237
+msgid "Enable and disable plugins"
+msgstr ""
+
+#. View Menu
+#: ../replay/replay-window.c:240
+msgid "_View"
+msgstr ""
+
+#: ../replay/replay-window.c:241
+msgid "Message Log"
+msgstr ""
+
+#: ../replay/replay-window.c:242
+msgid "Show log window"
+msgstr ""
+
+#: ../replay/replay-window.c:247
+msgid "_Fullscreen"
+msgstr ""
+
+#: ../replay/replay-window.c:248
+msgid "Switch to fullscreen view"
+msgstr ""
+
+#: ../replay/replay-window.c:255
+msgid "Save _As…"
+msgstr ""
+
+#: ../replay/replay-window.c:256
+msgid "Save timeline view"
+msgstr ""
+
+#: ../replay/replay-window.c:257
+msgid "Page Set_up…"
+msgstr ""
+
+#: ../replay/replay-window.c:258
+msgid "Configure printer page setup"
+msgstr ""
+
+#: ../replay/replay-window.c:259
+msgid "_Print…"
+msgstr ""
+
+#: ../replay/replay-window.c:260
+msgid "Print the timeline view"
+msgstr ""
+
+#. View Menu Items
+#: ../replay/replay-window.c:263
+msgid "Zoom _In"
+msgstr ""
+
+#: ../replay/replay-window.c:264
+msgid "Increase zoom in timeline view"
+msgstr ""
+
+#: ../replay/replay-window.c:265
+msgid "Zoom _Out"
+msgstr ""
+
+#: ../replay/replay-window.c:266
+msgid "Decrease zoom in timeline view"
+msgstr ""
+
+#: ../replay/replay-window.c:267
+msgid "Event Source"
+msgstr ""
+
+#: ../replay/replay-window.c:268
+msgid "Show current event source"
+msgstr ""
+
+#: ../replay/replay-window.c:274
+msgid "_Absolute time"
+msgstr ""
+
+#: ../replay/replay-window.c:275
+msgid "Use absolute time values"
+msgstr ""
+
+#: ../replay/replay-window.c:276
+msgid "_Label nodes"
+msgstr ""
+
+#: ../replay/replay-window.c:277
+msgid "Label nodes in the graph view"
+msgstr ""
+
+#: ../replay/replay-window.c:278
+msgid "_Label edges"
+msgstr ""
+
+#: ../replay/replay-window.c:279
+msgid "Label edges in the graph view"
+msgstr ""
+
+#: ../replay/replay-window.c:280
+msgid "_Label messages"
+msgstr ""
+
+#: ../replay/replay-window.c:281
+msgid "Label messages in the timeline view"
+msgstr ""
+
+#: ../replay/replay-window.c:497
+#, c-format
+msgid "Error processing %s event"
+msgstr ""
+
+#: ../replay/replay-window.c:642
+msgid "All supported file types"
+msgstr ""
+
+#: ../replay/replay-window.c:658
+msgid "Recently opened files"
+msgstr ""
+
+#: ../replay/replay-window.c:681
+msgid "Open Recent"
+msgstr ""
+
+#: ../replay/replay-window.c:682
+msgid "Open a recent file"
+msgstr ""
+
+#. create info bar
+#: ../replay/replay-window.c:1104
+msgid "View Message Log"
+msgstr ""
+
+#: ../replay/replay-window.c:1106
+msgid "Ignore"
+msgstr ""
+
+#: ../replay/replay-window.c:1189
+msgid "Replay Event Source"
+msgstr ""
+
+#. get dialogs and connect response signals
+#: ../replay/replay-window.c:1221
+msgid "Replay Plugins"
+msgstr ""
+
+#: ../replay/replay-window.c:1493
+#, c-format
+msgid "<b>ERROR:</b> %s"
+msgstr ""
+
+#. show file loading task progress to user
+#: ../replay/replay-window.c:1747
+#, c-format
+msgid "Loading events from <b>%s</b> in <b>%s</b>"
+msgstr ""
+
+#: ../replay/replay-window.c:1773 ../replay/replay-window.c:1786
+#, c-format
+msgid "Error loading events from file '%s'"
+msgstr ""
+
+#: ../replay/replay-window.c:1776
+msgid "No plugin exists to handle loading events from file"
+msgstr ""
+
+#: ../ui/replay-prefs.ui.h:1
+msgid "View"
+msgstr ""

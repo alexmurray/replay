@@ -1,0 +1,243 @@
+<refentry id="intro-plugin-tutorial">
+    <refmeta>
+        <refentrytitle role="top_of_page" id="intro-plugin-tutorial.top_of_page">Introduction to Writing Replay Plugins</refentrytitle>
+        <manvolnum>3</manvolnum>
+        <refmiscinfo>replay</refmiscinfo>
+    </refmeta>
+    <refnamediv>
+        <refname>Introduction to Writing Replay Plugins</refname>
+        <refpurpose>introduction to writing Replay plugins</refpurpose>
+    </refnamediv>
+
+    <refsect1>
+        <title>Introduction</title>
+        <para>Replay is extensible by means of small, dynamically-loadable plugins, which can add functionality, such as providing events from custom event sources or analysis capabilities. Replay utilises the peas plugin framework for its plugin interface.</para>
+
+        <refsect2>
+            <title>Locations</title>
+            <para>Replay plugins can either be installed in the system path
+                (e.g. <filename class="directory">/usr/lib/replay/plugins/</filename>), or in a user's home directory
+                (e.g. <filename class="directory">~/.local/share/replay/plugins/</filename>). In either case, each plugin resides in a
+                subdirectory named after the plugin itself.</para>
+            <para>In addition, each plugin needs a <filename class="extension">.plugin</filename> index file, residing inside the plugin
+                directory. This gives the code name of the plugin, as well as some metadata about the plugin such as its human-readable
+                name, description and author.</para>
+            <example>
+                <title>Example Plugin Directory</title>
+                <para>A system-installed plugin called <literal>foobar</literal> would reside in
+                    <filename class="directory">/usr/lib/replay/plugins/foobar</filename>, and would (at a
+                    minimum) have the following files:
+                    <itemizedlist>
+                        <listitem><filename>foobar.plugin</filename></listitem>
+                        <listitem><filename>libfoobar.so</filename></listitem>
+                    </itemizedlist>
+                </para>
+                <para>If installed in a user's home directory, it would reside in
+                    <filename class="extension">~/.local/share/replay/plugins/foobar</filename> and have the same
+                    files.</para>
+            </example>
+        </refsect2>
+
+        <refsect2>
+            <title>The <filename class="extension">.plugin</filename> File</title>
+            <para>The file should use the following template:
+                <programlisting>[Plugin]
+Module=<replaceable>plugin-name</replaceable>
+Name=<replaceable>Human-Readable Plugin Name</replaceable>
+Description=<replaceable>Simple sentence describing the plugin's functionality.</replaceable>
+Authors=<replaceable>Plugin Author Name</replaceable>
+Copyright=Copyright © <replaceable>year</replaceable> <replaceable>Copyright Holder</replaceable>
+Version=<replaceable>Plugin Version</replaceable>
+Icon=<replaceable>Name of an icon in the icon theme to represent the plugin</replaceable>
+Website=<replaceable>http://plugin/website/</replaceable></programlisting>
+                Most of the values in the template are fairly self-explanatory. One thing to note is that the plugin name should be
+                in lowercase, and contain no spaces. The plugin interface age should match that of libpeas ie. <literal>2</literal>.
+                If the plugin does not have its own
+                website, Replay's website (<literal>http://alexmurray.github.com/replay</literal>) can be used.</para>
+            <para>The library file containing the plugin's code should be named
+                <filename>lib<replaceable>plugin-name</replaceable>.so</filename>
+            </para>
+        </refsect2>
+
+        <refsect2>
+            <title>Writing a Plugin</title>
+            <para>Writing a plugin in C is a matter of creating a new <type><link linkend="GObject">GObject</link></type> which inherits
+                from <type><link linkend="PeasExtensionBase">PeasExtensionBase</link></type> and implements the <type><link linkend="ReplayWindowActivatable">ReplayWindowActivatable</link></type> interface. The following code will create a simple plugin
+                called <literal>foobar</literal>:
+                <example>
+                    <title>Example Plugin Code</title>
+                    <programlisting>
+#include &lt;libpeas/peas.h&gt;
+#include &lt;replay/replay-window.h&gt;
+
+#define REPLAY_TYPE_FOOBAR_PLUGIN        (replay_foobar_plugin_get_type ())
+#define REPLAY_FOOBAR_PLUGIN(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), REPLAY_TYPE_FOOBAR_PLUGIN, ReplayFoobarPlugin))
+#define REPLAY_FOOBAR_PLUGIN_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), REPLAY_TYPE_FOOBAR_PLUGIN, ReplayFoobarPluginClass))
+#define REPLAY_IS_FOOBAR_PLUGIN(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), REPLAY_TYPE_FOOBAR_PLUGIN))
+#define REPLAY_IS_FOOBAR_PLUGIN_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), REPLAY_TYPE_FOOBAR_PLUGIN))
+#define REPLAY_FOOBAR_PLUGIN_GET_CLASS(o)(G_TYPE_INSTANCE_GET_CLASS ((o), REPLAY_TYPE_FOOBAR_PLUGIN, ReplayFoobarPluginClass))
+
+typedef struct _ReplayFoobarPluginPrivate ReplayFoobarPluginPrivate;
+typedef struct {
+  PeasExtensionBase parent;
+
+  ReplayFoobarPluginPrivate *priv;
+} ReplayFoobarPlugin;
+
+typedef struct {
+  PeasExtensionBaseClass parent_class;
+} ReplayFoobarPluginClass;
+
+GType replay_foobar_plugin_get_type(void);
+
+/* All the plugins must implement this function */
+G_MODULE_EXPORT void peas_register_types(PeasObjectModule *module);
+
+#define REPLAY_FOOBAR_PLUGIN_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), REPLAY_TYPE_FOOBAR_PLUGIN, ReplayFoobarPluginPrivate))
+
+struct _ReplayFoobarPluginPrivate
+{
+  ReplayWindow *window;
+};
+
+static void replay_foobar_plugin_dispose (GObject *object);
+
+static void replay_window_activatable_iface_init(ReplayWindowActivatableInterface *iface);
+
+G_DEFINE_DYNAMIC_TYPE_EXTENDED(ReplayFoobarPlugin,
+                               replay_foobar_plugin,
+                               PEAS_TYPE_EXTENSION_BASE,
+                               0,
+                               G_IMPLEMENT_INTERFACE_DYNAMIC(REPLAY_TYPE_WINDOW_ACTIVATABLE,
+                                                             replay_window_activatable_iface_init));
+
+enum {
+  PROP_WINDOW = 1,
+};
+
+static void
+replay_foobar_plugin_set_property(GObject *object,
+                               guint prop_id,
+                               const GValue *value,
+                               GParamSpec *pspec)
+{
+  ReplayFoobarPlugin *plugin = REPLAY_FOOBAR_PLUGIN(object);
+
+  switch (prop_id) {
+    case PROP_WINDOW:
+      plugin->priv->window = REPLAY_WINDOW(g_value_dup_object(value));
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+replay_foobar_plugin_get_property(GObject *object,
+                               guint prop_id,
+                               GValue *value,
+                               GParamSpec *pspec)
+{
+  ReplayFoobarPlugin *plugin = REPLAY_FOOBAR_PLUGIN(object);
+
+  switch (prop_id) {
+    case PROP_WINDOW:
+      g_value_set_object(value, plugin->priv->window);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+replay_foobar_plugin_init (ReplayFoobarPlugin *plugin)
+{
+  plugin->priv = REPLAY_FOOBAR_PLUGIN_GET_PRIVATE (plugin);
+}
+
+static void
+replay_foobar_plugin_dispose (GObject *object)
+{
+  ReplayFoobarPlugin *self = REPLAY_FOOBAR_PLUGIN(object);
+
+  g_clear_object(&amp;self->priv->window);
+
+  G_OBJECT_CLASS (replay_foobar_plugin_parent_class)->dispose (object);
+}
+
+static void
+replay_foobar_plugin_activate(ReplayWindowActivatable *plugin)
+{
+  ReplayFoobarPlugin *self = REPLAY_FOOBAR_PLUGIN(plugin);
+
+  /* Initialise resources, connect to events, create menu items and UI, etc.,
+   * here.  Note that impl_activate and impl_deactivate can be called multiple
+   * times in one replay instance, though impl_activate will always be followed by
+   * impl_deactivate before it is called again. Similarly, impl_deactivate
+   * cannot be called twice in succession. */
+}
+
+static void
+replay_foobar_plugin_deactivate(ReplayWindowActivatable *plugin)
+{
+  ReplayFoobarPlugin *self = REPLAY_FOOBAR_PLUGIN(plugin);
+
+  /* Destroy resources created in replay_foobar_plugin_activate here. e.g.
+   * Disconnect from signals and remove menu entries and UI. */
+}
+
+static void
+replay_foobar_plugin_class_init (ReplayFoobarPluginClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  g_type_class_add_private (object_class, sizeof (ReplayFoobarPluginPrivate));
+
+  object_class->get_property = replay_foobar_plugin_get_property;
+  object_class->set_property = replay_foobar_plugin_set_property;
+  object_class->dispose = replay_foobar_plugin_dispose;
+
+  g_object_class_override_property(object_class, PROP_WINDOW, "window");
+}
+
+static void
+replay_window_activatable_iface_init(ReplayWindowActivatableInterface *iface)
+{
+  iface->activate = replay_foobar_plugin_activate;
+  iface->deactivate = replay_foobar_plugin_deactivate;
+}
+
+static void
+replay_foobar_plugin_class_finalize(ReplayFoobarPluginClass *klass)
+{
+  /* nothing to do */
+}
+
+G_MODULE_EXPORT void
+peas_register_types(PeasObjectModule *module)
+{
+  replay_foobar_plugin_register_type(G_TYPE_MODULE(module));
+
+  peas_object_module_register_extension_type(module,
+                                             REPLAY_TYPE_WINDOW_ACTIVATABLE,
+                                             REPLAY_TYPE_FOOBAR_PLUGIN);
+}
+
+</programlisting>
+            </example></para>
+            <para>Once resources have been created, and the plugin has been connected to Replay's UI in the <function>replay_foobar_plugin_activate</function>
+                function, the plugin is free to go about its tasks as appropriate. If the user deactivates the plugin, or Replay decides
+                to deactivate it, the <function>replay_foobar_plugin_deactivate</function> will be called. The plugin should free any resources
+                grabbed or allocated in the <function>replay_foobar_plugin_activate</function> function, and remove itself from the Replay
+                interface.</para>
+            <para>Note that plugins can be activated and deactivated (e.g. from Replay's plugin manager) many times during one Replay session,
+                so the <function>replay_foobar_plugin_activate</function> and <function>replay_foobar_plugin_deactivate</function> functions must be able to cope with
+                this.</para>
+            <para>Only some of the API documented in the rest of the Replay API reference can be used by plugins, and this will be extended in future releases.</para>
+        </refsect2>
+    </refsect1>
+</refentry>

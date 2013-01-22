@@ -1,0 +1,21 @@
+data/replay.desktop.in
+plugins/fdr/fdr.plugin.desktop.in
+plugins/filters/filters.plugin.desktop.in
+plugins/filters/replay-filter-list.c
+[type: gettext/glade]plugins/filters/replay-filter-props-dialog.ui
+plugins/filters/replay-filters-dialog.c
+plugins/filters/replay-filters-plugin.c
+plugins/graphviz/graphviz.plugin.desktop.in
+plugins/graphviz/replay-graphviz-file-loader.c
+plugins/playback/playback.plugin.desktop.in
+plugins/playback/replay-playback-plugin.c
+plugins/search/search.plugin.desktop.in
+plugins/search/replay-search-plugin.c
+replay/replay-application.c
+replay/replay-event-processor.c
+replay/replay-graph-view.c
+replay/replay-log-window.c
+replay/replay-log.c
+replay/replay-prefs.c
+replay/replay-window.c
+[type: gettext/glade]ui/replay-prefs.ui

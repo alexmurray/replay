@@ -1,0 +1,8 @@
+[Plugin]
+Module=filters
+_Name=Filters Plugin
+_Description=Provides support for filtering out nodes
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia
+Version=0.1
+Icon=gtk-edit

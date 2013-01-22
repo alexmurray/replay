@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<omf>
+  <resource>
+    <subject category="GNOME|Utilities"/>
+    <type>manual</type>
+    <relation seriesid="04191920-3934-e574-03b3-e6e8adc5342750"/>
+    <rights type="GNU FDL" license.version="1.1" holder="DSTO"/>
+  </resource>        
+</omf>
+
