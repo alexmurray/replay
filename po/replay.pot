@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-18 12:33+1030\n"
+"POT-Creation-Date: 2013-01-23 22:08+1030\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,55 @@ msgstr ""
 msgid "visualization;graph;timeline;"
 msgstr ""
 
+#: ../plugins/export/export.plugin.desktop.in.h:1
+msgid "Events Exporter / Importer"
+msgstr ""
+
+#: ../plugins/export/export.plugin.desktop.in.h:2
+msgid "Export the event log into a standardized format"
+msgstr ""
+
+#: ../plugins/export/export.py:32
+#, python-format
+msgid "Exporting events to %s"
+msgstr ""
+
+#: ../plugins/export/export.py:86
+#, python-format
+msgid "Unable to export unknown event: \"%s\""
+msgstr ""
+
+#. create a dialog to choose the file to export to and then
+#. create a EventExporter to do the actual export
+#: ../plugins/export/export.py:132
+msgid "Export Events..."
+msgstr ""
+
+#: ../plugins/export/export.py:140 ../plugins/export/export.py:194
+msgid "Replay Events"
+msgstr ""
+
+#: ../plugins/export/export.py:160
+msgid "Export Events"
+msgstr ""
+
+#: ../plugins/export/export.py:208
+#, python-format
+msgid ""
+"Unable to convert property of type \"%s\" to a GVariant - please report this "
+"as a bug at https://github.com/alexmurray/replay/issues"
+msgstr ""
+
+#: ../plugins/export/export.py:271
+#, python-format
+msgid "Unable to import unknown event: \"%s\""
+msgstr ""
+
+#: ../plugins/export/export.py:280
+#, python-format
+msgid "Invalid version \"%f\""
+msgstr ""
+
 #: ../plugins/fdr/fdr.plugin.desktop.in.h:1
 msgid "FDR Trace Loader"
 msgstr ""
@@ -49,24 +98,20 @@ msgstr ""
 msgid "Provides support for filtering out nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-list.c:1584
+#: ../plugins/filters/replay-filter-list.c:1585
 msgid "Invalid action"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-list.c:1589
+#: ../plugins/filters/replay-filter-list.c:1590
 msgid "Group nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-list.c:1593
+#: ../plugins/filters/replay-filter-list.c:1594
 msgid "Hide nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-list.c:1597
+#: ../plugins/filters/replay-filter-list.c:1598
 msgid "Set node properties"
-msgstr ""
-
-#: ../plugins/filters/replay-filter-list-group-dialog.c:67
-msgid "Select / create group"
 msgstr ""
 
 #: ../plugins/filters/replay-filter-props-dialog.ui.h:1
@@ -86,31 +131,23 @@ msgid "<b>Node Properties</b>"
 msgstr ""
 
 #: ../plugins/filters/replay-filter-props-dialog.ui.h:5
-msgid "Ignore edges from node"
-msgstr ""
-
-#: ../plugins/filters/replay-filter-props-dialog.ui.h:6
-msgid "Ignore edges to node"
-msgstr ""
-
-#: ../plugins/filters/replay-filter-props-dialog.ui.h:7
 msgid "Override node color"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-props-dialog.ui.h:8
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:6
 msgid "<b>Filter Action</b>"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-props-dialog.ui.h:9
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:7
 msgid "Specific nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filter-props-dialog.ui.h:10
+#: ../plugins/filters/replay-filter-props-dialog.ui.h:8
 msgid "Nodes matching pattern"
 msgstr ""
 
 #: ../plugins/filters/replay-filters-dialog.c:344
-#: ../plugins/filters/replay-filters-dialog.c:455
+#: ../plugins/filters/replay-filters-dialog.c:458
 msgid "Error creating new filter"
 msgstr ""
 
@@ -118,80 +155,88 @@ msgstr ""
 msgid "Invalid group name"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:456
+#: ../plugins/filters/replay-filters-dialog.c:459
 msgid "No pattern or specific nodes specified"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:776
+#: ../plugins/filters/replay-filters-dialog.c:779
 msgid "Enabled"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:780
+#: ../plugins/filters/replay-filters-dialog.c:783
 msgid "Pattern"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:784
+#: ../plugins/filters/replay-filters-dialog.c:787
 msgid "Action"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:788
+#: ../plugins/filters/replay-filters-dialog.c:791
 msgid "Group Name"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:829
+#: ../plugins/filters/replay-filters-dialog.c:832
 msgid "Select Node"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-dialog.c:838
+#: ../plugins/filters/replay-filters-dialog.c:841
 msgid "Node"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:74
+#: ../plugins/filters/replay-filters-plugin.c:73
 msgid "Edit F_ilters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:75
+#: ../plugins/filters/replay-filters-plugin.c:74
 msgid "Edit the current list of filters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:76
+#: ../plugins/filters/replay-filters-plugin.c:75
 msgid "Import Filters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:77
+#: ../plugins/filters/replay-filters-plugin.c:76
 msgid "Import previously exported filters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:78
+#: ../plugins/filters/replay-filters-plugin.c:77
 msgid "Export Filters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:79
+#: ../plugins/filters/replay-filters-plugin.c:78
 msgid "Export the current list of filters"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:83
+#: ../plugins/filters/replay-filters-plugin.c:82
 msgid "_Hide nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:84
+#: ../plugins/filters/replay-filters-plugin.c:83
 msgid "Hide the currently selected nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:85
+#: ../plugins/filters/replay-filters-plugin.c:84
 msgid "_Group nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:86
+#: ../plugins/filters/replay-filters-plugin.c:85
 msgid "Group the currently selected nodes"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:96
+#: ../plugins/filters/replay-filters-plugin.c:95
 msgid "Filters to load from file"
 msgstr ""
 
-#: ../plugins/filters/replay-filters-plugin.c:97
+#: ../plugins/filters/replay-filters-plugin.c:96
 msgid "FILTER"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:377
+msgid "Name"
+msgstr ""
+
+#: ../plugins/filters/replay-filters-plugin.c:395
+msgid "Color"
 msgstr ""
 
 #: ../plugins/graphviz/graphviz.plugin.desktop.in.h:1
@@ -343,35 +388,24 @@ msgstr ""
 msgid "Error stripping message description of markup to match against"
 msgstr ""
 
-#: ../replay/replay-application.c:85
-#, c-format
-msgid "Bug report for Replay version %s"
-msgstr ""
-
-#: ../replay/replay-application.c:88
-msgid ""
-"Please describe the problem / issue you are reporting including any "
-"instructions to reproduce it."
-msgstr ""
-
-#: ../replay/replay-application.c:129
+#: ../replay/replay-application.c:133
 msgid "About Replay"
 msgstr ""
 
-#: ../replay/replay-application.c:135
+#: ../replay/replay-application.c:142
 msgid "Replay homepage"
 msgstr ""
 
-#: ../replay/replay-application.c:159
+#: ../replay/replay-application.c:166
 msgid "[FILE]"
 msgstr ""
 
 #. Setup command line options
-#: ../replay/replay-application.c:178 ../replay/replay-application.c:387
+#: ../replay/replay-application.c:212
 msgid " - Visualize"
 msgstr ""
 
-#: ../replay/replay-application.c:194
+#: ../replay/replay-application.c:228
 #, c-format
 msgid ""
 "%s\n"
@@ -597,142 +631,142 @@ msgstr ""
 
 #. name, stock_id, label, accelerator, tooltip, callback
 #. File Menu
-#: ../replay/replay-window.c:228
+#: ../replay/replay-window.c:220
 msgid "_File"
 msgstr ""
 
-#: ../replay/replay-window.c:229
+#: ../replay/replay-window.c:221
 msgid "_Open…"
 msgstr ""
 
-#: ../replay/replay-window.c:230
+#: ../replay/replay-window.c:222
 msgid "Open an file"
 msgstr ""
 
-#: ../replay/replay-window.c:231
+#: ../replay/replay-window.c:223
 msgid "_Close"
 msgstr ""
 
-#: ../replay/replay-window.c:232
+#: ../replay/replay-window.c:224
 msgid "Close this window"
 msgstr ""
 
 #. Edit Menu
-#: ../replay/replay-window.c:235
+#: ../replay/replay-window.c:227
 msgid "_Edit"
 msgstr ""
 
-#: ../replay/replay-window.c:236
+#: ../replay/replay-window.c:228
 msgid "P_lugins"
 msgstr ""
 
-#: ../replay/replay-window.c:237
+#: ../replay/replay-window.c:229
 msgid "Enable and disable plugins"
 msgstr ""
 
 #. View Menu
-#: ../replay/replay-window.c:240
+#: ../replay/replay-window.c:232
 msgid "_View"
 msgstr ""
 
-#: ../replay/replay-window.c:241
+#: ../replay/replay-window.c:233
 msgid "Message Log"
 msgstr ""
 
-#: ../replay/replay-window.c:242
+#: ../replay/replay-window.c:234
 msgid "Show log window"
 msgstr ""
 
-#: ../replay/replay-window.c:247
+#: ../replay/replay-window.c:239
 msgid "_Fullscreen"
 msgstr ""
 
-#: ../replay/replay-window.c:248
+#: ../replay/replay-window.c:240
 msgid "Switch to fullscreen view"
 msgstr ""
 
-#: ../replay/replay-window.c:255
+#: ../replay/replay-window.c:247
 msgid "Save _As…"
 msgstr ""
 
-#: ../replay/replay-window.c:256
+#: ../replay/replay-window.c:248
 msgid "Save timeline view"
 msgstr ""
 
-#: ../replay/replay-window.c:257
+#: ../replay/replay-window.c:249
 msgid "Page Set_up…"
 msgstr ""
 
-#: ../replay/replay-window.c:258
+#: ../replay/replay-window.c:250
 msgid "Configure printer page setup"
 msgstr ""
 
-#: ../replay/replay-window.c:259
+#: ../replay/replay-window.c:251
 msgid "_Print…"
 msgstr ""
 
-#: ../replay/replay-window.c:260
+#: ../replay/replay-window.c:252
 msgid "Print the timeline view"
 msgstr ""
 
 #. View Menu Items
-#: ../replay/replay-window.c:263
+#: ../replay/replay-window.c:255
 msgid "Zoom _In"
 msgstr ""
 
-#: ../replay/replay-window.c:264
+#: ../replay/replay-window.c:256
 msgid "Increase zoom in timeline view"
 msgstr ""
 
-#: ../replay/replay-window.c:265
+#: ../replay/replay-window.c:257
 msgid "Zoom _Out"
 msgstr ""
 
-#: ../replay/replay-window.c:266
+#: ../replay/replay-window.c:258
 msgid "Decrease zoom in timeline view"
 msgstr ""
 
-#: ../replay/replay-window.c:267
+#: ../replay/replay-window.c:259
 msgid "Event Source"
 msgstr ""
 
-#: ../replay/replay-window.c:268
+#: ../replay/replay-window.c:260
 msgid "Show current event source"
 msgstr ""
 
-#: ../replay/replay-window.c:274
+#: ../replay/replay-window.c:266
 msgid "_Absolute time"
 msgstr ""
 
-#: ../replay/replay-window.c:275
+#: ../replay/replay-window.c:267
 msgid "Use absolute time values"
 msgstr ""
 
-#: ../replay/replay-window.c:276
+#: ../replay/replay-window.c:268
 msgid "_Label nodes"
 msgstr ""
 
-#: ../replay/replay-window.c:277
+#: ../replay/replay-window.c:269
 msgid "Label nodes in the graph view"
 msgstr ""
 
-#: ../replay/replay-window.c:278
+#: ../replay/replay-window.c:270
 msgid "_Label edges"
 msgstr ""
 
-#: ../replay/replay-window.c:279
+#: ../replay/replay-window.c:271
 msgid "Label edges in the graph view"
 msgstr ""
 
-#: ../replay/replay-window.c:280
+#: ../replay/replay-window.c:272
 msgid "_Label messages"
 msgstr ""
 
-#: ../replay/replay-window.c:281
+#: ../replay/replay-window.c:273
 msgid "Label messages in the timeline view"
 msgstr ""
 
-#: ../replay/replay-window.c:497
+#: ../replay/replay-window.c:489
 #, c-format
 msgid "Error processing %s event"
 msgstr ""
@@ -745,29 +779,29 @@ msgstr ""
 msgid "Recently opened files"
 msgstr ""
 
-#: ../replay/replay-window.c:681
+#: ../replay/replay-window.c:683
 msgid "Open Recent"
 msgstr ""
 
-#: ../replay/replay-window.c:682
+#: ../replay/replay-window.c:684
 msgid "Open a recent file"
 msgstr ""
 
 #. create info bar
-#: ../replay/replay-window.c:1104
+#: ../replay/replay-window.c:1123
 msgid "View Message Log"
 msgstr ""
 
-#: ../replay/replay-window.c:1106
+#: ../replay/replay-window.c:1125
 msgid "Ignore"
 msgstr ""
 
-#: ../replay/replay-window.c:1189
+#: ../replay/replay-window.c:1208
 msgid "Replay Event Source"
 msgstr ""
 
 #. get dialogs and connect response signals
-#: ../replay/replay-window.c:1221
+#: ../replay/replay-window.c:1240
 msgid "Replay Plugins"
 msgstr ""
 
@@ -777,17 +811,17 @@ msgid "<b>ERROR:</b> %s"
 msgstr ""
 
 #. show file loading task progress to user
-#: ../replay/replay-window.c:1747
+#: ../replay/replay-window.c:1758
 #, c-format
 msgid "Loading events from <b>%s</b> in <b>%s</b>"
 msgstr ""
 
-#: ../replay/replay-window.c:1773 ../replay/replay-window.c:1786
+#: ../replay/replay-window.c:1784 ../replay/replay-window.c:1797
 #, c-format
 msgid "Error loading events from file '%s'"
 msgstr ""
 
-#: ../replay/replay-window.c:1776
+#: ../replay/replay-window.c:1787
 msgid "No plugin exists to handle loading events from file"
 msgstr ""
 
