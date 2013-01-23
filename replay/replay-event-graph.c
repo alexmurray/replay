@@ -2620,39 +2620,9 @@ static void hadj_value_changed(GtkAdjustment *hadj,
 
   if (hadj_value != priv->hadj_value)
   {
-    double x, y, width, height;
-    cairo_t *cr;
-    gdouble diff = priv->hadj_value - hadj_value;
-
     priv->hadj_value = hadj_value;
 
-    /* copy surface to itself to achieve scroll */
-    x = MAX(diff, 0.0f);
-    y = 0.0f;
-    width = replay_event_graph_drawable_width(self) - fabs(diff);
-    height = replay_event_graph_drawable_height(self);
-
-    /* make sure any previous writing to surface is finished */
-    cairo_surface_flush(priv->surface);
-    cr = cairo_create(priv->surface);
-    cairo_rectangle(cr, x, y, width, height);
-    cairo_clip(cr);
-
-    cairo_push_group(cr);
-    cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-    cairo_set_source_surface(cr, priv->surface, diff, 0.0f);
-    cairo_paint(cr);
-    cairo_pop_group_to_source(cr);
-    cairo_paint(cr);
-    cairo_destroy(cr);
-
-    /* now setup to draw newly exposed area - give a 1 pixel buffer to ensure we
-     * don't leave gaps with content moved above - this will take into account
-     * any existing draw and make sure the total new area drawn includes the old
-     * area plus this new one */
-    x = floor(diff > 0.0f ? 0.0f : replay_event_graph_drawable_width(self) + diff) - 1.0;
-    width = ceil(fabs(diff)) + 2.0;
-    replay_event_graph_draw_region(self, x, width);
+    replay_event_graph_redraw(self);
   }
 }
 
