@@ -68,7 +68,7 @@
   </schema>
   <schema id="au.gov.defence.dsto.parallax.replay.plugin-engine" path="/au/gov/defence/dsto/parallax/replay/plugin-engine/">
     <key name="active-plugins" type="as">
-      <default>[ 'parallax', 'filters', 'graphviz', 'playback', 'search' ]</default>
+      <default>[ 'parallax', 'export', 'filters', 'graphviz', 'playback', 'search' ]</default>
       <summary>The currently active plugins</summary>
       <description>The list of currently active plugins</description>
     </key>
