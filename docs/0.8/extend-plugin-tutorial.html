@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Extending Replay Plugins</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch01.html" title="Tutorials">
+<link rel="prev" href="intro-plugin-tutorial.html" title="Introduction to Writing Replay Plugins">
+<link rel="next" href="ch02.html" title="Replay Library">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="intro-plugin-tutorial.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ch02.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="extend-plugin-tutorial"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="extend-plugin-tutorial.top_of_page"></a>Extending Replay Plugins</span></h2>
+<p>Extending Replay Plugins — extending a basic Replay plugin</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="idp4858544"></a><h2>Extending Replay plugin</h2>
+<p>Currently plugins are used to act as event sources to allow various
+      diffferent systems to be visualized. To act as an event source for Replay a
+      plugin registers an appropriate <span class="type"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a></span> with the
+      <span class="type"><a class="link" href="ReplayWindow.html" title="ReplayWindow">ReplayWindow</a></span> when it is
+      activated.</p>
+<p>For convenience two sub-types of <span class="type"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a></span> are provided to
+      make the process of providing events from a particular source type
+      easier:
+      </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span></li>
+<li class="listitem"><span class="type"><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer">ReplayNetworkServer</a></span></li>
+</ul></div>
+<p>
+    </p>
+<div class="refsect2">
+<a name="idp4625088"></a><h3>Providing a custom <span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span>
+</h3>
+<p>To provide a uniform and easy to implement mechanism for loading
+        custom data sources from a file on disk and translating this into
+        <span class="type"><a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a></span>s, replay
+        provides the <span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span>
+        class which is a subclass of <span class="type"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a></span>.</p>
+<p>The standard way to provide a custom <span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span> is to implement
+        a new subclass. For this tutorial we will demonstrate this by
+        implementing a plugin which translates the GraphViz dot file format
+        into <span class="type"><a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a></span>s.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp4047344"></a><h3>Defining the subclass</h3>
+<p>The first thing to do is to create a header file which defines our
+        subclass using the standard <span class="type"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a></span> boilerplate code.
+        </p>
+<pre class="programlisting">
+/* replay-graphviz-file-loader.h */
+
+#ifndef __REPLAY_GRAPHVIZ_FILE_LOADER_H__
+#define __REPLAY_GRAPHVIZ_FILE_LOADER_H__
+
+#include &lt;replay/replay-file-loader.h&gt;
+
+G_BEGIN_DECLS
+
+#define REPLAY_TYPE_GRAPHVIZ_FILE_LOADER            (replay_graphviz_file_loader_get_type())
+#define REPLAY_GRAPHVIZ_FILE_LOADER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), REPLAY_TYPE_GRAPHVIZ_FILE_LOADER, ReplayGraphvizFileLoader))
+#define REPLAY_GRAPHVIZ_FILE_LOADER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  REPLAY_TYPE_GRAPHVIZ_FILE_LOADER, ReplayGraphvizFileLoaderClass))
+#define REPLAY_IS_GRAPHVIZ_FILE_LOADER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), REPLAY_TYPE_GRAPHVIZ_FILE_LOADER))
+#define REPLAY_IS_GRAPHVIZ_FILE_LOADER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  REPLAY_TYPE_GRAPHVIZ_FILE_LOADER))
+#define REPLAY_GRAPHVIZ_FILE_LOADER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  REPLAY_TYPE_GRAPHVIZ_FILE_LOADER, ReplayGraphvizFileLoaderClass))
+
+typedef struct _ReplayGraphvizFileLoader        ReplayGraphvizFileLoader;
+typedef struct _ReplayGraphvizFileLoaderClass   ReplayGraphvizFileLoaderClass;
+
+struct _ReplayGraphvizFileLoader
+{
+  ReplayFileLoader parent;
+};
+
+struct _ReplayGraphvizFileLoaderClass
+{
+  ReplayFileLoaderClass parent_class;
+};
+
+GType          replay_graphviz_file_loader_get_type     (void);
+ReplayFileLoader *replay_graphviz_file_loader_new(void);
+
+G_END_DECLS
+
+#endif /* __REPLAY_GRAPHVIZ_FILE_LOADER_H__ */</pre>
+<p>
+
+Next we need to actually implement the subclass.
+      </p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp4814944"></a><h3>Implementing the _new() method</h3>
+<p> Each
+        <span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span> is
+        expected to specify the type of files which it can load, and hence
+        provides the properties "mime-type", and "pattern" for this purpose.
+        Each <span class="type"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a></span>
+        is uniquely identified by the "name" property which is used to describe
+        the event source within the main interface.  Each custom file loader
+        should set these properties on construction, and in this case we
+        provide a _new() method (as defined earlier in our header file) to
+        perform this automatically, and specify an appropriate "name" and
+        "pattern":
+
+        </p>
+<pre class="programlisting">
+ReplayFileLoader *replay_graphviz_file_loader_new(void)
+{
+  ReplayGraphvizFileLoader *self;
+
+  self = g_object_new(REPLAY_TYPE_GRAPHVIZ_FILE_LOADER,
+                      "name", _("Graphviz Dot Files"),
+                      "pattern", "*.dot",
+                      NULL);
+
+  return REPLAY_FILE_LOADER(self);
+}</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp2046192"></a><h3>Implementing the load_file() method</h3>
+<p>The core of each
+    <span class="type"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a></span> is defined
+    by the load_file() method. This is passed a <span class="type"><a href="/usr/share/gtk-doc/html/gio/GFile.html">GFile</a></span> which is the file to be loaded (as
+    chosed by the user). The subclass is expected to open the file and process
+    it to produce and emit <span class="type"><a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a></span>s. If using asynchronous I/O,
+    a file loader should periodically signal its progress by calling
+    replay_file_loader_emit_progress() upon itself, with a value between 0.0 and
+    1.0 (a value of 1.0 signifies the file load is complete and that no more
+    events will be emitted). If an error occurs, the subclass can signal this
+    by emitting a <span class="type"><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError">GError</a></span> by calling
+    replay_event_soure_emit_error() upon itself.</p>
+<p>To implement the load_file() method the subclass simply overrides the
+    appropriate function pointer during the class_init() method, using the
+    standard method for overriding a parent class method.
+    </p>
+<pre class="programlisting">
+static void impl_load_file(ReplayFileLoader *self, GFile *file);
+
+static void
+replay_graphviz_file_loader_class_init(ReplayGraphvizFileLoaderClass *klass)
+{
+  ReplayFileLoaderClass *loader_class = REPLAY_FILE_LOADER_CLASS(klass);
+
+  loader_class-&gt;load_file = impl_load_file;
+}
+</pre>
+<p>The implementation of the load_file() method is then as follows:
+  </p>
+<pre class="programlisting">
+static void
+impl_load_file(ReplayFileLoader *loader,
+               GFile *file)
+{
+  FILE *graph_file;
+  GError *error = NULL;
+  gchar *filename;
+
+  g_return_if_fail(REPLAY_IS_GRAPHVIZ_FILE_LOADER(loader));
+
+  filename = g_file_get_path(file);
+
+  graph_file = fopen(filename, "r");
+  if (graph_file)
+  {
+    Agraph_t *graph = agread(graph_file, NULL);
+    if (graph)
+    {
+      process_graph(REPLAY_GRAPHVIZ_FILE_LOADER(loader), graph, filename);
+      replay_file_loader_emit_progress(loader, 1.0);
+      agclose(graph);
+    }
+    else
+    {
+      g_warning("ReplayGraphvizFileLoader: error reading graph from file");
+      g_set_error(&amp;error, REPLAY_GRAPHVIZ_FILE_LOADER_ERROR,
+                  INVALID_GRAPH_ERROR,
+                  "Error reading graph from file '%s'", filename);
+      replay_event_source_emit_error(REPLAY_EVENT_SOURCE(loader), error);
+      g_clear_error(&amp;error);
+    }
+    fclose(graph_file);
+  }
+  else
+  {
+    g_warning("ReplayGraphvizFileLoader: error opening graph file");
+    g_set_error(&amp;error, REPLAY_GRAPHVIZ_FILE_LOADER_ERROR,
+                FILE_OPEN_ERROR,
+                "Error opening graph file '%s'", filename);
+    replay_event_source_emit_error(REPLAY_TASK(loader), error);
+    g_clear_error(&amp;error);
+  }
+
+  g_free(filename);
+
+  /* call parent load_file */
+  REPLAY_FILE_LOADER_CLASS(replay_graphviz_file_loader_parent_class)-&gt;load_file(loader, file);
+  }</pre>
+<p>
+
+In this case, since the GraphViz API only provides reading from a FILE * we
+must first convert the <span class="type"><a href="/usr/share/gtk-doc/html/gio/GFile.html">GFile</a></span>. It is
+important to note that implementations of load_file() must either call
+replay_file_loader_emit_progress() with a value of 1.0 or
+replay_event_source_emit_error() at some point, otherwise the main Replay UI will not
+know when the load has finished. Also it is important to chain up to the parent
+class load_file() implementation as is done immediately before return.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp1802512"></a><h3>Emitting <span class="type"><a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a></span>s</h3>
+<p>The load_file() implementation above does not itself emit any events,
+    and instead this is done by the process_graph() method as follows:
+
+    </p>
+<pre class="programlisting">
+static void
+process_graph(ReplayGraphvizFileLoader *self, Agraph_t *graph,
+              const gchar *filename)
+{
+  Agnode_t *node;
+  ReplayEvent *event;
+  struct timeval tv;
+  gchar *name;
+  const gchar *color;
+  guint edge_count = 0;
+  guint8 directed;
+
+  g_return_if_fail(graph != NULL);
+
+  gettimeofday(&amp;tv, NULL);
+
+  /* do all nodes first, then edges */
+  for (node = agfstnode(graph); node != NULL; node = agnxtnode(graph, node))
+  {
+    gchar *label = NULL;
+    name = agnameof(node);
+    color = agget(node, (char *)"color");
+
+    if (!color || g_ascii_strcasecmp(color, "") == 0)
+    {
+      color = "#666";
+    }
+    label = agget(node, (char *)"label");
+    if (!label || g_ascii_strcasecmp(label, "") == 0)
+    {
+      label = name;
+    }
+    /* init with standard event stuff */
+    event = replay_node_create_event_new(&amp;tv, filename, name,
+                                      "color", G_TYPE_STRING, color,
+                                      "label", G_TYPE_STRING, label,
+                                      NULL);
+    replay_event_source_emit_event(REPLAY_EVENT_SOURCE(self), event);
+    g_object_unref(event);
+  }
+
+  directed = agisdirected(graph);
+
+  /* now do edges */
+  for (node = agfstnode(graph); node != NULL; node = agnxtnode(graph, node))
+  {
+    Agedge_t *edge;
+
+    for (edge = agfstout(graph, node); edge != NULL; edge = agnxtout(graph, edge))
+    {
+      gchar *head, *tail;
+      Agnode_t *node2 = aghead(edge);
+
+      /* agnameof may use an internal buffer which gets overwritten between
+       * calls so need to take copies of name before passing to replay_event* */
+      name = g_strdup(agnameof(edge));
+      tail = g_strdup(agnameof(node));
+      head = g_strdup(agnameof(node2));
+
+      /* edge name may be empty string - allocate one if needed */
+      if (name == NULL || g_ascii_strcasecmp(name, "") == 0)
+      {
+        g_free(name);
+        name = g_strdup_printf("e%u", edge_count++);
+      }
+      color = agget(edge, (char *)"color");
+      if (!color || g_ascii_strcasecmp(color, "") == 0)
+      {
+        color = "#666";
+      }
+
+      /* init with standard event stuff */
+      event = replay_edge_create_event_new(&amp;tv, filename, name, directed, tail, head,
+                                        "color", G_TYPE_STRING, color,
+                                        "weight", G_TYPE_DOUBLE, 1.0,
+                                        NULL);
+      replay_event_source_emit_event(REPLAY_EVENT_SOURCE(self), event);
+      g_object_unref(event);
+
+      g_free(name);
+      g_free(tail);
+      g_free(head);
+    }
+  }
+}
+      </pre>
+<p>
+
+      Using the GraphViz API the graph structure is traversed and appropriate <span class="type"><a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a></span>s are created and emitted.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp72688"></a><h3>The remaining pieces</h3>
+<p>There are a few remaining pieces to complete our subclass
+      implementation. The first is to define the errors which we emit which is
+      done at the start of our implementation:
+
+      </p>
+<pre class="programlisting">
+/* error handling */
+#define REPLAY_GRAPHVIZ_FILE_LOADER_ERROR replay_graphviz_file_loader_error_quark()
+
+static GQuark replay_graphviz_file_loader_error_quark(void)
+{
+  return g_quark_from_static_string("replay-graphviz-file-loader-error-quark");
+}
+
+/* different error codes */
+enum {
+  FILE_OPEN_ERROR = 0,
+  INVALID_GRAPH_ERROR,
+};
+</pre>
+<p>The _init() method for our subclass must also be implemented. In this case this is a no-op since we have nothing to initialize:
+
+  </p>
+<pre class="programlisting">
+static void
+replay_graphviz_file_loader_init(ReplayGraphvizFileLoader *self)
+{
+  /* nothing to do */
+}
+</pre>
+<p>Finally the file loader subclass must be created and registered appropriately within our plugin. The file loader is registered with the main <span class="type"><a class="link" href="ReplayApplication.html" title="ReplayApplication">ReplayApplication</a></span>. The updated plugin activate() and deactivate() methods are then as follows:
+
+  </p>
+<pre class="programlisting">
+static void
+replay_graphviz_plugin_activate(ReplayApplicationActivatable *plugin)
+{
+  ReplayGraphvizPlugin *self = REPLAY_GRAPHVIZ_PLUGIN(plugin);
+  ReplayGraphvizPluginPrivate *priv = self-&gt;priv;
+  ReplayFileLoader *loader;
+
+  priv-&gt;loader = replay_graphviz_file_loader_new();
+
+  g_signal_connect(priv-&gt;loader, "progress", G_CALLBACK(loader_progress_cb),
+                   priv-&gt;application);
+  replay_application_add_file_loader(priv-&gt;application, priv-&gt;loader);
+}
+
+static void
+replay_graphviz_plugin_deactivate(ReplayApplicationActivatable *plugin)
+{
+  ReplayGraphvizPlugin *self = REPLAY_GRAPHVIZ_PLUGIN(plugin);
+  ReplayGraphvizPluginPrivate *priv = self-&gt;priv;
+
+  replay_application_remove_file_loader(priv-&gt;application, priv-&gt;loader);
+  g_object_unref(priv-&gt;loader);
+}
+</pre>
+<p>Since the file loader only produces events to create a static graph,
+  there is no need to display either the timeline or message-tree views when
+  viewing a GraphViz graph. To ensure we correctly hide these other views, we
+  connect to the "progress" signal for the file loader when we create it and
+  appropriately set the window's display flags in the associated callback once
+  the progress has reached 1.0 (ie. loading is complete). We can also ensure the
+  entire graph is shown by automatically jumping to the end of the event log by
+  activating the JumpToEndAction in the document action group for the window.
+  </p>
+<pre class="programlisting">
+static void loader_progress_cb(ReplayFileLoader *loader,
+                               gdouble fraction,
+                               gpointer data)
+{
+  ReplayGraphvizPluginPrivate *priv;
+  GList *windows;
+  ReplayWindow *window = NULL;
+  ReplayEventStore *store;
+  gint n;
+
+  priv = REPLAY_GRAPHVIZ_PLUGIN(data)-&gt;priv;
+
+  if (fraction &lt; 1.0)
+  {
+    return;
+  }
+
+  /* find the window using our file loader */
+  for (windows = gtk_application_get_windows(GTK_APPLICATION(priv-&gt;application));
+       windows != NULL;
+       windows = windows-&gt;next)
+  {
+    ReplayWindow *w = REPLAY_WINDOW(windows-&gt;data);
+    if (replay_window_get_event_source(w) == REPLAY_EVENT_SOURCE(priv-&gt;loader))
+    {
+      window = w;
+      break;
+    }
+  }
+
+  if (!window)
+  {
+    g_warning("Unable to find window corresponding to our active loader!!!");
+    return;
+  }
+
+  /* hide timeline and message tree */
+  replay_window_set_display_flags(window,
+                                  (REPLAY_WINDOW_DISPLAY_ALL &amp;
+                                   ~REPLAY_WINDOW_DISPLAY_MESSAGE_TREE &amp;
+                                   ~REPLAY_WINDOW_DISPLAY_TIMELINE));
+
+  /* jump to end of events */
+  store = replay_window_get_event_store(window);
+
+  n = gtk_tree_model_iter_n_children(GTK_TREE_MODEL(store),
+                                     NULL);
+  if (n &gt; 0)
+  {
+    GtkTreePath *path;
+    GtkTreeIter iter;
+
+    path = gtk_tree_path_new();
+    gtk_tree_path_append_index(path, n - 1);
+    gtk_tree_model_get_iter(GTK_TREE_MODEL(store), &amp;iter, path);
+    gtk_tree_path_free(path);
+    replay_event_store_set_current(store, &amp;iter);
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

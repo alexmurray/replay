@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayMsgRecvEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent">
+<link rel="next" href="ReplayEventSource.html" title="ReplayEventSource">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayMsgSendEvent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayEventSource.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayMsgRecvEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayMsgRecvEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayMsgRecvEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayMsgRecvEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayMsgRecvEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayMsgRecvEvent.top_of_page"></a>ReplayMsgRecvEvent</span></h2>
+<p>ReplayMsgRecvEvent</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayMsgRecvEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent-struct" title="struct ReplayMsgRecvEvent">ReplayMsgRecvEvent</a>;
+struct              <a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEventClass" title="struct ReplayMsgRecvEventClass">ReplayMsgRecvEventClass</a>;
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayMsgRecvEvent.html#replay-msg-recv-event-get-id" title="replay_msg_recv_event_get_id ()">replay_msg_recv_event_get_id</a>        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayMsgRecvEvent.html#replay-msg-recv-event-get-node" title="replay_msg_recv_event_get_node ()">replay_msg_recv_event_get_node</a>      (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="returnvalue">ReplayMsgSendEvent</span></a> * <a class="link" href="ReplayMsgRecvEvent.html#replay-msg-recv-event-get-send-event" title="replay_msg_recv_event_get_send_event ()">replay_msg_recv_event_get_send_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       <a class="link" href="ReplayMsgRecvEvent.html#replay-msg-recv-event-new" title="replay_msg_recv_event_new ()">replay_msg_recv_event_new</a>           (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayMsgRecvEvent.html#replay-msg-recv-event-set-send-event" title="replay_msg_recv_event_set_send_event ()">replay_msg_recv_event_set_send_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="type">ReplayMsgSendEvent</span></a> *event</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMsgRecvEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a>
+         +----ReplayMsgRecvEvent
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMsgRecvEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--edge" title='The "edge" property'>edge</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--id" title='The "id" property'>id</a>"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--msg-send" title='The "msg-send" property'>msg-send</a>"                 <a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="type">ReplayMsgSendEvent</span></a>*   : Read / Write
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--node" title='The "node" property'>node</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--parent" title='The "parent" property'>parent</a>"                   <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayMsgRecvEvent.html#ReplayMsgRecvEvent--props" title='The "props" property'>props</a>"                    <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a>*             : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMsgRecvEvent.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayMsgRecvEvent.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent-struct"></a><h3>struct ReplayMsgRecvEvent</h3>
+<pre class="programlisting">struct ReplayMsgRecvEvent;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEventClass"></a><h3>struct ReplayMsgRecvEventClass</h3>
+<pre class="programlisting">struct ReplayMsgRecvEventClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-msg-recv-event-get-id"></a><h3>replay_msg_recv_event_get_id ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_msg_recv_event_get_id        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the id of the edge created by this event
+Get the id of a edge in a <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-msg-recv-event-get-node"></a><h3>replay_msg_recv_event_get_node ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_msg_recv_event_get_node      (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the node of the edge created by this event
+Get the node of a edge in a <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-msg-recv-event-get-send-event"></a><h3>replay_msg_recv_event_get_send_event ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="returnvalue">ReplayMsgSendEvent</span></a> * replay_msg_recv_event_get_send_event
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the send_event of the edge created by this event
+Get the send_event of a edge in a <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> event. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-msg-recv-event-new"></a><h3>replay_msg_recv_event_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       replay_msg_recv_event_new           (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);</pre>
+<p>
+Creates a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> describing the receiving of a message by a node
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
+<td>The timestamp when this event occurred in usecs since the epoch</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>source</code></em> :</span></p></td>
+<td>A string describing the source of this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td>A globally unique id for the message</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>node</code></em> :</span></p></td>
+<td>The node which is receiving this message</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A new <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-msg-recv-event-set-send-event"></a><h3>replay_msg_recv_event_set_send_event ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_msg_recv_event_set_send_event
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="type">ReplayMsgSendEvent</span></a> *event</code></em>);</pre>
+<p>
+Set the send_event of a <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a> event
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent"><span class="type">ReplayMsgRecvEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="type">ReplayMsgSendEvent</span></a> which corresponds to this recv event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayMsgRecvEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--edge"></a><h3>The <code class="literal">"edge"</code> property</h3>
+<pre class="programlisting">  "edge"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the edge which sent the message.</p>
+<p>Default value: "no-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the message.</p>
+<p>Default value: "no-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--msg-send"></a><h3>The <code class="literal">"msg-send"</code> property</h3>
+<pre class="programlisting">  "msg-send"                 <a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent"><span class="type">ReplayMsgSendEvent</span></a>*   : Read / Write</pre>
+<p>The ReplayEventMessageSend of this recv event.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--node"></a><h3>The <code class="literal">"node"</code> property</h3>
+<pre class="programlisting">  "node"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the node which sent the message.</p>
+<p>Default value: "no-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--parent"></a><h3>The <code class="literal">"parent"</code> property</h3>
+<pre class="programlisting">  "parent"                   <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable parent id of the message.</p>
+<p>Default value: "no-parent-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMsgRecvEvent--props"></a><h3>The <code class="literal">"props"</code> property</h3>
+<pre class="programlisting">  "props"                    <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a>*             : Read / Write / Construct Only</pre>
+<p>The properties of the object.</p>
+<p>Allowed values: GVariant&lt;a{sv}&gt;</p>
+<p>Default value: @a{sv} {}</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

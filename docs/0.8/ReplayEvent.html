@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayPropertyStore.html" title="ReplayPropertyStore">
+<link rel="next" href="ReplayNodeCreateEvent.html" title="ReplayNodeCreateEvent">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayPropertyStore.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayNodeCreateEvent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEvent.top_of_page"></a>ReplayEvent</span></h2>
+<p>ReplayEvent — Describes events which form the basis of visualization</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayEvent.html#ReplayEvent-struct" title="struct ReplayEvent">ReplayEvent</a>;
+struct              <a class="link" href="ReplayEvent.html#ReplayEventClass" title="struct ReplayEventClass">ReplayEventClass</a>;
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEvent.html#replay-event-get-node-id" title="replay_event_get_node_id ()">replay_event_get_node_id</a>            (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEvent.html#replay-event-get-source" title="replay_event_get_source ()">replay_event_get_source</a>             (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              <a class="link" href="ReplayEvent.html#replay-event-get-timestamp" title="replay_event_get_timestamp ()">replay_event_get_timestamp</a>          (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayEvent
+         +----<a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent">ReplayActivityEndEvent</a>
+         +----<a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent">ReplayActivityStartEvent</a>
+         +----<a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent">ReplayEdgeCreateEvent</a>
+         +----<a class="link" href="ReplayEdgeDeleteEvent.html" title="ReplayEdgeDeleteEvent">ReplayEdgeDeleteEvent</a>
+         +----<a class="link" href="ReplayEdgePropsEvent.html" title="ReplayEdgePropsEvent">ReplayEdgePropsEvent</a>
+         +----<a class="link" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent">ReplayMsgRecvEvent</a>
+         +----<a class="link" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent">ReplayMsgSendEvent</a>
+         +----<a class="link" href="ReplayNodeCreateEvent.html" title="ReplayNodeCreateEvent">ReplayNodeCreateEvent</a>
+         +----<a class="link" href="ReplayNodeDeleteEvent.html" title="ReplayNodeDeleteEvent">ReplayNodeDeleteEvent</a>
+         +----<a class="link" href="ReplayNodePropsEvent.html" title="ReplayNodePropsEvent">ReplayNodePropsEvent</a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEvent.html#ReplayEvent--source" title='The "source" property'>source</a>"                   <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayEvent.html#ReplayEvent--timestamp" title='The "timestamp" property'>timestamp</a>"                <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a>                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEvent.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> objects contain data specific to each type of event in replay
+</p>
+<p>
+The standard way to create and use <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s is as
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="usertype">ReplayEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event</span><span class="symbol">;</span>
+<span class="usertype">gchar</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">source</span><span class="symbol">;</span>
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">timeval</span><span class="normal"> tv</span><span class="symbol">;</span>
+<span class="usertype">gint64</span><span class="normal"> timestamp</span><span class="symbol">;</span>
+
+<span class="comment">// create a node idd foo, color blue</span>
+<span class="function">gettimeofday</span><span class="symbol">(&amp;</span><span class="normal">tv</span><span class="symbol">,</span><span class="normal"> <a href="/usr/share/gtk-doc/html/glib/glib-Standard-Macros.html#NULL:CAPS">NULL</a></span><span class="symbol">);</span>
+<span class="normal">timestamp </span><span class="symbol">=</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">tv</span><span class="symbol">.</span><span class="normal">tv_sec </span><span class="symbol">*</span><span class="normal"> <a href="/usr/share/gtk-doc/html/glib/glib-Date-and-Time-Functions.html#G-USEC-PER-SEC:CAPS">G_USEC_PER_SEC</a></span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> tv</span><span class="symbol">.</span><span class="normal">tv_usec</span><span class="symbol">;</span>
+<span class="normal">source </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/glib/glib-String-Utility-Functions.html#g-strdup-printf">g_strdup_printf</a></span><span class="symbol">(</span><span class="string">"%s: %d"</span><span class="symbol">,</span><span class="normal"> __FILE__</span><span class="symbol">,</span><span class="normal"> __LINE__</span><span class="symbol">);</span>
+<span class="normal">event </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="ReplayNodeCreateEvent.html#replay-node-create-event-new">replay_node_create_event_new</a></span><span class="symbol">(</span><span class="normal">timestamp</span><span class="symbol">,</span><span class="normal"> source</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"foo"</span><span class="symbol">,</span>
+<span class="normal">                                  </span><span class="string">"color"</span><span class="symbol">,</span><span class="normal"> <a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-STRING:CAPS">G_TYPE_STRING</a></span><span class="symbol">,</span><span class="normal"> </span><span class="string">"blue"</span><span class="symbol">);</span>
+<span class="comment">// use event</span>
+
+<span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">);</span>
+<span class="function"><a href="/usr/share/gtk-doc/html/glib/glib-Memory-Allocation.html#g-free">g_free</a></span><span class="symbol">(</span><span class="normal">source</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayEvent.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEvent-struct"></a><h3>struct ReplayEvent</h3>
+<pre class="programlisting">struct ReplayEvent;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventClass"></a><h3>struct ReplayEventClass</h3>
+<pre class="programlisting">struct ReplayEventClass {
+  GObjectClass parent_class;
+
+  /* vtable */
+  const gchar *(*get_node_id)(ReplayEvent *self);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="ReplayEventClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventClass.get-node-id"></a>get_node_id</code></em> ()</span></p></td>
+<td>Get the id of the primary node for this event (if any)</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-get-node-id"></a><h3>replay_event_get_node_id ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_event_get_node_id            (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the id of the primary node affected by this <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+Get the id of the primary node which is affected by this <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-get-source"></a><h3>replay_event_get_source ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_event_get_source             (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the source of this <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+Get the source of a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-get-timestamp"></a><h3>replay_event_get_timestamp ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              replay_event_get_timestamp          (<em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the timestamp of this <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> in usecs since epoch
+Get the timestamp of a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayEvent--source"></a><h3>The <code class="literal">"source"</code> property</h3>
+<pre class="programlisting">  "source"                   <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable source of the event source.</p>
+<p>Default value: "no-source-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEvent--timestamp"></a><h3>The <code class="literal">"timestamp"</code> property</h3>
+<pre class="programlisting">  "timestamp"                <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a>                : Read / Write / Construct Only</pre>
+<p>The timestamp of the event in usecs since epoch.</p>
+<p>Allowed values: &gt;= -9223372036854775807</p>
+<p>Default value: 0</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Replay Reference Manual</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="next" href="ch01.html" title="Tutorials">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="book">
+<div class="titlepage">
+<div>
+<div><table class="navigation" id="top" width="100%" cellpadding="2" cellspacing="0"><tr><th valign="middle"><p class="title">Replay Reference Manual</p></th></tr></table></div>
+<div><p class="releaseinfo">
+      for Replay 0.8.0
+
+    </p></div>
+</div>
+<hr>
+</div>
+<div class="toc"><dl>
+<dt><span class="chapter"><a href="ch01.html">Tutorials</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="intro-plugin-tutorial.html">Introduction to Writing Replay Plugins</a></span><span class="refpurpose"> — introduction to writing Replay plugins</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="extend-plugin-tutorial.html">Extending Replay Plugins</a></span><span class="refpurpose"> — extending a basic Replay plugin</span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="ch02.html">Replay Library</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="ReplayApplication.html">ReplayApplication</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayWindow.html">ReplayWindow</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayApplicationActivatable.html">ReplayApplicationActivatable</a></span><span class="refpurpose"> — Interface for Replay plugins</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayWindowActivatable.html">ReplayWindowActivatable</a></span><span class="refpurpose"> — Interface for Replay plugins</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayOptionActivatable.html">ReplayOptionActivatable</a></span><span class="refpurpose"> — Interface for plugins to provide command-line options</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayLog.html">ReplayLog</a></span><span class="refpurpose"> — Stores a log of messages</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayPropertyStore.html">ReplayPropertyStore</a></span><span class="refpurpose">Stores a collection of <span class="type">GVariant</span> dictionaries</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEvent.html">ReplayEvent</a></span><span class="refpurpose"> — Describes events which form the basis of visualization</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNodeCreateEvent.html">ReplayNodeCreateEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNodeDeleteEvent.html">ReplayNodeDeleteEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNodePropsEvent.html">ReplayNodePropsEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEdgeCreateEvent.html">ReplayEdgeCreateEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEdgeDeleteEvent.html">ReplayEdgeDeleteEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEdgePropsEvent.html">ReplayEdgePropsEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayActivityStartEvent.html">ReplayActivityStartEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayActivityEndEvent.html">ReplayActivityEndEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayMsgSendEvent.html">ReplayMsgSendEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayMsgRecvEvent.html">ReplayMsgRecvEvent</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEventSource.html">ReplayEventSource</a></span><span class="refpurpose">Base class for types which emit <span class="type">ReplayEvent</span>s</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNetworkServer.html">ReplayNetworkServer</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayFileLoader.html">ReplayFileLoader</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEventProcessor.html">ReplayEventProcessor</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEventStore.html">ReplayEventStore</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNodeTree.html">ReplayNodeTree</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayMessageTree.html">ReplayMessageTree</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayTask.html">ReplayTask</a></span><span class="refpurpose"> — Base-class for objects which represent a task being
+executed by the replay UI</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayTimeline.html">ReplayTimeline</a></span><span class="refpurpose"> — Displays a simple timeline</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayTimelineView.html">ReplayTimelineView</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayIntervalList.html">ReplayIntervalList</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEventTextView.html">ReplayEventTextView</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayNodeTreeView.html">ReplayNodeTreeView</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayLogWindow.html">ReplayLogWindow</a></span><span class="refpurpose">Widget which displays a <span class="type">ReplayLog</span></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayEventGraph.html">ReplayEventGraph</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayPrefs.html">ReplayPrefs</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayMessageTreeView.html">ReplayMessageTreeView</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="ReplayGraphView.html">ReplayGraphView</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="replay-replay-event-string.html">replay-event-string</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="replay-replay-string-utils.html">replay-string-utils</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="replay-replay-timestamp.html">replay-timestamp</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="replay-replay-config.html">replay-config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="replay-replay.html">replay</a></span><span class="refpurpose"></span>
+</dt>
+</dl></dd>
+<dt><span class="chapter"><a href="object-tree.html">Object Hierarchy</a></span></dt>
+<dt><span class="index"><a href="api-index-full.html">API Index</a></span></dt>
+<dt><span class="glossary"><a href="annotation-glossary.html">Annotation Glossary</a></span></dt>
+</dl></div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayWindowActivatable</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable">
+<link rel="next" href="ReplayOptionActivatable.html" title="ReplayOptionActivatable">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayApplicationActivatable.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayOptionActivatable.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayWindowActivatable.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayWindowActivatable.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayWindowActivatable.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayWindowActivatable.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#ReplayWindowActivatable.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayWindowActivatable"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayWindowActivatable.top_of_page"></a>ReplayWindowActivatable</span></h2>
+<p>ReplayWindowActivatable — Interface for Replay plugins</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayWindowActivatable.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;replay/replay-window-activatable.h&gt;
+
+#define             <a class="link" href="ReplayWindowActivatable.html#REPLAY-WINDOW-ACTIVATABLE-IFACE:CAPS" title="REPLAY_WINDOW_ACTIVATABLE_IFACE()">REPLAY_WINDOW_ACTIVATABLE_IFACE</a>     (obj)
+struct              <a class="link" href="ReplayWindowActivatable.html#ReplayWindowActivatable-struct" title="struct ReplayWindowActivatable">ReplayWindowActivatable</a>;
+struct              <a class="link" href="ReplayWindowActivatable.html#ReplayWindowActivatableInterface" title="struct ReplayWindowActivatableInterface">ReplayWindowActivatableInterface</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindowActivatable.html#replay-window-activatable-activate" title="replay_window_activatable_activate ()">replay_window_activatable_activate</a>  (<em class="parameter"><code><a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindowActivatable.html#replay-window-activatable-deactivate" title="replay_window_activatable_deactivate ()">replay_window_activatable_deactivate</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GInterface
+   +----ReplayWindowActivatable
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.prerequisites"></a><h2>Prerequisites</h2>
+<p>
+ReplayWindowActivatable requires
+ <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayWindowActivatable.html#ReplayWindowActivatable--window" title='The "window" property'>window</a>"                   <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>*         : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a> is an interface which plugins which require access to a
+<a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> should implement.
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="REPLAY-WINDOW-ACTIVATABLE-IFACE:CAPS"></a><h3>REPLAY_WINDOW_ACTIVATABLE_IFACE()</h3>
+<pre class="programlisting">#define REPLAY_WINDOW_ACTIVATABLE_IFACE(obj)        (G_TYPE_CHECK_CLASS_CAST ((obj), REPLAY_TYPE_WINDOW_ACTIVATABLE, ReplayWindowActivatableInterface))
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindowActivatable-struct"></a><h3>struct ReplayWindowActivatable</h3>
+<pre class="programlisting">struct ReplayWindowActivatable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindowActivatableInterface"></a><h3>struct ReplayWindowActivatableInterface</h3>
+<pre class="programlisting">struct ReplayWindowActivatableInterface {
+  GTypeInterface parent_iface;
+
+  void (* activate) (ReplayWindowActivatable *self);
+  void (* deactivate) (ReplayWindowActivatable *self);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="ReplayWindowActivatableInterface.parent-iface"></a>parent_iface</code></em>;</span></p></td>
+<td>The parent interface</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayWindowActivatableInterface.activate"></a>activate</code></em> ()</span></p></td>
+<td>Called to activate the <a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayWindowActivatableInterface.deactivate"></a>deactivate</code></em> ()</span></p></td>
+<td>Called to deactivate the <a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-activatable-activate"></a><h3>replay_window_activatable_activate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_activatable_activate  (<em class="parameter"><code><a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>self</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-activatable-deactivate"></a><h3>replay_window_activatable_deactivate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_activatable_deactivate
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable"><span class="type">ReplayWindowActivatable</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>self</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayWindowActivatable--window"></a><h3>The <code class="literal">"window"</code> property</h3>
+<pre class="programlisting">  "window"                   <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>*         : Read / Write / Construct Only</pre>
+<p>The ReplayWindow which this plugin has been activated upon.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayWindowActivatable.see-also"></a><h2>See Also</h2>
+<a href="/usr/share/gtk-doc/html/libpeas/PeasActivatable.html"><span class="type">PeasActivatable</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

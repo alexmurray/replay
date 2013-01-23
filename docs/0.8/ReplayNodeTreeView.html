@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayNodeTreeView</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayEventTextView.html" title="ReplayEventTextView">
+<link rel="next" href="ReplayLogWindow.html" title="ReplayLogWindow">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayEventTextView.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayLogWindow.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayNodeTreeView.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayNodeTreeView.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayNodeTreeView.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayNodeTreeView.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayNodeTreeView"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayNodeTreeView.top_of_page"></a>ReplayNodeTreeView</span></h2>
+<p>ReplayNodeTreeView</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayNodeTreeView.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">                    <a class="link" href="ReplayNodeTreeView.html#ReplayNodeTreeView-struct" title="ReplayNodeTreeView">ReplayNodeTreeView</a>;
+                    <a class="link" href="ReplayNodeTreeView.html#ReplayNodeTreeViewClass" title="ReplayNodeTreeViewClass">ReplayNodeTreeViewClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-draw" title="replay_node_tree_view_draw ()">replay_node_tree_view_draw</a>          (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"><span class="type">PangoLayout</span></a> *layout</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-drawable-height" title="replay_node_tree_view_drawable_height ()">replay_node_tree_view_drawable_height</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-drawable-width" title="replay_node_tree_view_drawable_width ()">replay_node_tree_view_drawable_width</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-get-y-resolution" title="replay_node_tree_view_get_y_resolution ()">replay_node_tree_view_get_y_resolution</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-new" title="replay_node_tree_view_new ()">replay_node_tree_view_new</a>           (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadj</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-set-data" title="replay_node_tree_view_set_data ()">replay_node_tree_view_set_data</a>      (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModelFilter.html"><span class="type">GtkTreeModelFilter</span></a> *f_node_tree</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-set-y-resolution" title="replay_node_tree_view_set_y_resolution ()">replay_node_tree_view_set_y_resolution</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> y_resolution</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTreeView.html#replay-node-tree-view-unset-data" title="replay_node_tree_view_unset_data ()">replay_node_tree_view_unset_data</a>    (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTreeView.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkDrawingArea.html">GtkDrawingArea</a>
+                     +----ReplayNodeTreeView
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTreeView.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayNodeTreeView implements
+ AtkImplementorIface and  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTreeView.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTreeView.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayNodeTreeView-struct"></a><h3>ReplayNodeTreeView</h3>
+<pre class="programlisting">typedef struct _ReplayNodeTreeView ReplayNodeTreeView;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayNodeTreeViewClass"></a><h3>ReplayNodeTreeViewClass</h3>
+<pre class="programlisting">typedef struct {
+} ReplayNodeTreeViewClass;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-draw"></a><h3>replay_node_tree_view_draw ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_view_draw          (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"><span class="type">PangoLayout</span></a> *layout</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-drawable-height"></a><h3>replay_node_tree_view_drawable_height ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_node_tree_view_drawable_height
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-drawable-width"></a><h3>replay_node_tree_view_drawable_width ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_node_tree_view_drawable_width
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-get-y-resolution"></a><h3>replay_node_tree_view_get_y_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_node_tree_view_get_y_resolution
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-new"></a><h3>replay_node_tree_view_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_node_tree_view_new           (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadj</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-set-data"></a><h3>replay_node_tree_view_set_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_view_set_data      (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModelFilter.html"><span class="type">GtkTreeModelFilter</span></a> *f_node_tree</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-set-y-resolution"></a><h3>replay_node_tree_view_set_y_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_view_set_y_resolution
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> y_resolution</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-view-unset-data"></a><h3>replay_node_tree_view_unset_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_view_unset_data    (<em class="parameter"><code><a class="link" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView"><span class="type">ReplayNodeTreeView</span></a> *replay_node_tree_view</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

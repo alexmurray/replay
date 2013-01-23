@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayActivityEndEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent">
+<link rel="next" href="ReplayMsgSendEvent.html" title="ReplayMsgSendEvent">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayActivityStartEvent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayMsgSendEvent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayActivityEndEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayActivityEndEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayActivityEndEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayActivityEndEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayActivityEndEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayActivityEndEvent.top_of_page"></a>ReplayActivityEndEvent</span></h2>
+<p>ReplayActivityEndEvent</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayActivityEndEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayActivityEndEvent.html#ReplayActivityEndEvent-struct" title="struct ReplayActivityEndEvent">ReplayActivityEndEvent</a>;
+struct              <a class="link" href="ReplayActivityEndEvent.html#ReplayActivityEndEventClass" title="struct ReplayActivityEndEventClass">ReplayActivityEndEventClass</a>;
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayActivityEndEvent.html#replay-activity-end-event-get-id" title="replay_activity_end_event_get_id ()">replay_activity_end_event_get_id</a>    (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayActivityEndEvent.html#replay-activity-end-event-get-node" title="replay_activity_end_event_get_node ()">replay_activity_end_event_get_node</a>  (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="returnvalue">ReplayActivityStartEvent</span></a> * <a class="link" href="ReplayActivityEndEvent.html#replay-activity-end-event-get-start-event" title="replay_activity_end_event_get_start_event ()">replay_activity_end_event_get_start_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       <a class="link" href="ReplayActivityEndEvent.html#replay-activity-end-event-new" title="replay_activity_end_event_new ()">replay_activity_end_event_new</a>       (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayActivityEndEvent.html#replay-activity-end-event-set-start-event" title="replay_activity_end_event_set_start_event ()">replay_activity_end_event_set_start_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a> *event</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayActivityEndEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a>
+         +----ReplayActivityEndEvent
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayActivityEndEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayActivityEndEvent.html#ReplayActivityEndEvent--id" title='The "id" property'>id</a>"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayActivityEndEvent.html#ReplayActivityEndEvent--node" title='The "node" property'>node</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayActivityEndEvent.html#ReplayActivityEndEvent--start-event" title='The "start-event" property'>start-event</a>"              <a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a>*  : Read / Write
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayActivityEndEvent.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayActivityEndEvent.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayActivityEndEvent-struct"></a><h3>struct ReplayActivityEndEvent</h3>
+<pre class="programlisting">struct ReplayActivityEndEvent;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayActivityEndEventClass"></a><h3>struct ReplayActivityEndEventClass</h3>
+<pre class="programlisting">struct ReplayActivityEndEventClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-activity-end-event-get-id"></a><h3>replay_activity_end_event_get_id ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_activity_end_event_get_id    (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the id of the activity created by this event
+Get the id of the activity in a <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-activity-end-event-get-node"></a><h3>replay_activity_end_event_get_node ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_activity_end_event_get_node  (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the node of the activity created by this event
+Get the node of the activity in a <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-activity-end-event-get-start-event"></a><h3>replay_activity_end_event_get_start_event ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="returnvalue">ReplayActivityStartEvent</span></a> * replay_activity_end_event_get_start_event
+                                                        (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the <a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a> of the activity created by this event
+Get the start_event of the activity in a <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> event. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-activity-end-event-new"></a><h3>replay_activity_end_event_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       replay_activity_end_event_new       (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);</pre>
+<p>
+Creates a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> describing the end of an activity on a node
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
+<td>The timestamp when this event occurred in usecs since the epoch</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>source</code></em> :</span></p></td>
+<td>A string describing the source of this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td>A unique id for this activity</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>node</code></em> :</span></p></td>
+<td>The id identifying the node which this activity is for</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A new <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-activity-end-event-set-start-event"></a><h3>replay_activity_end_event_set_start_event ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_activity_end_event_set_start_event
+                                                        (<em class="parameter"><code><a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a> *event</code></em>);</pre>
+<p>
+set the start_event of the activity in a <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a> event
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a> which corresponds to this
+<a class="link" href="ReplayActivityEndEvent.html" title="ReplayActivityEndEvent"><span class="type">ReplayActivityEndEvent</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayActivityEndEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayActivityEndEvent--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the activity.</p>
+<p>Default value: "no-id-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayActivityEndEvent--node"></a><h3>The <code class="literal">"node"</code> property</h3>
+<pre class="programlisting">  "node"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the node which this activity is ended upon.</p>
+<p>Default value: "no-id-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayActivityEndEvent--start-event"></a><h3>The <code class="literal">"start-event"</code> property</h3>
+<pre class="programlisting">  "start-event"              <a class="link" href="ReplayActivityStartEvent.html" title="ReplayActivityStartEvent"><span class="type">ReplayActivityStartEvent</span></a>*  : Read / Write</pre>
+<p>The ReplayActivityStartEvent which started this activity.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

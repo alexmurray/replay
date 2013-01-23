@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayWindow</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayApplication.html" title="ReplayApplication">
+<link rel="next" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayApplication.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayApplicationActivatable.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayWindow.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayWindow.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayWindow.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayWindow.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayWindow.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayWindow.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayWindow"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayWindow.top_of_page"></a>ReplayWindow</span></h2>
+<p>ReplayWindow</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayWindow.synopsis"></a><h2>Synopsis</h2>
+<a name="ReplayWindowDisplayFlags"></a><pre class="synopsis">struct              <a class="link" href="ReplayWindow.html#ReplayWindow-struct" title="struct ReplayWindow">ReplayWindow</a>;
+struct              <a class="link" href="ReplayWindow.html#ReplayWindowClass" title="struct ReplayWindowClass">ReplayWindowClass</a>;
+enum                <a class="link" href="ReplayWindow.html#ReplayWindowDisplayFlags-enum" title="enum ReplayWindowDisplayFlags">ReplayWindowDisplayFlags</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindow.html#replay-window-close" title="replay_window_close ()">replay_window_close</a>                 (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>);
+<a class="link" href="ReplayWindow.html#ReplayWindowDisplayFlags"><span class="returnvalue">ReplayWindowDisplayFlags</span></a> <a class="link" href="ReplayWindow.html#replay-window-get-display-flags" title="replay_window_get_display_flags ()">replay_window_get_display_flags</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="returnvalue">GtkActionGroup</span></a> *    <a class="link" href="ReplayWindow.html#replay-window-get-doc-action-group" title="replay_window_get_doc_action_group ()">replay_window_get_doc_action_group</a>  (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="returnvalue">ReplayEventSource</span></a> * <a class="link" href="ReplayWindow.html#replay-window-get-event-source" title="replay_window_get_event_source ()">replay_window_get_event_source</a>      (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  <a class="link" href="ReplayWindow.html#replay-window-get-event-store" title="replay_window_get_event_store ()">replay_window_get_event_store</a>       (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="returnvalue">GtkActionGroup</span></a> *    <a class="link" href="ReplayWindow.html#replay-window-get-global-action-group" title="replay_window_get_global_action_group ()">replay_window_get_global_action_group</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="returnvalue">ReplayGraphView</span></a> *   <a class="link" href="ReplayWindow.html#replay-window-get-graph-view" title="replay_window_get_graph_view ()">replay_window_get_graph_view</a>        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayLog.html" title="ReplayLog"><span class="returnvalue">ReplayLog</span></a> *         <a class="link" href="ReplayWindow.html#replay-window-get-log" title="replay_window_get_log ()">replay_window_get_log</a>               (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="returnvalue">ReplayMessageTreeView</span></a> * <a class="link" href="ReplayWindow.html#replay-window-get-message-tree-view" title="replay_window_get_message_tree_view ()">replay_window_get_message_tree_view</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="returnvalue">ReplayNodeTree</span></a> *    <a class="link" href="ReplayWindow.html#replay-window-get-node-tree" title="replay_window_get_node_tree ()">replay_window_get_node_tree</a>         (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkUIManager.html"><span class="returnvalue">GtkUIManager</span></a> *      <a class="link" href="ReplayWindow.html#replay-window-get-ui-manager" title="replay_window_get_ui_manager ()">replay_window_get_ui_manager</a>        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindow.html#replay-window-load-file" title="replay_window_load_file ()">replay_window_load_file</a>             (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *file</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayWindow.html#replay-window-new" title="replay_window_new ()">replay_window_new</a>                   (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *application</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindow.html#replay-window-register-task" title="replay_window_register_task ()">replay_window_register_task</a>         (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *task</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindow.html#replay-window-set-display-flags" title="replay_window_set_display_flags ()">replay_window_set_display_flags</a>     (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayWindow.html#ReplayWindowDisplayFlags"><span class="type">ReplayWindowDisplayFlags</span></a> flags</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayWindow.html#replay-window-set-event-source" title="replay_window_set_event_source ()">replay_window_set_event_source</a>      (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *source</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkContainer.html">GtkContainer</a>
+                     +----<a href="/usr/share/gtk-doc/html/gtk3/GtkBin.html">GtkBin</a>
+                           +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWindow.html">GtkWindow</a>
+                                 +----<a href="/usr/share/gtk-doc/html/gtk3/GtkApplicationWindow.html">GtkApplicationWindow</a>
+                                       +----ReplayWindow
+</pre>
+<pre class="synopsis">
+  GFlags
+   +----ReplayWindowDisplayFlags
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayWindow implements
+ AtkImplementorIface,  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>,  <a href="/usr/share/gtk-doc/html/gio/GActionGroup.html">GActionGroup</a> and  <a href="/usr/share/gtk-doc/html/gio/GActionMap.html">GActionMap</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--display-flags" title='The "display-flags" property'>display-flags</a>"            <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--event-source" title='The "event-source" property'>event-source</a>"             <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>*    : Read / Write
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--event-store" title='The "event-store" property'>event-store</a>"              <a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a>*     : Read
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--graph-view" title='The "graph-view" property'>graph-view</a>"               <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>*      : Read
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--message-tree-view" title='The "message-tree-view" property'>message-tree-view</a>"        <a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a>*  : Read
+  "<a class="link" href="ReplayWindow.html#ReplayWindow--node-tree" title='The "node-tree" property'>node-tree</a>"                <a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a>*       : Read
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayWindow.html#ReplayWindow-replay-event" title='The "replay-event" signal'>replay-event</a>"                                   : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayWindow-struct"></a><h3>struct ReplayWindow</h3>
+<pre class="programlisting">struct ReplayWindow;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindowClass"></a><h3>struct ReplayWindowClass</h3>
+<pre class="programlisting">struct ReplayWindowClass {
+  GtkApplicationWindowClass parent_class;
+
+  /* signal emitted when a new event arrives */
+  void (*replay_event)(ReplayWindow *window,
+                    ReplayEvent *event);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">GtkApplicationWindowClass</span> <em class="structfield"><code><a name="ReplayWindowClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayWindowClass.replay-event"></a>replay_event</code></em> ()</span></p></td>
+<td>Signal emitted when the window has received a new event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindowDisplayFlags-enum"></a><h3>enum ReplayWindowDisplayFlags</h3>
+<pre class="programlisting">typedef enum {
+  REPLAY_WINDOW_DISPLAY_MESSAGE_TREE = 1 &lt;&lt; 0,
+  REPLAY_WINDOW_DISPLAY_TIMELINE = 1 &lt;&lt; 1,
+  REPLAY_WINDOW_DISPLAY_GRAPH = 1 &lt;&lt; 2,
+  REPLAY_WINDOW_DISPLAY_ALL = (REPLAY_WINDOW_DISPLAY_MESSAGE_TREE | REPLAY_WINDOW_DISPLAY_TIMELINE | REPLAY_WINDOW_DISPLAY_GRAPH)
+} ReplayWindowDisplayFlags;
+</pre>
+<p>
+Which views to display in the window
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="REPLAY-WINDOW-DISPLAY-MESSAGE-TREE:CAPS"></a><span class="term"><code class="literal">REPLAY_WINDOW_DISPLAY_MESSAGE_TREE</code></span></p></td>
+<td>Show the message tree
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-WINDOW-DISPLAY-TIMELINE:CAPS"></a><span class="term"><code class="literal">REPLAY_WINDOW_DISPLAY_TIMELINE</code></span></p></td>
+<td>Show the timeline
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-WINDOW-DISPLAY-GRAPH:CAPS"></a><span class="term"><code class="literal">REPLAY_WINDOW_DISPLAY_GRAPH</code></span></p></td>
+<td>Show the graph
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-WINDOW-DISPLAY-ALL:CAPS"></a><span class="term"><code class="literal">REPLAY_WINDOW_DISPLAY_ALL</code></span></p></td>
+<td>Show all views
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-close"></a><h3>replay_window_close ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_close                 (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-display-flags"></a><h3>replay_window_get_display_flags ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayWindow.html#ReplayWindowDisplayFlags"><span class="returnvalue">ReplayWindowDisplayFlags</span></a> replay_window_get_display_flags
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-doc-action-group"></a><h3>replay_window_get_doc_action_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="returnvalue">GtkActionGroup</span></a> *    replay_window_get_doc_action_group  (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>the <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> to get the document action group for</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="type">GtkActionGroup</span></a> containing the actions which
+can be performed on a <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> when a document is loaded (i.e. when there
+are events loaded). The caller will need to <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"><code class="function">g_object_ref()</code></a> this if they want
+to maintain a reference. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-event-source"></a><h3>replay_window_get_event_source ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="returnvalue">ReplayEventSource</span></a> * replay_window_get_event_source      (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-event-store"></a><h3>replay_window_get_event_store ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  replay_window_get_event_store       (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>the <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> to get the <a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> from</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The current list of events being displayed by this
+window. The caller will need to <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"><code class="function">g_object_ref()</code></a> this if the want to maintain
+a reference. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-global-action-group"></a><h3>replay_window_get_global_action_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="returnvalue">GtkActionGroup</span></a> *    replay_window_get_global_action_group
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>the <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> to get the global action group for</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/gtk3/GtkActionGroup.html"><span class="type">GtkActionGroup</span></a> containing the actions which
+can be performed on a <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> at any time. The caller will need to
+<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-ref"><code class="function">g_object_ref()</code></a> this if they want to maintain a reference. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-graph-view"></a><h3>replay_window_get_graph_view ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="returnvalue">ReplayGraphView</span></a> *   replay_window_get_graph_view        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-log"></a><h3>replay_window_get_log ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayLog.html" title="ReplayLog"><span class="returnvalue">ReplayLog</span></a> *         replay_window_get_log               (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-message-tree-view"></a><h3>replay_window_get_message_tree_view ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="returnvalue">ReplayMessageTreeView</span></a> * replay_window_get_message_tree_view
+                                                        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-node-tree"></a><h3>replay_window_get_node_tree ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="returnvalue">ReplayNodeTree</span></a> *    replay_window_get_node_tree         (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-get-ui-manager"></a><h3>replay_window_get_ui_manager ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkUIManager.html"><span class="returnvalue">GtkUIManager</span></a> *      replay_window_get_ui_manager        (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/gtk3/GtkUIManager.html"><span class="type">GtkUIManager</span></a> for this <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-load-file"></a><h3>replay_window_load_file ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_load_file             (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *file</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-new"></a><h3>replay_window_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_window_new                   (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *application</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>application</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> which is controlling this window</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A new <a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-register-task"></a><h3>replay_window_register_task ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_register_task         (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *task</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-set-display-flags"></a><h3>replay_window_set_display_flags ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_set_display_flags     (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayWindow.html#ReplayWindowDisplayFlags"><span class="type">ReplayWindowDisplayFlags</span></a> flags</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-window-set-event-source"></a><h3>replay_window_set_event_source ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_window_set_event_source      (<em class="parameter"><code><a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replay_window</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *source</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayWindow--display-flags"></a><h3>The <code class="literal">"display-flags"</code> property</h3>
+<pre class="programlisting">  "display-flags"            <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a>                  : Read / Write</pre>
+<p>The #ReplayDisplayFlags of the window.</p>
+<p>Allowed values: [1,7]</p>
+<p>Default value: 7</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindow--event-source"></a><h3>The <code class="literal">"event-source"</code> property</h3>
+<pre class="programlisting">  "event-source"             <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>*    : Read / Write</pre>
+<p>The #ReplayEventSource of the window.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindow--event-store"></a><h3>The <code class="literal">"event-store"</code> property</h3>
+<pre class="programlisting">  "event-store"              <a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a>*     : Read</pre>
+<p>The #ReplayEventStore of the window.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindow--graph-view"></a><h3>The <code class="literal">"graph-view"</code> property</h3>
+<pre class="programlisting">  "graph-view"               <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>*      : Read</pre>
+<p>The #ReplayGraphView of the window.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindow--message-tree-view"></a><h3>The <code class="literal">"message-tree-view"</code> property</h3>
+<pre class="programlisting">  "message-tree-view"        <a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a>*  : Read</pre>
+<p>The #ReplayMessageTreeView of the window.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayWindow--node-tree"></a><h3>The <code class="literal">"node-tree"</code> property</h3>
+<pre class="programlisting">  "node-tree"                <a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a>*       : Read</pre>
+<p>The #ReplayNodeTree of the window.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayWindow.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayWindow-replay-event"></a><h3>The <code class="literal">"replay-event"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayWindow.html" title="ReplayWindow"><span class="type">ReplayWindow</span></a> *replaywindow,
+                                                        <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>  *arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>      user_data)         : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEventProcessor</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayFileLoader.html" title="ReplayFileLoader">
+<link rel="next" href="ReplayEventStore.html" title="ReplayEventStore">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayFileLoader.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayEventStore.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEventProcessor.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEventProcessor.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEventProcessor.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEventProcessor"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEventProcessor.top_of_page"></a>ReplayEventProcessor</span></h2>
+<p>ReplayEventProcessor</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEventProcessor.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayEventProcessor.html#ReplayEventProcessor-struct" title="struct ReplayEventProcessor">ReplayEventProcessor</a>;
+struct              <a class="link" href="ReplayEventProcessor.html#ReplayEventProcessorClass" title="struct ReplayEventProcessorClass">ReplayEventProcessorClass</a>;
+<a class="link" href="ReplayEventProcessor.html" title="ReplayEventProcessor"><span class="returnvalue">ReplayEventProcessor</span></a> * <a class="link" href="ReplayEventProcessor.html#replay-event-processor-new" title="replay_event_processor_new ()">replay_event_processor_new</a>       (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *node_tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *interval_list</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *message_tree</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEventProcessor.html#replay-event-processor-process-event" title="replay_event_processor_process_event ()">replay_event_processor_process_event</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventProcessor.html" title="ReplayEventProcessor"><span class="type">ReplayEventProcessor</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventProcessor.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a>
+         +----ReplayEventProcessor
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventProcessor.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayEventProcessor.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEventProcessor-struct"></a><h3>struct ReplayEventProcessor</h3>
+<pre class="programlisting">struct ReplayEventProcessor;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventProcessorClass"></a><h3>struct ReplayEventProcessorClass</h3>
+<pre class="programlisting">struct ReplayEventProcessorClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-processor-new"></a><h3>replay_event_processor_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventProcessor.html" title="ReplayEventProcessor"><span class="returnvalue">ReplayEventProcessor</span></a> * replay_event_processor_new       (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *node_tree</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *interval_list</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *message_tree</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-processor-process-event"></a><h3>replay_event_processor_process_event ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_event_processor_process_event
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventProcessor.html" title="ReplayEventProcessor"><span class="type">ReplayEventProcessor</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

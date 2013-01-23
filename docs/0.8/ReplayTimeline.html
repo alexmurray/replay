@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayTimeline</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayTask.html" title="ReplayTask">
+<link rel="next" href="ReplayTimelineView.html" title="ReplayTimelineView">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayTask.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayTimelineView.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayTimeline.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayTimeline.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayTimeline.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayTimeline.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayTimeline"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayTimeline.top_of_page"></a>ReplayTimeline</span></h2>
+<p>ReplayTimeline — Displays a simple timeline</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayTimeline.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">                    <a class="link" href="ReplayTimeline.html#ReplayTimeline-struct" title="ReplayTimeline">ReplayTimeline</a>;
+                    <a class="link" href="ReplayTimeline.html#ReplayTimelineClass" title="ReplayTimelineClass">ReplayTimelineClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimeline.html#replay-timeline-draw" title="replay_timeline_draw ()">replay_timeline_draw</a>                (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"><span class="type">PangoLayout</span></a> *layout</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayTimeline.html#replay-timeline-drawable-height" title="replay_timeline_drawable_height ()">replay_timeline_drawable_height</a>     (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayTimeline.html#replay-timeline-drawable-width" title="replay_timeline_drawable_width ()">replay_timeline_drawable_width</a>      (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayTimeline.html#replay-timeline-new" title="replay_timeline_new ()">replay_timeline_new</a>                 (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadj</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimeline.html#replay-timeline-set-absolute-time" title="replay_timeline_set_absolute_time ()">replay_timeline_set_absolute_time</a>   (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimeline.html#replay-timeline-set-bounds" title="replay_timeline_set_bounds ()">replay_timeline_set_bounds</a>          (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> start</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> end</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayTimeline.html#replay-timeline-set-x-resolution" title="replay_timeline_set_x_resolution ()">replay_timeline_set_x_resolution</a>    (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTimeline.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkDrawingArea.html">GtkDrawingArea</a>
+                     +----ReplayTimeline
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTimeline.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayTimeline implements
+ AtkImplementorIface and  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayTimeline.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> is a simple widget to display a timeline
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayTimeline.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayTimeline-struct"></a><h3>ReplayTimeline</h3>
+<pre class="programlisting">typedef struct _ReplayTimeline ReplayTimeline;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTimelineClass"></a><h3>ReplayTimelineClass</h3>
+<pre class="programlisting">typedef struct {
+} ReplayTimelineClass;
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-draw"></a><h3>replay_timeline_draw ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_draw                (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/pango/pango-Layout-Objects.html#PangoLayout"><span class="type">PangoLayout</span></a> *layout</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-drawable-height"></a><h3>replay_timeline_drawable_height ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_timeline_drawable_height     (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-drawable-width"></a><h3>replay_timeline_drawable_width ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_timeline_drawable_width      (<em class="parameter"><code>const <a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-new"></a><h3>replay_timeline_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_timeline_new                 (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadj</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-set-absolute-time"></a><h3>replay_timeline_set_absolute_time ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_set_absolute_time   (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-set-bounds"></a><h3>replay_timeline_set_bounds ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_set_bounds          (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> start</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> end</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-set-x-resolution"></a><h3>replay_timeline_set_x_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_timeline_set_x_resolution    (<em class="parameter"><code><a class="link" href="ReplayTimeline.html" title="ReplayTimeline"><span class="type">ReplayTimeline</span></a> *timeline</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayTimeline.see-also"></a><h2>See Also</h2>
+<a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayFileLoader</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayNetworkServer.html" title="ReplayNetworkServer">
+<link rel="next" href="ReplayEventProcessor.html" title="ReplayEventProcessor">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayNetworkServer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayEventProcessor.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayFileLoader.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayFileLoader.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayFileLoader.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayFileLoader.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayFileLoader.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayFileLoader"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayFileLoader.top_of_page"></a>ReplayFileLoader</span></h2>
+<p>ReplayFileLoader</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayFileLoader.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayFileLoader.html#ReplayFileLoader-struct" title="struct ReplayFileLoader">ReplayFileLoader</a>;
+struct              <a class="link" href="ReplayFileLoader.html#ReplayFileLoaderClass" title="struct ReplayFileLoaderClass">ReplayFileLoaderClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayFileLoader.html#replay-file-loader-cancel" title="replay_file_loader_cancel ()">replay_file_loader_cancel</a>           (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayFileLoader.html#replay-file-loader-emit-progress" title="replay_file_loader_emit_progress ()">replay_file_loader_emit_progress</a>    (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> fraction</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayFileLoader.html#replay-file-loader-get-mime-type" title="replay_file_loader_get_mime_type ()">replay_file_loader_get_mime_type</a>    (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayFileLoader.html#replay-file-loader-get-pattern" title="replay_file_loader_get_pattern ()">replay_file_loader_get_pattern</a>      (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayFileLoader.html#replay-file-loader-load-file" title="replay_file_loader_load_file ()">replay_file_loader_load_file</a>        (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *file</code></em>);
+<a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="returnvalue">ReplayFileLoader</span></a> *  <a class="link" href="ReplayFileLoader.html#replay-file-loader-new" title="replay_file_loader_new ()">replay_file_loader_new</a>              (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *mime_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *pattern</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a>
+         +----ReplayFileLoader
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayFileLoader.html#ReplayFileLoader--mime-type" title='The "mime-type" property'>mime-type</a>"                <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayFileLoader.html#ReplayFileLoader--pattern" title='The "pattern" property'>pattern</a>"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayFileLoader.html#ReplayFileLoader-cancel" title='The "cancel" signal'>cancel</a>"                                         : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayFileLoader.html#ReplayFileLoader-progress" title='The "progress" signal'>progress</a>"                                       : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayFileLoader-struct"></a><h3>struct ReplayFileLoader</h3>
+<pre class="programlisting">struct ReplayFileLoader;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayFileLoaderClass"></a><h3>struct ReplayFileLoaderClass</h3>
+<pre class="programlisting">struct ReplayFileLoaderClass {
+  ReplayEventSourceClass parent_class;
+
+  /* public virtual methods */
+  void (*load_file) (ReplayFileLoader *self, GFile *file);
+  void (*cancel) (ReplayFileLoader *self);
+
+  /* signals */
+  void (*progress) (ReplayFileLoader *self, gdouble fraction);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="ReplayEventSource.html#ReplayEventSourceClass" title="struct ReplayEventSourceClass"><span class="type">ReplayEventSourceClass</span></a> <em class="structfield"><code><a name="ReplayFileLoaderClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayFileLoaderClass.load-file"></a>load_file</code></em> ()</span></p></td>
+<td>Load the given <a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayFileLoaderClass.cancel"></a>cancel</code></em> ()</span></p></td>
+<td>Cancel any current file load</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayFileLoaderClass.progress"></a>progress</code></em> ()</span></p></td>
+<td>Signal emitted by <a class="link" href="ReplayFileLoader.html#replay-file-loader-emit-progress" title="replay_file_loader_emit_progress ()"><span class="type">replay_file_loader_emit_progress</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-cancel"></a><h3>replay_file_loader_cancel ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_file_loader_cancel           (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-emit-progress"></a><h3>replay_file_loader_emit_progress ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_file_loader_emit_progress    (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> fraction</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-get-mime-type"></a><h3>replay_file_loader_get_mime_type ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_file_loader_get_mime_type    (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The mime_type of the file loader</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-get-pattern"></a><h3>replay_file_loader_get_pattern ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_file_loader_get_pattern      (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The pattern of the file loader</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-load-file"></a><h3>replay_file_loader_load_file ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_file_loader_load_file        (<em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> *file</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>file</code></em> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/gio/GFile.html"><span class="type">GFile</span></a> to load</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-file-loader-new"></a><h3>replay_file_loader_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="returnvalue">ReplayFileLoader</span></a> *  replay_file_loader_new              (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *mime_type</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *pattern</code></em>);</pre>
+<p>
+Creates a new instance of <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>A name to describe this file loader</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mime_type</code></em> :</span></p></td>
+<td>A mime-type to describe the file types to load. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pattern</code></em> :</span></p></td>
+<td>A glob style pattern to describe the file types to load. <span class="annotation">[<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> instance</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayFileLoader--mime-type"></a><h3>The <code class="literal">"mime-type"</code> property</h3>
+<pre class="programlisting">  "mime-type"                <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Get mime_type of this file loader.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayFileLoader--pattern"></a><h3>The <code class="literal">"pattern"</code> property</h3>
+<pre class="programlisting">  "pattern"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Get pattern of this file loader.</p>
+<p>Default value: NULL</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayFileLoader.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayFileLoader-cancel"></a><h3>The <code class="literal">"cancel"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The cancel signal.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayFileLoader-progress"></a><h3>The <code class="literal">"progress"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *self,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>           arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The progress signal.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

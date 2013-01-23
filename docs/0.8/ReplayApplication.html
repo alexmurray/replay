@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayApplication</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ch02.html" title="Replay Library">
+<link rel="next" href="ReplayWindow.html" title="ReplayWindow">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch02.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayWindow.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayApplication.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayApplication.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayApplication.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayApplication.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayApplication.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayApplication"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayApplication.top_of_page"></a>ReplayApplication</span></h2>
+<p>ReplayApplication</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayApplication.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayApplication.html#ReplayApplication-struct" title="struct ReplayApplication">ReplayApplication</a>;
+struct              <a class="link" href="ReplayApplication.html#ReplayApplicationClass" title="struct ReplayApplicationClass">ReplayApplicationClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayApplication.html#replay-application-add-file-loader" title="replay_application_add_file_loader ()">replay_application_add_file_loader</a>  (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *loader</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayApplication.html#replay-application-add-network-server" title="replay_application_add_network_server ()">replay_application_add_network_server</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayApplication.html#replay-application-display-help" title="replay_application_display_help ()">replay_application_display_help</a>     (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *section</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *       <a class="link" href="ReplayApplication.html#replay-application-get-file-loaders" title="replay_application_get_file_loaders ()">replay_application_get_file_loaders</a> (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>);
+<a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="returnvalue">ReplayApplication</span></a> * <a class="link" href="ReplayApplication.html#replay-application-new" title="replay_application_new ()">replay_application_new</a>              (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayApplication.html#replay-application-remove-file-loader" title="replay_application_remove_file_loader ()">replay_application_remove_file_loader</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *loader</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayApplication.html#replay-application-remove-network-server" title="replay_application_remove_network_server ()">replay_application_remove_network_server</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *server</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gio/GApplication.html">GApplication</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkApplication.html">GtkApplication</a>
+               +----ReplayApplication
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayApplication implements
+ <a href="/usr/share/gtk-doc/html/gio/GActionGroup.html">GActionGroup</a> and  <a href="/usr/share/gtk-doc/html/gio/GActionMap.html">GActionMap</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayApplication.html#ReplayApplication-file-loader-added" title='The "file-loader-added" signal'>file-loader-added</a>"                              : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayApplication.html#ReplayApplication-file-loader-removed" title='The "file-loader-removed" signal'>file-loader-removed</a>"                            : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayApplication-struct"></a><h3>struct ReplayApplication</h3>
+<pre class="programlisting">struct ReplayApplication;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayApplicationClass"></a><h3>struct ReplayApplicationClass</h3>
+<pre class="programlisting">struct ReplayApplicationClass {
+        GtkApplicationClass parent_class;
+
+        /* signal emitted when a new file loader is added */
+        void (*file_loader_added)(ReplayApplication *self,
+                                  ReplayFileLoader *loader);
+        /* signal emitted when a file loader is removed */
+        void (*file_loader_removed)(ReplayApplication *self,
+                                    ReplayFileLoader *loader);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">GtkApplicationClass</span> <em class="structfield"><code><a name="ReplayApplicationClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayApplicationClass.file-loader-added"></a>file_loader_added</code></em> ()</span></p></td>
+<td>Signal emitted when a new file loader is added</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayApplicationClass.file-loader-removed"></a>file_loader_removed</code></em> ()</span></p></td>
+<td>Signal emitted when a file loader is removed</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-add-file-loader"></a><h3>replay_application_add_file_loader ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_application_add_file_loader  (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *loader</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-add-network-server"></a><h3>replay_application_add_network_server ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_application_add_network_server
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *server</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-display-help"></a><h3>replay_application_display_help ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_application_display_help     (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *section</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-get-file-loaders"></a><h3>replay_application_get_file_loaders ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *       replay_application_get_file_loaders (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A list of the <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> available to this
+application. This list is owned by the application and should not be
+modified or freed by the caller. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> ReplayFileLoader][<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-new"></a><h3>replay_application_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="returnvalue">ReplayApplication</span></a> * replay_application_new              (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-remove-file-loader"></a><h3>replay_application_remove_file_loader ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_application_remove_file_loader
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a> *loader</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-remove-network-server"></a><h3>replay_application_remove_network_server ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_application_remove_network_server
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *server</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayApplication.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayApplication-file-loader-added"></a><h3>The <code class="literal">"file-loader-added"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self,
+                                                        <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>  *loader,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>           user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+Emitted by a <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> when a new file loader is added
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The application emitting this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td>The new file loader</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayApplication-file-loader-removed"></a><h3>The <code class="literal">"file-loader-removed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> *self,
+                                                        <a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>  *loader,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>           user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+Emitted by a <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> when a new file loader is removed
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The application emitting this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>loader</code></em> :</span></p></td>
+<td>The new file loader</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

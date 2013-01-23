@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayNodeDeleteEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayNodeCreateEvent.html" title="ReplayNodeCreateEvent">
+<link rel="next" href="ReplayNodePropsEvent.html" title="ReplayNodePropsEvent">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayNodeCreateEvent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayNodePropsEvent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayNodeDeleteEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayNodeDeleteEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayNodeDeleteEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayNodeDeleteEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayNodeDeleteEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayNodeDeleteEvent.top_of_page"></a>ReplayNodeDeleteEvent</span></h2>
+<p>ReplayNodeDeleteEvent</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayNodeDeleteEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayNodeDeleteEvent.html#ReplayNodeDeleteEvent-struct" title="struct ReplayNodeDeleteEvent">ReplayNodeDeleteEvent</a>;
+struct              <a class="link" href="ReplayNodeDeleteEvent.html#ReplayNodeDeleteEventClass" title="struct ReplayNodeDeleteEventClass">ReplayNodeDeleteEventClass</a>;
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayNodeDeleteEvent.html#replay-node-delete-event-get-id" title="replay_node_delete_event_get_id ()">replay_node_delete_event_get_id</a>     (<em class="parameter"><code><a class="link" href="ReplayNodeDeleteEvent.html" title="ReplayNodeDeleteEvent"><span class="type">ReplayNodeDeleteEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       <a class="link" href="ReplayNodeDeleteEvent.html#replay-node-delete-event-new" title="replay_node_delete_event_new ()">replay_node_delete_event_new</a>        (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeDeleteEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a>
+         +----ReplayNodeDeleteEvent
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeDeleteEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayNodeDeleteEvent.html#ReplayNodeDeleteEvent--id" title='The "id" property'>id</a>"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeDeleteEvent.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeDeleteEvent.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayNodeDeleteEvent-struct"></a><h3>struct ReplayNodeDeleteEvent</h3>
+<pre class="programlisting">struct ReplayNodeDeleteEvent;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayNodeDeleteEventClass"></a><h3>struct ReplayNodeDeleteEventClass</h3>
+<pre class="programlisting">struct ReplayNodeDeleteEventClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-delete-event-get-id"></a><h3>replay_node_delete_event_get_id ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_node_delete_event_get_id     (<em class="parameter"><code><a class="link" href="ReplayNodeDeleteEvent.html" title="ReplayNodeDeleteEvent"><span class="type">ReplayNodeDeleteEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayNodeDeleteEvent.html" title="ReplayNodeDeleteEvent"><span class="type">ReplayNodeDeleteEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the id of the node deleted by this event
+Get the id of a node in a <a class="link" href="ReplayNodeDeleteEvent.html" title="ReplayNodeDeleteEvent"><span class="type">ReplayNodeDeleteEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-delete-event-new"></a><h3>replay_node_delete_event_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       replay_node_delete_event_new        (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
+<p>
+Creates a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> describing the deletion of a node
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
+<td>The timestamp when this event occurred in usecs since the epoch</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>source</code></em> :</span></p></td>
+<td>A string describing the source of this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td>A globally unique id to identify the node</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A new <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeDeleteEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayNodeDeleteEvent--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the object.</p>
+<p>Default value: "no-id-set"</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

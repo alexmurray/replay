@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayNetworkServer</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayEventSource.html" title="ReplayEventSource">
+<link rel="next" href="ReplayFileLoader.html" title="ReplayFileLoader">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayEventSource.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayFileLoader.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayNetworkServer.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayNetworkServer.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayNetworkServer.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayNetworkServer.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayNetworkServer.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayNetworkServer"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayNetworkServer.top_of_page"></a>ReplayNetworkServer</span></h2>
+<p>ReplayNetworkServer</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayNetworkServer.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayNetworkServer.html#ReplayNetworkServer-struct" title="struct ReplayNetworkServer">ReplayNetworkServer</a>;
+struct              <a class="link" href="ReplayNetworkServer.html#ReplayNetworkServerClass" title="struct ReplayNetworkServerClass">ReplayNetworkServerClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNetworkServer.html#replay-network-server-emit-disconnected" title="replay_network_server_emit_disconnected ()">replay_network_server_emit_disconnected</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint16"><span class="returnvalue">guint16</span></a>             <a class="link" href="ReplayNetworkServer.html#replay-network-server-get-port" title="replay_network_server_get_port ()">replay_network_server_get_port</a>      (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNetworkServer.html#replay-network-server-load-events" title="replay_network_server_load_events ()">replay_network_server_load_events</a>   (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GSocketConnection.html"><span class="type">GSocketConnection</span></a> *conn</code></em>);
+<a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="returnvalue">ReplayNetworkServer</span></a> * <a class="link" href="ReplayNetworkServer.html#replay-network-server-new" title="replay_network_server_new ()">replay_network_server_new</a>         (<em class="parameter"><code><span class="type">void</span></code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEventSource.html" title="ReplayEventSource">ReplayEventSource</a>
+         +----ReplayNetworkServer
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayNetworkServer.html#ReplayNetworkServer--port" title='The "port" property'>port</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayNetworkServer.html#ReplayNetworkServer-disconnected" title='The "disconnected" signal'>disconnected</a>"                                   : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayNetworkServer-struct"></a><h3>struct ReplayNetworkServer</h3>
+<pre class="programlisting">struct ReplayNetworkServer;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayNetworkServerClass"></a><h3>struct ReplayNetworkServerClass</h3>
+<pre class="programlisting">struct ReplayNetworkServerClass {
+  ReplayEventSourceClass parent_class;
+
+  /* public virtual methods */
+  void (*load_events) (ReplayNetworkServer *self, GSocketConnection *conn);
+
+  /* signals */
+  void (*disconnected) (ReplayNetworkServer *self);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="ReplayEventSource.html#ReplayEventSourceClass" title="struct ReplayEventSourceClass"><span class="type">ReplayEventSourceClass</span></a> <em class="structfield"><code><a name="ReplayNetworkServerClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayNetworkServerClass.load-events"></a>load_events</code></em> ()</span></p></td>
+<td>Load events from the <a href="/usr/share/gtk-doc/html/gio/GSocketConnection.html"><span class="type">GSocketConnection</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayNetworkServerClass.disconnected"></a>disconnected</code></em> ()</span></p></td>
+<td>Signal emitted when disconnected by <a class="link" href="ReplayNetworkServer.html#replay-network-server-emit-disconnected" title="replay_network_server_emit_disconnected ()"><span class="type">replay_network_server_emit_disconnected</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-network-server-emit-disconnected"></a><h3>replay_network_server_emit_disconnected ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_network_server_emit_disconnected
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>);</pre>
+<p>
+Emits the "disconnected" signal for this <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-network-server-get-port"></a><h3>replay_network_server_get_port ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint16"><span class="returnvalue">guint16</span></a>             replay_network_server_get_port      (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The port this network event source listens on</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-network-server-load-events"></a><h3>replay_network_server_load_events ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_network_server_load_events   (<em class="parameter"><code><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gio/GSocketConnection.html"><span class="type">GSocketConnection</span></a> *conn</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-network-server-new"></a><h3>replay_network_server_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="returnvalue">ReplayNetworkServer</span></a> * replay_network_server_new         (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>
+Creates a new instance of <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> instance</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayNetworkServer--port"></a><h3>The <code class="literal">"port"</code> property</h3>
+<pre class="programlisting">  "port"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#guint"><span class="type">guint</span></a>                 : Read / Write / Construct Only</pre>
+<p>Get port of this network event source.</p>
+<p>Default value: 0</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayNetworkServer.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayNetworkServer-disconnected"></a><h3>The <code class="literal">"disconnected"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a> *self,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>             user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The disconnected signal.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer"><span class="type">ReplayNetworkServer</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

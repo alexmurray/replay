@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayMessageTree</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayNodeTree.html" title="ReplayNodeTree">
+<link rel="next" href="ReplayTask.html" title="ReplayTask">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayNodeTree.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayTask.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayMessageTree.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayMessageTree.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayMessageTree.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayMessageTree.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayMessageTree.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayMessageTree"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayMessageTree.top_of_page"></a>ReplayMessageTree</span></h2>
+<p>ReplayMessageTree</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayMessageTree.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayMessageTree.html#ReplayMessageTree-struct" title="struct ReplayMessageTree">ReplayMessageTree</a>;
+struct              <a class="link" href="ReplayMessageTree.html#ReplayMessageTreeClass" title="struct ReplayMessageTreeClass">ReplayMessageTreeClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayMessageTree.html#replay-message-tree-append-child" title="replay_message_tree_append_child ()">replay_message_tree_append_child</a>    (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *it</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *parent</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *child_iter</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="returnvalue">GtkTreeIter</span></a> *       <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-current" title="replay_message_tree_get_current ()">replay_message_tree_get_current</a>     (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>);
+<a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-event-store" title="replay_message_tree_get_event_store ()">replay_message_tree_get_event_store</a> (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-iter-for-name" title="replay_message_tree_get_iter_for_name ()">replay_message_tree_get_iter_for_name</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-recv-list-path-from-tree-path" title="replay_message_tree_get_recv_list_path_from_tree_path ()">replay_message_tree_get_recv_list_path_from_tree_path</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *tree_path</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-send-list-path-from-tree-path" title="replay_message_tree_get_send_list_path_from_tree_path ()">replay_message_tree_get_send_list_path_from_tree_path</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *tree_path</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       <a class="link" href="ReplayMessageTree.html#replay-message-tree-get-tree-path-from-list-path" title="replay_message_tree_get_tree_path_from_list_path ()">replay_message_tree_get_tree_path_from_list_path</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *list_path</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayMessageTree.html#replay-message-tree-is-current" title="replay_message_tree_is_current ()">replay_message_tree_is_current</a>      (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="returnvalue">ReplayMessageTree</span></a> * <a class="link" href="ReplayMessageTree.html#replay-message-tree-new" title="replay_message_tree_new ()">replay_message_tree_new</a>             (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayMessageTree.html#replay-message-tree-set-current" title="replay_message_tree_set_current ()">replay_message_tree_set_current</a>     (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayMessageTree.html#replay-message-tree-set-recv-event" title="replay_message_tree_set_recv_event ()">replay_message_tree_set_recv_event</a>  (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *recv_list_path</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayMessageTree.html#replay-message-tree-set-send-event" title="replay_message_tree_set_send_event ()">replay_message_tree_set_send_event</a>  (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *src_list_path</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayMessageTree
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayMessageTree implements
+ <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html">GtkTreeModel</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayMessageTree.html#ReplayMessageTree-current-changed" title='The "current-changed" signal'>current-changed</a>"                                : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayMessageTree-struct"></a><h3>struct ReplayMessageTree</h3>
+<pre class="programlisting">struct ReplayMessageTree;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayMessageTreeClass"></a><h3>struct ReplayMessageTreeClass</h3>
+<pre class="programlisting">struct ReplayMessageTreeClass {
+  GObjectClass parent_class;
+
+  /* signals */
+  void (* current_changed)(ReplayEventStore *event_store,
+                           const GtkTreeIter * const current);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="ReplayMessageTreeClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayMessageTreeClass.current-changed"></a>current_changed</code></em> ()</span></p></td>
+<td>Emitted when the current active message event changes</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-append-child"></a><h3>replay_message_tree_append_child ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_message_tree_append_child    (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *it</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *parent</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *name</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *child_iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-current"></a><h3>replay_message_tree_get_current ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="returnvalue">GtkTreeIter</span></a> *       replay_message_tree_get_current     (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-event-store"></a><h3>replay_message_tree_get_event_store ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  replay_message_tree_get_event_store (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the event store associated with this message tree. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-iter-for-name"></a><h3>replay_message_tree_get_iter_for_name ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_message_tree_get_iter_for_name
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-recv-list-path-from-tree-path"></a><h3>replay_message_tree_get_recv_list_path_from_tree_path ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       replay_message_tree_get_recv_list_path_from_tree_path
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *tree_path</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-send-list-path-from-tree-path"></a><h3>replay_message_tree_get_send_list_path_from_tree_path ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       replay_message_tree_get_send_list_path_from_tree_path
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *tree_path</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-get-tree-path-from-list-path"></a><h3>replay_message_tree_get_tree_path_from_list_path ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       replay_message_tree_get_tree_path_from_list_path
+                                                        (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *list_path</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-is-current"></a><h3>replay_message_tree_is_current ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_message_tree_is_current      (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-new"></a><h3>replay_message_tree_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="returnvalue">ReplayMessageTree</span></a> * replay_message_tree_new             (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-set-current"></a><h3>replay_message_tree_set_current ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_message_tree_set_current     (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-set-recv-event"></a><h3>replay_message_tree_set_recv_event ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_message_tree_set_recv_event  (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *recv_list_path</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-message-tree-set-send-event"></a><h3>replay_message_tree_set_send_event ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_message_tree_set_send_event  (<em class="parameter"><code><a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="type">GtkTreePath</span></a> *src_list_path</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayMessageTree.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayMessageTree-current-changed"></a><h3>The <code class="literal">"current-changed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayMessageTree.html" title="ReplayMessageTree"><span class="type">ReplayMessageTree</span></a> *replaymessagetree,
+                                                        <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a>       *arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>           user_data)              : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

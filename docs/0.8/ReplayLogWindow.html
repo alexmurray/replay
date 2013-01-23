@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayLogWindow</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayNodeTreeView.html" title="ReplayNodeTreeView">
+<link rel="next" href="ReplayEventGraph.html" title="ReplayEventGraph">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayNodeTreeView.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayEventGraph.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayLogWindow.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayLogWindow.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayLogWindow.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayLogWindow.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayLogWindow.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayLogWindow"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayLogWindow.top_of_page"></a>ReplayLogWindow</span></h2>
+<p>ReplayLogWindow — Widget which displays a <a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a></p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayLogWindow.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayLogWindow.html#ReplayLogWindow-struct" title="struct ReplayLogWindow">ReplayLogWindow</a>;
+struct              <a class="link" href="ReplayLogWindow.html#ReplayLogWindowClass" title="struct ReplayLogWindowClass">ReplayLogWindowClass</a>;
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayLogWindow.html#replay-log-window-new" title="replay_log_window_new ()">replay_log_window_new</a>               (<em class="parameter"><code><a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a> *log</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayLogWindow.html#replay-log-window-set-log" title="replay_log_window_set_log ()">replay_log_window_set_log</a>           (<em class="parameter"><code><a class="link" href="ReplayLogWindow.html" title="ReplayLogWindow"><span class="type">ReplayLogWindow</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a> *log</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkContainer.html">GtkContainer</a>
+                     +----<a href="/usr/share/gtk-doc/html/gtk3/GtkBin.html">GtkBin</a>
+                           +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWindow.html">GtkWindow</a>
+                                 +----ReplayLogWindow
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayLogWindow implements
+ AtkImplementorIface and  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayLogWindow.html#ReplayLogWindow--log" title='The "log" property'>log</a>"                      <a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a>*            : Read / Write / Construct
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayLogWindow-struct"></a><h3>struct ReplayLogWindow</h3>
+<pre class="programlisting">struct ReplayLogWindow;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayLogWindowClass"></a><h3>struct ReplayLogWindowClass</h3>
+<pre class="programlisting">struct ReplayLogWindowClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-log-window-new"></a><h3>replay_log_window_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_log_window_new               (<em class="parameter"><code><a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a> *log</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-log-window-set-log"></a><h3>replay_log_window_set_log ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_log_window_set_log           (<em class="parameter"><code><a class="link" href="ReplayLogWindow.html" title="ReplayLogWindow"><span class="type">ReplayLogWindow</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a> *log</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayLogWindow.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayLogWindow--log"></a><h3>The <code class="literal">"log"</code> property</h3>
+<pre class="programlisting">  "log"                      <a class="link" href="ReplayLog.html" title="ReplayLog"><span class="type">ReplayLog</span></a>*            : Read / Write / Construct</pre>
+<p>Get/Set log.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

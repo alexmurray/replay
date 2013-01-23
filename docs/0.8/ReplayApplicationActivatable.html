@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayApplicationActivatable</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayWindow.html" title="ReplayWindow">
+<link rel="next" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayWindow.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayWindowActivatable.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayApplicationActivatable.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayApplicationActivatable.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayApplicationActivatable.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayApplicationActivatable.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#ReplayApplicationActivatable.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayApplicationActivatable"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayApplicationActivatable.top_of_page"></a>ReplayApplicationActivatable</span></h2>
+<p>ReplayApplicationActivatable — Interface for Replay plugins</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayApplicationActivatable.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;replay/replay-application-activatable.h&gt;
+
+#define             <a class="link" href="ReplayApplicationActivatable.html#REPLAY-APPLICATION-ACTIVATABLE-IFACE:CAPS" title="REPLAY_APPLICATION_ACTIVATABLE_IFACE()">REPLAY_APPLICATION_ACTIVATABLE_IFACE</a>(obj)
+struct              <a class="link" href="ReplayApplicationActivatable.html#ReplayApplicationActivatable-struct" title="struct ReplayApplicationActivatable">ReplayApplicationActivatable</a>;
+struct              <a class="link" href="ReplayApplicationActivatable.html#ReplayApplicationActivatableInterface" title="struct ReplayApplicationActivatableInterface">ReplayApplicationActivatableInterface</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayApplicationActivatable.html#replay-application-activatable-activate" title="replay_application_activatable_activate ()">replay_application_activatable_activate</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayApplicationActivatable.html#replay-application-activatable-deactivate" title="replay_application_activatable_deactivate ()">replay_application_activatable_deactivate</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GInterface
+   +----ReplayApplicationActivatable
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.prerequisites"></a><h2>Prerequisites</h2>
+<p>
+ReplayApplicationActivatable requires
+ <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayApplicationActivatable.html#ReplayApplicationActivatable--application" title='The "application" property'>application</a>"              <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a>*    : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a> is an interface which plugins which require access
+to a <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a> should implement
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="REPLAY-APPLICATION-ACTIVATABLE-IFACE:CAPS"></a><h3>REPLAY_APPLICATION_ACTIVATABLE_IFACE()</h3>
+<pre class="programlisting">#define REPLAY_APPLICATION_ACTIVATABLE_IFACE(obj)        (G_TYPE_CHECK_CLASS_CAST ((obj), REPLAY_TYPE_APPLICATION_ACTIVATABLE, ReplayApplicationActivatableInterface))
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayApplicationActivatable-struct"></a><h3>struct ReplayApplicationActivatable</h3>
+<pre class="programlisting">struct ReplayApplicationActivatable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayApplicationActivatableInterface"></a><h3>struct ReplayApplicationActivatableInterface</h3>
+<pre class="programlisting">struct ReplayApplicationActivatableInterface {
+  GTypeInterface parent_iface;
+
+  void (* activate) (ReplayApplicationActivatable *self);
+  void (* deactivate) (ReplayApplicationActivatable *self);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="ReplayApplicationActivatableInterface.parent-iface"></a>parent_iface</code></em>;</span></p></td>
+<td>The parent interface</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayApplicationActivatableInterface.activate"></a>activate</code></em> ()</span></p></td>
+<td>Called to activate the <a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayApplicationActivatableInterface.deactivate"></a>deactivate</code></em> ()</span></p></td>
+<td>Called to deactivate the <a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-activatable-activate"></a><h3>replay_application_activatable_activate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_application_activatable_activate
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>self</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-application-activatable-deactivate"></a><h3>replay_application_activatable_deactivate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_application_activatable_deactivate
+                                                        (<em class="parameter"><code><a class="link" href="ReplayApplicationActivatable.html" title="ReplayApplicationActivatable"><span class="type">ReplayApplicationActivatable</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>self</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayApplicationActivatable--application"></a><h3>The <code class="literal">"application"</code> property</h3>
+<pre class="programlisting">  "application"              <a class="link" href="ReplayApplication.html" title="ReplayApplication"><span class="type">ReplayApplication</span></a>*    : Read / Write / Construct Only</pre>
+<p>The ReplayApplication which this plugin has been activated upon.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayApplicationActivatable.see-also"></a><h2>See Also</h2>
+<a href="/usr/share/gtk-doc/html/libpeas/PeasActivatable.html"><span class="type">PeasActivatable</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

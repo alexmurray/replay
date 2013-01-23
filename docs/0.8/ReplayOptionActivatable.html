@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayOptionActivatable</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable">
+<link rel="next" href="ReplayLog.html" title="ReplayLog">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayWindowActivatable.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayLog.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayOptionActivatable.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayOptionActivatable.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayOptionActivatable.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayOptionActivatable.prerequisites" class="shortcut">Prerequisites</a>
+                   | 
+                  <a href="#ReplayOptionActivatable.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayOptionActivatable"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayOptionActivatable.top_of_page"></a>ReplayOptionActivatable</span></h2>
+<p>ReplayOptionActivatable — Interface for plugins to provide command-line options</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayOptionActivatable.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;replay/replay-option-activatable.h&gt;
+
+#define             <a class="link" href="ReplayOptionActivatable.html#REPLAY-OPTION-ACTIVATABLE-IFACE:CAPS" title="REPLAY_OPTION_ACTIVATABLE_IFACE()">REPLAY_OPTION_ACTIVATABLE_IFACE</a>     (obj)
+struct              <a class="link" href="ReplayOptionActivatable.html#ReplayOptionActivatable-struct" title="struct ReplayOptionActivatable">ReplayOptionActivatable</a>;
+struct              <a class="link" href="ReplayOptionActivatable.html#ReplayOptionActivatableInterface" title="struct ReplayOptionActivatableInterface">ReplayOptionActivatableInterface</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayOptionActivatable.html#replay-option-activatable-activate" title="replay_option_activatable_activate ()">replay_option_activatable_activate</a>  (<em class="parameter"><code><a class="link" href="ReplayOptionActivatable.html" title="ReplayOptionActivatable"><span class="type">ReplayOptionActivatable</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GInterface
+   +----ReplayOptionActivatable
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.prerequisites"></a><h2>Prerequisites</h2>
+<p>
+ReplayOptionActivatable requires
+ <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayOptionActivatable.html#ReplayOptionActivatable--context" title='The "context" property'>context</a>"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>              : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayOptionActivatable.html" title="ReplayOptionActivatable"><span class="type">ReplayOptionActivatable</span></a> is an interface which plugins which want to provide
+command-line options should implement
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="REPLAY-OPTION-ACTIVATABLE-IFACE:CAPS"></a><h3>REPLAY_OPTION_ACTIVATABLE_IFACE()</h3>
+<pre class="programlisting">#define REPLAY_OPTION_ACTIVATABLE_IFACE(obj)        (G_TYPE_CHECK_CLASS_CAST ((obj), REPLAY_TYPE_OPTION_ACTIVATABLE, ReplayOptionActivatableInterface))
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayOptionActivatable-struct"></a><h3>struct ReplayOptionActivatable</h3>
+<pre class="programlisting">struct ReplayOptionActivatable;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayOptionActivatableInterface"></a><h3>struct ReplayOptionActivatableInterface</h3>
+<pre class="programlisting">struct ReplayOptionActivatableInterface {
+  GTypeInterface parent_iface;
+
+  void (* activate) (ReplayOptionActivatable *self);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#GTypeInterface"><span class="type">GTypeInterface</span></a> <em class="structfield"><code><a name="ReplayOptionActivatableInterface.parent-iface"></a>parent_iface</code></em>;</span></p></td>
+<td>The parent interface</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayOptionActivatableInterface.activate"></a>activate</code></em> ()</span></p></td>
+<td>Called to activate the <a class="link" href="ReplayOptionActivatable.html" title="ReplayOptionActivatable"><span class="type">ReplayOptionActivatable</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-option-activatable-activate"></a><h3>replay_option_activatable_activate ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_option_activatable_activate  (<em class="parameter"><code><a class="link" href="ReplayOptionActivatable.html" title="ReplayOptionActivatable"><span class="type">ReplayOptionActivatable</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>self</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayOptionActivatable--context"></a><h3>The <code class="literal">"context"</code> property</h3>
+<pre class="programlisting">  "context"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>              : Read / Write / Construct Only</pre>
+<p>The GOptionContext which this option_activatable has been activated upon.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayOptionActivatable.see-also"></a><h2>See Also</h2>
+<a href="/usr/share/gtk-doc/html/libpeas/PeasActivatable.html"><span class="type">PeasActivatable</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

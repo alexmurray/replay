@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEventStore</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayEventProcessor.html" title="ReplayEventProcessor">
+<link rel="next" href="ReplayNodeTree.html" title="ReplayNodeTree">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayEventProcessor.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayNodeTree.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEventStore.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEventStore.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEventStore.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayEventStore.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayEventStore.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEventStore"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEventStore.top_of_page"></a>ReplayEventStore</span></h2>
+<p>ReplayEventStore</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEventStore.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayEventStore.html#ReplayEventStore-struct" title="struct ReplayEventStore">ReplayEventStore</a>;
+struct              <a class="link" href="ReplayEventStore.html#ReplayEventStoreClass" title="struct ReplayEventStoreClass">ReplayEventStoreClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventStore.html#replay-event-store-append-event" title="replay_event_store_append_event ()">replay_event_store_append_event</a>     (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEventStore.html#replay-event-store-get-current" title="replay_event_store_get_current ()">replay_event_store_get_current</a>      (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              <a class="link" href="ReplayEventStore.html#replay-event-store-get-end-timestamp" title="replay_event_store_get_end_timestamp ()">replay_event_store_get_end_timestamp</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>);
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       <a class="link" href="ReplayEventStore.html#replay-event-store-get-event" title="replay_event_store_get_event ()">replay_event_store_get_event</a>        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             <a class="link" href="ReplayEventStore.html#replay-event-store-get-events" title="replay_event_store_get_events ()">replay_event_store_get_events</a>       (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              <a class="link" href="ReplayEventStore.html#replay-event-store-get-start-timestamp" title="replay_event_store_get_start_timestamp ()">replay_event_store_get_start_timestamp</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>);
+<a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  <a class="link" href="ReplayEventStore.html#replay-event-store-new" title="replay_event_store_new ()">replay_event_store_new</a>              (<em class="parameter"><code><span class="type">void</span></code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEventStore.html#replay-event-store-set-current" title="replay_event_store_set_current ()">replay_event_store_set_current</a>      (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayEventStore
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayEventStore implements
+ <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html">GtkTreeModel</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEventStore.html#ReplayEventStore-current-changed" title='The "current-changed" signal'>current-changed</a>"                                : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayEventStore.html#ReplayEventStore-times-changed" title='The "times-changed" signal'>times-changed</a>"                                  : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEventStore-struct"></a><h3>struct ReplayEventStore</h3>
+<pre class="programlisting">struct ReplayEventStore;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventStoreClass"></a><h3>struct ReplayEventStoreClass</h3>
+<pre class="programlisting">struct ReplayEventStoreClass {
+  GObjectClass parent_class;
+
+  /* signals */
+  void (* current_changed)(ReplayEventStore *replay_event_store,
+                           const GtkTreeIter * const current);
+  void (* times_changed)(ReplayEventStore *replay_event_store,
+                         gint64 start_timestamp,
+                         gint64 end_timestamp);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="ReplayEventStoreClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventStoreClass.current-changed"></a>current_changed</code></em> ()</span></p></td>
+<td>Signal emitted when the current <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> has changed</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventStoreClass.times-changed"></a>times_changed</code></em> ()</span></p></td>
+<td>Signal emitted when the time bounds of the event store have changed</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-append-event"></a><h3>replay_event_store_append_event ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_store_append_event     (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-get-current"></a><h3>replay_event_store_get_current ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_event_store_get_current      (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-get-end-timestamp"></a><h3>replay_event_store_get_end_timestamp ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              replay_event_store_get_end_timestamp
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-get-event"></a><h3>replay_event_store_get_event ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       replay_event_store_get_event        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+<p>
+Get the <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> pointed to by <em class="parameter"><code>iter</code></em>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>an iterator pointing to a single event in the store</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> or NULL if iter is invalid. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-get-events"></a><h3>replay_event_store_get_events ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="returnvalue">GList</span></a> *             replay_event_store_get_events       (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+<p>
+Get a <a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of all events which occur at the same time as this event in the
+store
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>a <a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>an iterator pointing to a group or a single event in the store</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A <a href="/usr/share/gtk-doc/html/glib/glib-Doubly-Linked-Lists.html#GList"><span class="type">GList</span></a> of all events
+which occur at the time of the event pointed to by iter. <span class="annotation">[<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> ReplayEvent][<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-get-start-timestamp"></a><h3>replay_event_store_get_start_timestamp ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              replay_event_store_get_start_timestamp
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-new"></a><h3>replay_event_store_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="returnvalue">ReplayEventStore</span></a> *  replay_event_store_new              (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-store-set-current"></a><h3>replay_event_store_set_current ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_event_store_set_current      (<em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replay_event_store</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEventStore.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayEventStore-current-changed"></a><h3>The <code class="literal">"current-changed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replayeventstore,
+                                                        <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a>      *arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)             : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventStore-times-changed"></a><h3>The <code class="literal">"times-changed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *replayeventstore,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          arg2,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)             : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

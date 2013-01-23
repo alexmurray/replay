@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayTask</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayMessageTree.html" title="ReplayMessageTree">
+<link rel="next" href="ReplayTimeline.html" title="ReplayTimeline">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayMessageTree.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayTimeline.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayTask.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayTask.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayTask.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayTask.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayTask.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayTask"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayTask.top_of_page"></a>ReplayTask</span></h2>
+<p>ReplayTask — Base-class for objects which represent a task being
+executed by the replay UI</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayTask.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayTask.html#ReplayTask-struct" title="struct ReplayTask">ReplayTask</a>;
+struct              <a class="link" href="ReplayTask.html#ReplayTaskClass" title="struct ReplayTaskClass">ReplayTaskClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTask.html#replay-task-cancel" title="replay_task_cancel ()">replay_task_cancel</a>                  (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTask.html#replay-task-emit-error" title="replay_task_emit_error ()">replay_task_emit_error</a>              (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTask.html#replay-task-emit-progress" title="replay_task_emit_progress ()">replay_task_emit_progress</a>           (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> fraction</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayTask.html#replay-task-get-description" title="replay_task_get_description ()">replay_task_get_description</a>         (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayTask.html#replay-task-get-icon" title="replay_task_get_icon ()">replay_task_get_icon</a>                (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);
+<a class="link" href="ReplayTask.html" title="ReplayTask"><span class="returnvalue">ReplayTask</span></a> *        <a class="link" href="ReplayTask.html#replay-task-new" title="replay_task_new ()">replay_task_new</a>                     (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTask.html#replay-task-set-description" title="replay_task_set_description ()">replay_task_set_description</a>         (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTask.html#replay-task-set-icon" title="replay_task_set_icon ()">replay_task_set_icon</a>                (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayTask
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayTask.html#ReplayTask--description" title='The "description" property'>description</a>"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="ReplayTask.html#ReplayTask--icon" title='The "icon" property'>icon</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayTask.html#ReplayTask-cancel" title='The "cancel" signal'>cancel</a>"                                         : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayTask.html#ReplayTask-error" title='The "error" signal'>error</a>"                                          : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayTask.html#ReplayTask-progress" title='The "progress" signal'>progress</a>"                                       : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayTask-struct"></a><h3>struct ReplayTask</h3>
+<pre class="programlisting">struct ReplayTask;</pre>
+<p>
+Base class which represents a task being performed by replay
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTaskClass"></a><h3>struct ReplayTaskClass</h3>
+<pre class="programlisting">struct ReplayTaskClass {
+  GObjectClass parent_class;
+
+  /* public virtual methods */
+  void (*cancel) (ReplayTask *self);
+
+  /* signals */
+  void (*error)(ReplayTask *self,
+                const gchar *error);
+  void (*progress)(ReplayTask *self,
+                   gdouble fraction);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="ReplayTaskClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayTaskClass.cancel"></a>cancel</code></em> ()</span></p></td>
+<td>Cancel the task</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayTaskClass.error"></a>error</code></em> ()</span></p></td>
+<td>Signal emitted by <a class="link" href="ReplayTask.html#replay-task-emit-error" title="replay_task_emit_error ()"><span class="type">replay_task_emit_error</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayTaskClass.progress"></a>progress</code></em> ()</span></p></td>
+<td>Signal emitted by <a class="link" href="ReplayTask.html#replay-task-emit-progress" title="replay_task_emit_progress ()"><span class="type">replay_task_emit_progress</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-cancel"></a><h3>replay_task_cancel ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_task_cancel                  (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);</pre>
+<p>
+Cancel's the execution of this <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> by emitting the "cancel" signal
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> to cancel</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-emit-error"></a><h3>replay_task_emit_error ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_task_emit_error              (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *error</code></em>);</pre>
+<p>
+Emits the "error" signal on <em class="parameter"><code>self</code></em>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> to emit the error signal upon</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> to emit</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-emit-progress"></a><h3>replay_task_emit_progress ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_task_emit_progress           (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> fraction</code></em>);</pre>
+<p>
+Emits the "progress" signal on <em class="parameter"><code>self</code></em>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> to emit the progress signal upon</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fraction</code></em> :</span></p></td>
+<td>The amount of progress (ranging from 0.0 to 1.0)</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-get-description"></a><h3>replay_task_get_description ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_task_get_description         (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The description of this <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-get-icon"></a><h3>replay_task_get_icon ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_task_get_icon                (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The icon name for this task</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-new"></a><h3>replay_task_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="returnvalue">ReplayTask</span></a> *        replay_task_new                     (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>icon</code></em> :</span></p></td>
+<td>An icon name to describe this task visually</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>description</code></em> :</span></p></td>
+<td>A description of this task to display whilst it is running</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> instance
+Creates a new instance of <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-set-description"></a><h3>replay_task_set_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_task_set_description         (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>description</code></em> :</span></p></td>
+<td>The description to describe this task</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-task-set-icon"></a><h3>replay_task_set_icon ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_task_set_icon                (<em class="parameter"><code><a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *icon</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>icon</code></em> :</span></p></td>
+<td>The icon to describe this task</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayTask--description"></a><h3>The <code class="literal">"description"</code> property</h3>
+<pre class="programlisting">  "description"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
+<p>Description to describe this task.</p>
+<p>Default value: "Unknown task"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTask--icon"></a><h3>The <code class="literal">"icon"</code> property</h3>
+<pre class="programlisting">  "icon"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
+<p>Icon name to describe this task.</p>
+<p>Default value: "gtk-missing-image"</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayTask-cancel"></a><h3>The <code class="literal">"cancel"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>    user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The cancel signal.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTask-error"></a><h3>The <code class="literal">"error"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *self,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>      *arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>    user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The error signal.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTask-progress"></a><h3>The <code class="literal">"progress"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayTask.html" title="ReplayTask"><span class="type">ReplayTask</span></a> *replaytask,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>     arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>    user_data)       : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayTask.see-also"></a><h2>See Also</h2>
+<a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader"><span class="type">ReplayFileLoader</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction to Writing Replay Plugins</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch01.html" title="Tutorials">
+<link rel="prev" href="ch01.html" title="Tutorials">
+<link rel="next" href="extend-plugin-tutorial.html" title="Extending Replay Plugins">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="extend-plugin-tutorial.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry">
+<a name="intro-plugin-tutorial"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="intro-plugin-tutorial.top_of_page"></a>Introduction to Writing Replay Plugins</span></h2>
+<p>Introduction to Writing Replay Plugins — introduction to writing Replay plugins</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1">
+<a name="idp3826432"></a><h2>Introduction</h2>
+<p>Replay is extensible by means of small, dynamically-loadable plugins, which can add functionality, such as providing events from custom event sources or analysis capabilities. Replay utilises the peas plugin framework for its plugin interface.</p>
+<div class="refsect2">
+<a name="idp1747056"></a><h3>Locations</h3>
+<p>Replay plugins can either be installed in the system path
+                (e.g. <code class="filename">/usr/lib/replay/plugins/</code>), or in a user's home directory
+                (e.g. <code class="filename">~/.local/share/replay/plugins/</code>). In either case, each plugin resides in a
+                subdirectory named after the plugin itself.</p>
+<p>In addition, each plugin needs a <code class="filename">.plugin</code> index file, residing inside the plugin
+                directory. This gives the code name of the plugin, as well as some metadata about the plugin such as its human-readable
+                name, description and author.</p>
+<div class="example">
+<a name="idp3407808"></a><p class="title"><b>Example 1. Example Plugin Directory</b></p>
+<div class="example-contents">
+<p>A system-installed plugin called <code class="literal">foobar</code> would reside in
+                    <code class="filename">/usr/lib/replay/plugins/foobar</code>, and would (at a
+                    minimum) have the following files:
+                    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><code class="filename">foobar.plugin</code></li>
+<li class="listitem"><code class="filename">libfoobar.so</code></li>
+</ul></div>
+<p>
+                </p>
+<p>If installed in a user's home directory, it would reside in
+                    <code class="filename">~/.local/share/replay/plugins/foobar</code> and have the same
+                    files.</p>
+</div>
+</div>
+<br class="example-break">
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp1374128"></a><h3>The <code class="filename">.plugin</code> File</h3>
+<p>The file should use the following template:
+                </p>
+<pre class="programlisting">[Plugin]
+Module=<em class="replaceable"><code>plugin-name</code></em>
+Name=<em class="replaceable"><code>Human-Readable Plugin Name</code></em>
+Description=<em class="replaceable"><code>Simple sentence describing the plugin's functionality.</code></em>
+Authors=<em class="replaceable"><code>Plugin Author Name</code></em>
+Copyright=Copyright © <em class="replaceable"><code>year</code></em> <em class="replaceable"><code>Copyright Holder</code></em>
+Version=<em class="replaceable"><code>Plugin Version</code></em>
+Icon=<em class="replaceable"><code>Name of an icon in the icon theme to represent the plugin</code></em>
+Website=<em class="replaceable"><code>http://plugin/website/</code></em></pre>
+<p>
+                Most of the values in the template are fairly self-explanatory. One thing to note is that the plugin name should be
+                in lowercase, and contain no spaces. The plugin interface age should match that of libpeas ie. <code class="literal">2</code>.
+                If the plugin does not have its own
+                website, Replay's website (<code class="literal">http://alexmurray.github.com/replay</code>) can be used.</p>
+<p>The library file containing the plugin's code should be named
+                <code class="filename">lib<em class="replaceable"><code>plugin-name</code></em>.so</code>
+            </p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="idp3703168"></a><h3>Writing a Plugin</h3>
+<p>Writing a plugin in C is a matter of creating a new <span class="type"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a></span> which inherits
+                from <span class="type"><a href="/usr/share/gtk-doc/html/libpeas/PeasExtensionBase.html">PeasExtensionBase</a></span> and implements the <span class="type"><a class="link" href="ReplayWindowActivatable.html" title="ReplayWindowActivatable">ReplayWindowActivatable</a></span> interface. The following code will create a simple plugin
+                called <code class="literal">foobar</code>:
+                </p>
+<div class="example">
+<a name="idp4069664"></a><p class="title"><b>Example 2. Example Plugin Code</b></p>
+<div class="example-contents">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;libpeas/peas.h&gt;</span>
+<span class="preproc">#include</span><span class="normal"> </span><span class="string">&lt;replay/replay-window.h&gt;</span>
+
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="normal">        </span><span class="symbol">(</span><span class="function">replay_foobar_plugin_get_type</span><span class="normal"> </span><span class="symbol">())</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">o</span><span class="symbol">)</span><span class="normal">          </span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-CHECK-INSTANCE-CAST:CAPS">G_TYPE_CHECK_INSTANCE_CAST</a></span><span class="normal"> </span><span class="symbol">((</span><span class="normal">o</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">,</span><span class="normal"> ReplayFoobarPlugin</span><span class="symbol">))</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN_CLASS</span><span class="symbol">(</span><span class="normal">k</span><span class="symbol">)</span><span class="normal">    </span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-CHECK-CLASS-CAST:CAPS">G_TYPE_CHECK_CLASS_CAST</a></span><span class="symbol">((</span><span class="normal">k</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">,</span><span class="normal"> ReplayFoobarPluginClass</span><span class="symbol">))</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_IS_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">o</span><span class="symbol">)</span><span class="normal">       </span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-CHECK-INSTANCE-TYPE:CAPS">G_TYPE_CHECK_INSTANCE_TYPE</a></span><span class="normal"> </span><span class="symbol">((</span><span class="normal">o</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">))</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_IS_FOOBAR_PLUGIN_CLASS</span><span class="symbol">(</span><span class="normal">k</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-CHECK-CLASS-TYPE:CAPS">G_TYPE_CHECK_CLASS_TYPE</a></span><span class="normal"> </span><span class="symbol">((</span><span class="normal">k</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">))</span>
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN_GET_CLASS</span><span class="symbol">(</span><span class="normal">o</span><span class="symbol">)(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INSTANCE-GET-CLASS:CAPS">G_TYPE_INSTANCE_GET_CLASS</a></span><span class="normal"> </span><span class="symbol">((</span><span class="normal">o</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">,</span><span class="normal"> ReplayFoobarPluginClass</span><span class="symbol">))</span>
+
+<span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ReplayFoobarPluginPrivate</span><span class="normal"> ReplayFoobarPluginPrivate</span><span class="symbol">;</span>
+<span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">struct</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">PeasExtensionBase</span><span class="normal"> parent</span><span class="symbol">;</span>
+
+<span class="normal">  </span><span class="usertype">ReplayFoobarPluginPrivate</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">priv</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="normal"> ReplayFoobarPlugin</span><span class="symbol">;</span>
+
+<span class="keyword">typedef</span><span class="normal"> </span><span class="keyword">struct</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">PeasExtensionBaseClass</span><span class="normal"> parent_class</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="normal"> ReplayFoobarPluginClass</span><span class="symbol">;</span>
+
+<span class="usertype">GType</span><span class="normal"> </span><span class="function">replay_foobar_plugin_get_type</span><span class="symbol">(</span><span class="type">void</span><span class="symbol">);</span>
+
+<span class="comment">/* All the plugins must implement this function */</span>
+<span class="normal"><a href="/usr/share/gtk-doc/html/glib/glib-Dynamic-Loading-of-Modules.html#G-MODULE-EXPORT:CAPS">G_MODULE_EXPORT</a> </span><span class="usertype">void</span><span class="normal"> </span><span class="function">peas_register_types</span><span class="symbol">(</span><span class="usertype">PeasObjectModule</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">module</span><span class="symbol">);</span>
+
+<span class="preproc">#define</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN_GET_PRIVATE</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">)(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#G-TYPE-INSTANCE-GET-PRIVATE:CAPS">G_TYPE_INSTANCE_GET_PRIVATE</a></span><span class="normal"> </span><span class="symbol">((</span><span class="normal">object</span><span class="symbol">),</span><span class="normal"> REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">,</span><span class="normal"> ReplayFoobarPluginPrivate</span><span class="symbol">))</span>
+
+<span class="keyword">struct</span><span class="normal"> </span><span class="classname">_ReplayFoobarPluginPrivate</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayWindow</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">window</span><span class="symbol">;</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">replay_foobar_plugin_dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">);</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">replay_window_activatable_iface_init</span><span class="symbol">(</span><span class="usertype">ReplayWindowActivatableInterface</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iface</span><span class="symbol">);</span>
+
+<span class="function"><a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html#G-DEFINE-DYNAMIC-TYPE-EXTENDED:CAPS">G_DEFINE_DYNAMIC_TYPE_EXTENDED</a></span><span class="symbol">(</span><span class="normal">ReplayFoobarPlugin</span><span class="symbol">,</span>
+<span class="normal">                               replay_foobar_plugin</span><span class="symbol">,</span>
+<span class="normal">                               PEAS_TYPE_EXTENSION_BASE</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="number">0</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/GTypeModule.html#G-IMPLEMENT-INTERFACE-DYNAMIC:CAPS">G_IMPLEMENT_INTERFACE_DYNAMIC</a></span><span class="symbol">(</span><span class="normal">REPLAY_TYPE_WINDOW_ACTIVATABLE</span><span class="symbol">,</span>
+<span class="normal">                                                             replay_window_activatable_iface_init</span><span class="symbol">));</span>
+
+<span class="keyword">enum</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">  PROP_WINDOW </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">,</span>
+<span class="cbracket">}</span><span class="symbol">;</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_set_property</span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="usertype">guint</span><span class="normal"> prop_id</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="keyword">const</span><span class="normal"> </span><span class="usertype">GValue</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="usertype">GParamSpec</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pspec</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">plugin </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="keyword">switch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">prop_id</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">case</span><span class="normal"> PROP_WINDOW</span><span class="symbol">:</span>
+<span class="normal">      plugin</span><span class="symbol">-&gt;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">window </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_WINDOW</span><span class="symbol">(</span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Standard-Parameter-and-Value-Types.html#g-value-dup-object">g_value_dup_object</a></span><span class="symbol">(</span><span class="normal">value</span><span class="symbol">));</span>
+<span class="normal">      </span><span class="keyword">break</span><span class="symbol">;</span>
+
+<span class="label">    default:</span>
+<span class="normal">      </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#G-OBJECT-WARN-INVALID-PROPERTY-ID:CAPS">G_OBJECT_WARN_INVALID_PROPERTY_ID</a></span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">,</span><span class="normal"> prop_id</span><span class="symbol">,</span><span class="normal"> pspec</span><span class="symbol">);</span>
+<span class="normal">      </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_get_property</span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="usertype">guint</span><span class="normal"> prop_id</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="usertype">GValue</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">value</span><span class="symbol">,</span>
+<span class="normal">                               </span><span class="usertype">GParamSpec</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">pspec</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">plugin </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="keyword">switch</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">prop_id</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">case</span><span class="normal"> PROP_WINDOW</span><span class="symbol">:</span>
+<span class="normal">      </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Standard-Parameter-and-Value-Types.html#g-value-set-object">g_value_set_object</a></span><span class="symbol">(</span><span class="normal">value</span><span class="symbol">,</span><span class="normal"> plugin</span><span class="symbol">-&gt;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">window</span><span class="symbol">);</span>
+<span class="normal">      </span><span class="keyword">break</span><span class="symbol">;</span>
+
+<span class="label">    default:</span>
+<span class="normal">      </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#G-OBJECT-WARN-INVALID-PROPERTY-ID:CAPS">G_OBJECT_WARN_INVALID_PROPERTY_ID</a></span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">,</span><span class="normal"> prop_id</span><span class="symbol">,</span><span class="normal"> pspec</span><span class="symbol">);</span>
+<span class="normal">      </span><span class="keyword">break</span><span class="symbol">;</span>
+<span class="normal">  </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">plugin</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  plugin</span><span class="symbol">-&gt;</span><span class="normal">priv </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN_GET_PRIVATE</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">plugin</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">GObject</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-clear-object">g_clear_object</a></span><span class="symbol">(&amp;</span><span class="normal">self</span><span class="symbol">-&gt;</span><span class="normal">priv</span><span class="symbol">-&gt;</span><span class="normal">window</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#G-OBJECT-CLASS:CAPS">G_OBJECT_CLASS</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">replay_foobar_plugin_parent_class</span><span class="symbol">)-&gt;</span><span class="function">dispose</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_activate</span><span class="symbol">(</span><span class="usertype">ReplayWindowActivatable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">plugin</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">plugin</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="comment">/* Initialise resources, connect to events, create menu items and UI, etc.,</span>
+<span class="comment">   * here.  Note that impl_activate and impl_deactivate can be called multiple</span>
+<span class="comment">   * times in one replay instance, though impl_activate will always be followed by</span>
+<span class="comment">   * impl_deactivate before it is called again. Similarly, impl_deactivate</span>
+<span class="comment">   * cannot be called twice in succession. */</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_deactivate</span><span class="symbol">(</span><span class="usertype">ReplayWindowActivatable</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">plugin</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">ReplayFoobarPlugin</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">self </span><span class="symbol">=</span><span class="normal"> </span><span class="function">REPLAY_FOOBAR_PLUGIN</span><span class="symbol">(</span><span class="normal">plugin</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="comment">/* Destroy resources created in replay_foobar_plugin_activate here. e.g.</span>
+<span class="comment">   * Disconnect from signals and remove menu entries and UI. */</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_class_init</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">ReplayFoobarPluginClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">klass</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="usertype">GObjectClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">object_class </span><span class="symbol">=</span><span class="normal"> </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#G-OBJECT-CLASS:CAPS">G_OBJECT_CLASS</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">klass</span><span class="symbol">);</span>
+
+<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-Type-Information.html#g-type-class-add-private">g_type_class_add_private</a></span><span class="normal"> </span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">,</span><span class="normal"> </span><span class="keyword">sizeof</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">ReplayFoobarPluginPrivate</span><span class="symbol">));</span>
+
+<span class="normal">  object_class</span><span class="symbol">-&gt;</span><span class="normal">get_property </span><span class="symbol">=</span><span class="normal"> replay_foobar_plugin_get_property</span><span class="symbol">;</span>
+<span class="normal">  object_class</span><span class="symbol">-&gt;</span><span class="normal">set_property </span><span class="symbol">=</span><span class="normal"> replay_foobar_plugin_set_property</span><span class="symbol">;</span>
+<span class="normal">  object_class</span><span class="symbol">-&gt;</span><span class="normal">dispose </span><span class="symbol">=</span><span class="normal"> replay_foobar_plugin_dispose</span><span class="symbol">;</span>
+
+<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-class-override-property">g_object_class_override_property</a></span><span class="symbol">(</span><span class="normal">object_class</span><span class="symbol">,</span><span class="normal"> PROP_WINDOW</span><span class="symbol">,</span><span class="normal"> </span><span class="string">"window"</span><span class="symbol">);</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_window_activatable_iface_init</span><span class="symbol">(</span><span class="usertype">ReplayWindowActivatableInterface</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">iface</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  iface</span><span class="symbol">-&gt;</span><span class="normal">activate </span><span class="symbol">=</span><span class="normal"> replay_foobar_plugin_activate</span><span class="symbol">;</span>
+<span class="normal">  iface</span><span class="symbol">-&gt;</span><span class="normal">deactivate </span><span class="symbol">=</span><span class="normal"> replay_foobar_plugin_deactivate</span><span class="symbol">;</span>
+<span class="cbracket">}</span>
+
+<span class="keyword">static</span><span class="normal"> </span><span class="type">void</span>
+<span class="function">replay_foobar_plugin_class_finalize</span><span class="symbol">(</span><span class="usertype">ReplayFoobarPluginClass</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">klass</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="comment">/* nothing to do */</span>
+<span class="cbracket">}</span>
+
+<span class="normal"><a href="/usr/share/gtk-doc/html/glib/glib-Dynamic-Loading-of-Modules.html#G-MODULE-EXPORT:CAPS">G_MODULE_EXPORT</a> </span><span class="type">void</span>
+<span class="function">peas_register_types</span><span class="symbol">(</span><span class="usertype">PeasObjectModule</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">module</span><span class="symbol">)</span>
+<span class="cbracket">{</span>
+<span class="normal">  </span><span class="function">replay_foobar_plugin_register_type</span><span class="symbol">(</span><span class="function">G_TYPE_MODULE</span><span class="symbol">(</span><span class="normal">module</span><span class="symbol">));</span>
+
+<span class="normal">  </span><span class="function"><a href="/usr/share/gtk-doc/html/libpeas/PeasObjectModule.html#peas-object-module-register-extension-type">peas_object_module_register_extension_type</a></span><span class="symbol">(</span><span class="normal">module</span><span class="symbol">,</span>
+<span class="normal">                                             REPLAY_TYPE_WINDOW_ACTIVATABLE</span><span class="symbol">,</span>
+<span class="normal">                                             REPLAY_TYPE_FOOBAR_PLUGIN</span><span class="symbol">);</span>
+<span class="cbracket">}</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+<p><br class="example-break"></p>
+<p>Once resources have been created, and the plugin has been connected to Replay's UI in the <code class="function">replay_foobar_plugin_activate</code>
+                function, the plugin is free to go about its tasks as appropriate. If the user deactivates the plugin, or Replay decides
+                to deactivate it, the <code class="function">replay_foobar_plugin_deactivate</code> will be called. The plugin should free any resources
+                grabbed or allocated in the <code class="function">replay_foobar_plugin_activate</code> function, and remove itself from the Replay
+                interface.</p>
+<p>Note that plugins can be activated and deactivated (e.g. from Replay's plugin manager) many times during one Replay session,
+                so the <code class="function">replay_foobar_plugin_activate</code> and <code class="function">replay_foobar_plugin_deactivate</code> functions must be able to cope with
+                this.</p>
+<p>Only some of the API documented in the rest of the Replay API reference can be used by plugins, and this will be extended in future releases.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

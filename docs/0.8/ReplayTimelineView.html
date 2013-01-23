@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayTimelineView</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayTimeline.html" title="ReplayTimeline">
+<link rel="next" href="ReplayIntervalList.html" title="ReplayIntervalList">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayTimeline.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayIntervalList.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayTimelineView.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayTimelineView.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayTimelineView.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayTimelineView.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayTimelineView.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayTimelineView"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayTimelineView.top_of_page"></a>ReplayTimelineView</span></h2>
+<p>ReplayTimelineView</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayTimelineView.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">                    <a class="link" href="ReplayTimelineView.html#ReplayTimelineView-struct" title="ReplayTimelineView">ReplayTimelineView</a>;
+                    <a class="link" href="ReplayTimelineView.html#ReplayTimelineViewClass" title="ReplayTimelineViewClass">ReplayTimelineViewClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-begin-print" title="replay_timeline_view_begin_print ()">replay_timeline_view_begin_print</a>    (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-draw-page" title="replay_timeline_view_draw_page ()">replay_timeline_view_draw_page</a>      (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> page_nr</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-end-print" title="replay_timeline_view_end_print ()">replay_timeline_view_end_print</a>      (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-export-to-file" title="replay_timeline_view_export_to_file ()">replay_timeline_view_export_to_file</a> (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *filename</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-get-hpaned-position" title="replay_timeline_view_get_hpaned_position ()">replay_timeline_view_get_hpaned_position</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-get-vpaned-position" title="replay_timeline_view_get_vpaned_position ()">replay_timeline_view_get_vpaned_position</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayTimelineView.html#replay-timeline-view-get-x-resolution" title="replay_timeline_view_get_x_resolution ()">replay_timeline_view_get_x_resolution</a>
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayTimelineView.html#replay-timeline-view-new" title="replay_timeline_view_new ()">replay_timeline_view_new</a>            (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-redraw-marks" title="replay_timeline_view_redraw_marks ()">replay_timeline_view_redraw_marks</a>   (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-absolute-time" title="replay_timeline_view_set_absolute_time ()">replay_timeline_view_set_absolute_time</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-data" title="replay_timeline_view_set_data ()">replay_timeline_view_set_data</a>       (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *nodes</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *intervals</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-hpaned-position" title="replay_timeline_view_set_hpaned_position ()">replay_timeline_view_set_hpaned_position</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-label-messages" title="replay_timeline_view_set_label_messages ()">replay_timeline_view_set_label_messages</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-vpaned-position" title="replay_timeline_view_set_vpaned_position ()">replay_timeline_view_set_vpaned_position</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-set-x-resolution" title="replay_timeline_view_set_x_resolution ()">replay_timeline_view_set_x_resolution</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayTimelineView.html#replay-timeline-view-unset-data" title="replay_timeline_view_unset_data ()">replay_timeline_view_unset_data</a>     (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkContainer.html">GtkContainer</a>
+                     +----<a href="/usr/share/gtk-doc/html/gtk3/GtkGrid.html">GtkGrid</a>
+                           +----ReplayTimelineView
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayTimelineView implements
+ AtkImplementorIface,  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a> and  <a href="/usr/share/gtk-doc/html/gtk3/gtk3-Orientable.html#GtkOrientable">GtkOrientable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayTimelineView.html#ReplayTimelineView-rendering" title='The "rendering" signal'>rendering</a>"                                      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayTimelineView-struct"></a><h3>ReplayTimelineView</h3>
+<pre class="programlisting">typedef struct _ReplayTimelineView ReplayTimelineView;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTimelineViewClass"></a><h3>ReplayTimelineViewClass</h3>
+<pre class="programlisting">typedef struct {
+  GtkGridClass parent_class;
+
+  void (* rendering) (ReplayTimelineView *timeline_view,
+                      gboolean rendering);
+} ReplayTimelineViewClass;
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">GtkGridClass</span> <em class="structfield"><code><a name="ReplayTimelineViewClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayTimelineViewClass.rendering"></a>rendering</code></em> ()</span></p></td>
+<td>Signal emitted whilst timeline view is rendering</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-begin-print"></a><h3>replay_timeline_view_begin_print ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_begin_print    (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-draw-page"></a><h3>replay_timeline_view_draw_page ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_draw_page      (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> page_nr</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-end-print"></a><h3>replay_timeline_view_end_print ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_end_print      (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/gtk3-High-level-Printing-API.html#GtkPrintOperation"><span class="type">GtkPrintOperation</span></a> *operation</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkPrintContext.html"><span class="type">GtkPrintContext</span></a> *context</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-export-to-file"></a><h3>replay_timeline_view_export_to_file ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_export_to_file (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <span class="type">char</span> *filename</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-get-hpaned-position"></a><h3>replay_timeline_view_get_hpaned_position ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                replay_timeline_view_get_hpaned_position
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-get-vpaned-position"></a><h3>replay_timeline_view_get_vpaned_position ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="returnvalue">gint</span></a>                replay_timeline_view_get_vpaned_position
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-get-x-resolution"></a><h3>replay_timeline_view_get_x_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_timeline_view_get_x_resolution
+                                                        (<em class="parameter"><code>const <a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-new"></a><h3>replay_timeline_view_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_timeline_view_new            (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-redraw-marks"></a><h3>replay_timeline_view_redraw_marks ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_redraw_marks   (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-absolute-time"></a><h3>replay_timeline_view_set_absolute_time ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_absolute_time
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-data"></a><h3>replay_timeline_view_set_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_data       (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *nodes</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *intervals</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-hpaned-position"></a><h3>replay_timeline_view_set_hpaned_position ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_hpaned_position
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-label-messages"></a><h3>replay_timeline_view_set_label_messages ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_label_messages
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-vpaned-position"></a><h3>replay_timeline_view_set_vpaned_position ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_vpaned_position
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint"><span class="type">gint</span></a> position</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-set-x-resolution"></a><h3>replay_timeline_view_set_x_resolution ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_set_x_resolution
+                                                        (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timeline-view-unset-data"></a><h3>replay_timeline_view_unset_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_timeline_view_unset_data     (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *self</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayTimelineView.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayTimelineView-rendering"></a><h3>The <code class="literal">"rendering"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *replaytimelineview,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>            arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>            user_data)               : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

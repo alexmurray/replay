@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEventSource</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayMsgRecvEvent.html" title="ReplayMsgRecvEvent">
+<link rel="next" href="ReplayNetworkServer.html" title="ReplayNetworkServer">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayMsgRecvEvent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayNetworkServer.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEventSource.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEventSource.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEventSource.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayEventSource.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayEventSource.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEventSource"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEventSource.top_of_page"></a>ReplayEventSource</span></h2>
+<p>ReplayEventSource — Base class for types which emit <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEventSource.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#include &lt;replay/replay-event-source.h&gt;
+
+struct              <a class="link" href="ReplayEventSource.html#ReplayEventSource-struct" title="struct ReplayEventSource">ReplayEventSource</a>;
+struct              <a class="link" href="ReplayEventSource.html#ReplayEventSourceClass" title="struct ReplayEventSourceClass">ReplayEventSourceClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventSource.html#replay-event-source-emit-error" title="replay_event_source_emit_error ()">replay_event_source_emit_error</a>      (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *error</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventSource.html#replay-event-source-emit-event" title="replay_event_source_emit_event ()">replay_event_source_emit_event</a>      (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEventSource.html#replay-event-source-get-description" title="replay_event_source_get_description ()">replay_event_source_get_description</a> (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEventSource.html#replay-event-source-get-name" title="replay_event_source_get_name ()">replay_event_source_get_name</a>        (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>);
+<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="returnvalue">ReplayEventSource</span></a> * <a class="link" href="ReplayEventSource.html#replay-event-source-new" title="replay_event_source_new ()">replay_event_source_new</a>             (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventSource.html#replay-event-source-set-description" title="replay_event_source_set_description ()">replay_event_source_set_description</a> (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayEventSource
+         +----<a class="link" href="ReplayEventProcessor.html" title="ReplayEventProcessor">ReplayEventProcessor</a>
+         +----<a class="link" href="ReplayFileLoader.html" title="ReplayFileLoader">ReplayFileLoader</a>
+         +----<a class="link" href="ReplayNetworkServer.html" title="ReplayNetworkServer">ReplayNetworkServer</a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEventSource.html#ReplayEventSource--description" title='The "description" property'>description</a>"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write
+  "<a class="link" href="ReplayEventSource.html#ReplayEventSource--name" title='The "name" property'>name</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEventSource.html#ReplayEventSource-error" title='The "error" signal'>error</a>"                                          : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayEventSource.html#ReplayEventSource-event" title='The "event" signal'>event</a>"                                          : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.description"></a><h2>Description</h2>
+<p>
+<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> is a base class for objects which act as a
+source of <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s. <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s must be emitted in
+time-order. A <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> can emit new <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s by calling
+<a class="link" href="ReplayEventSource.html#replay-event-source-emit-event" title="replay_event_source_emit_event ()"><code class="function">replay_event_source_emit_event()</code></a>. If an error is encountered, a <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+should call <a class="link" href="ReplayEventSource.html#replay-event-source-emit-error" title="replay_event_source_emit_error ()"><code class="function">replay_event_source_emit_error()</code></a>.
+</p>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEventSource-struct"></a><h3>struct ReplayEventSource</h3>
+<pre class="programlisting">struct ReplayEventSource;</pre>
+<p>
+Base class which represents a source of <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>s
+</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventSourceClass"></a><h3>struct ReplayEventSourceClass</h3>
+<pre class="programlisting">struct ReplayEventSourceClass {
+  GObjectClass parent_class;
+
+  /* signals */
+  void (*event) (ReplayEventSource *self,
+                 ReplayEvent *event);
+  void (*error) (ReplayEventSource *self,
+                 const gchar *error);
+};
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObjectClass"><span class="type">GObjectClass</span></a> <em class="structfield"><code><a name="ReplayEventSourceClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventSourceClass.event"></a>event</code></em> ()</span></p></td>
+<td>Emitted when events are produced by this event source via <a class="link" href="ReplayEventSource.html#replay-event-source-emit-event" title="replay_event_source_emit_event ()"><span class="type">replay_event_source_emit_event</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventSourceClass.error"></a>error</code></em> ()</span></p></td>
+<td>Emitted when errors are produced by this error source via <span class="type">replay_error_source_emit_error</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-emit-error"></a><h3>replay_event_source_emit_error ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_source_emit_error      (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *error</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> which encounters an error</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
+<td>A string describing the error</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-emit-event"></a><h3>replay_event_source_emit_event ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_source_emit_event      (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> *event</code></em>);</pre>
+<p>
+This should only be called by objects which implement the <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+interface to emit the "event" signal - the event should be dynamically
+allocated and should not be used after a call to this function except to
+drop a reference to the event. The standard way to use this is as:
+</p>
+<p>
+</p>
+<div class="informalexample">
+  <table class="listing_frame" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <td class="listing_lines" align="right"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td>
+        <td class="listing_code"><pre class="programlisting"><span class="comment">// dynamically allocate an event</span>
+<span class="usertype">ReplayEvent</span><span class="normal"> </span><span class="symbol">*</span><span class="normal">event </span><span class="symbol">=</span><span class="normal"> </span><span class="function">replay_event_new</span><span class="symbol">();</span>
+
+<span class="comment">// initialize event as required</span>
+
+<span class="comment">// emit the event</span>
+<span class="function"><a href="ReplayEventSource.html#replay-event-source-emit-event">replay_event_source_emit_event</a></span><span class="symbol">(</span><span class="function">REPLAY_EVENT_SOURCE</span><span class="symbol">(</span><span class="normal">self</span><span class="symbol">),</span><span class="normal"> event</span><span class="symbol">);</span>
+
+<span class="comment">// drop reference to the event</span>
+<span class="function"><a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#g-object-unref">g_object_unref</a></span><span class="symbol">(</span><span class="normal">event</span><span class="symbol">);</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> which is producing this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td>The new event which has been produced</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-get-description"></a><h3>replay_event_source_get_description ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_event_source_get_description (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the description describing this <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+Get the description of a <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-get-name"></a><h3>replay_event_source_get_name ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_event_source_get_name        (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the name describing this <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+Get the name of a <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-new"></a><h3>replay_event_source_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="returnvalue">ReplayEventSource</span></a> * replay_event_source_new             (<em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>A name to describe this event source</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the newly created <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> instance
+Creates a new instance of a <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-source-set-description"></a><h3>replay_event_source_set_description ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_source_set_description (<em class="parameter"><code><a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *description</code></em>);</pre>
+<p>
+Set the description of a <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>description</code></em> :</span></p></td>
+<td>A string to describe the current event source</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayEventSource--description"></a><h3>The <code class="literal">"description"</code> property</h3>
+<pre class="programlisting">  "description"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write</pre>
+<p>Human readable description of the event source.</p>
+<p>Default value: "no-description-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventSource--name"></a><h3>The <code class="literal">"name"</code> property</h3>
+<pre class="programlisting">  "name"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable name of the event source.</p>
+<p>Default value: "no-name-set"</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayEventSource-error"></a><h3>The <code class="literal">"error"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *replayeventsource,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>             *arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>           user_data)              : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventSource-event"></a><h3>The <code class="literal">"event"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a> *self,
+                                                        <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>       *event,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>           user_data)      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+<p>
+The ::event signal is emitted for each new event from this
+<a class="link" href="ReplayEventSource.html" title="ReplayEventSource"><span class="type">ReplayEventSource</span></a>
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The event source</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>event</code></em> :</span></p></td>
+<td>The event to emit</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEventSource.see-also"></a><h2>See Also</h2>
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

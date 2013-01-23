@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEventGraph</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayLogWindow.html" title="ReplayLogWindow">
+<link rel="next" href="ReplayPrefs.html" title="ReplayPrefs">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayLogWindow.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayPrefs.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEventGraph.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEventGraph.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEventGraph.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayEventGraph.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayEventGraph.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEventGraph"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEventGraph.top_of_page"></a>ReplayEventGraph</span></h2>
+<p>ReplayEventGraph</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEventGraph.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">                    <a class="link" href="ReplayEventGraph.html#ReplayEventGraph-struct" title="ReplayEventGraph">ReplayEventGraph</a>;
+                    <a class="link" href="ReplayEventGraph.html#ReplayEventGraphClass" title="ReplayEventGraphClass">ReplayEventGraphClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventGraph.html#replay-event-graph-draw" title="replay_event_graph_draw ()">replay_event_graph_draw</a>             (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayEventGraph.html#replay-event-graph-drawable-height" title="replay_event_graph_drawable_height ()">replay_event_graph_drawable_height</a>  (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayEventGraph.html#replay-event-graph-drawable-width" title="replay_event_graph_drawable_width ()">replay_event_graph_drawable_width</a>   (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayEventGraph.html#replay-event-graph-get-x-resolution" title="replay_event_graph_get_x_resolution ()">replay_event_graph_get_x_resolution</a> (<em class="parameter"><code>const <a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayEventGraph.html#replay-event-graph-get-y-resolution" title="replay_event_graph_get_y_resolution ()">replay_event_graph_get_y_resolution</a> (<em class="parameter"><code>const <a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayEventGraph.html#replay-event-graph-new" title="replay_event_graph_new ()">replay_event_graph_new</a>              (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadj</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadj</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventGraph.html#replay-event-graph-set-data" title="replay_event_graph_set_data ()">replay_event_graph_set_data</a>         (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *interval_list</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModelFilter.html"><span class="type">GtkTreeModelFilter</span></a> *f_node_tree</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventGraph.html#replay-event-graph-set-label-messages" title="replay_event_graph_set_label_messages ()">replay_event_graph_set_label_messages</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEventGraph.html#replay-event-graph-set-x-resolution" title="replay_event_graph_set_x_resolution ()">replay_event_graph_set_x_resolution</a> (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEventGraph.html#replay-event-graph-set-y-resolution" title="replay_event_graph_set_y_resolution ()">replay_event_graph_set_y_resolution</a> (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> y_resolution</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayEventGraph.html#replay-event-graph-unset-data" title="replay_event_graph_unset_data ()">replay_event_graph_unset_data</a>       (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkDrawingArea.html">GtkDrawingArea</a>
+                     +----ReplayEventGraph
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayEventGraph implements
+ AtkImplementorIface and  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEventGraph.html#ReplayEventGraph-rendering" title='The "rendering" signal'>rendering</a>"                                      : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayEventGraph.html#ReplayEventGraph-x-resolution-changed" title='The "x-resolution-changed" signal'>x-resolution-changed</a>"                           : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+  "<a class="link" href="ReplayEventGraph.html#ReplayEventGraph-y-resolution-changed" title='The "y-resolution-changed" signal'>y-resolution-changed</a>"                           : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEventGraph-struct"></a><h3>ReplayEventGraph</h3>
+<pre class="programlisting">typedef struct _ReplayEventGraph ReplayEventGraph;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventGraphClass"></a><h3>ReplayEventGraphClass</h3>
+<pre class="programlisting">typedef struct {
+  GtkDrawingAreaClass parent_class;
+
+  /* we emit parent class signals, as well as x_resolution_changed and
+   * y_resolution_changed */
+  void (* x_resolution_changed) (ReplayEventGraph *replay_event_graph,
+                                 gdouble x_resolution);
+  void (* y_resolution_changed) (ReplayEventGraph *replay_event_graph,
+                                 gdouble y_resolution);
+  void (* rendering) (ReplayEventGraph *replay_event_graph,
+                      gboolean rendering);
+} ReplayEventGraphClass;
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">GtkDrawingAreaClass</span> <em class="structfield"><code><a name="ReplayEventGraphClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventGraphClass.x-resolution-changed"></a>x_resolution_changed</code></em> ()</span></p></td>
+<td>Signal emitted when the x-resolution has changed</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventGraphClass.y-resolution-changed"></a>y_resolution_changed</code></em> ()</span></p></td>
+<td>Signal emitted when the y-resolution has changed</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayEventGraphClass.rendering"></a>rendering</code></em> ()</span></p></td>
+<td>Signal emitted when the event graph is rendering</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-draw"></a><h3>replay_event_graph_draw ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_graph_draw             (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/cairo/cairo-cairo-t.html#cairo-t"><span class="type">cairo_t</span></a> *cr</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-drawable-height"></a><h3>replay_event_graph_drawable_height ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_event_graph_drawable_height  (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-drawable-width"></a><h3>replay_event_graph_drawable_width ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_event_graph_drawable_width   (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-get-x-resolution"></a><h3>replay_event_graph_get_x_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_event_graph_get_x_resolution (<em class="parameter"><code>const <a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-get-y-resolution"></a><h3>replay_event_graph_get_y_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_event_graph_get_y_resolution (<em class="parameter"><code>const <a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-new"></a><h3>replay_event_graph_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_event_graph_new              (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *hadj</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkAdjustment.html"><span class="type">GtkAdjustment</span></a> *vadj</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-set-data"></a><h3>replay_event_graph_set_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_graph_set_data         (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayIntervalList.html" title="ReplayIntervalList"><span class="type">ReplayIntervalList</span></a> *interval_list</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModelFilter.html"><span class="type">GtkTreeModelFilter</span></a> *f_node_tree</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-set-label-messages"></a><h3>replay_event_graph_set_label_messages ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_graph_set_label_messages
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-set-x-resolution"></a><h3>replay_event_graph_set_x_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_event_graph_set_x_resolution (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> x_resolution</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-set-y-resolution"></a><h3>replay_event_graph_set_y_resolution ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_event_graph_set_y_resolution (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> y_resolution</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-event-graph-unset-data"></a><h3>replay_event_graph_unset_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_event_graph_unset_data       (<em class="parameter"><code><a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replay_event_graph</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEventGraph.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayEventGraph-rendering"></a><h3>The <code class="literal">"rendering"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replayeventgraph,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>          arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)             : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventGraph-x-resolution-changed"></a><h3>The <code class="literal">"x-resolution-changed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replayeventgraph,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>           arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)             : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEventGraph-y-resolution-changed"></a><h3>The <code class="literal">"y-resolution-changed"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayEventGraph.html" title="ReplayEventGraph"><span class="type">ReplayEventGraph</span></a> *replayeventgraph,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>           arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>          user_data)             : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayNodeTree</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayEventStore.html" title="ReplayEventStore">
+<link rel="next" href="ReplayMessageTree.html" title="ReplayMessageTree">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayEventStore.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayMessageTree.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayNodeTree.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayNodeTree.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayNodeTree.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayNodeTree.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayNodeTree"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayNodeTree.top_of_page"></a>ReplayNodeTree</span></h2>
+<p>ReplayNodeTree</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayNodeTree.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayNodeTree.html#ReplayNodeTree-struct" title="struct ReplayNodeTree">ReplayNodeTree</a>;
+struct              <a class="link" href="ReplayNodeTree.html#ReplayNodeTreeClass" title="struct ReplayNodeTreeClass">ReplayNodeTreeClass</a>;
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-clear-all-override-props" title="replay_node_tree_clear_all_override_props ()">replay_node_tree_clear_all_override_props</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-clear-override-props" title="replay_node_tree_clear_override_props ()">replay_node_tree_clear_override_props</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-create-group" title="replay_node_tree_create_group ()">replay_node_tree_create_group</a>       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *group</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *color</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-find-group" title="replay_node_tree_find_group ()">replay_node_tree_find_group</a>         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *group_id</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-get-iter-for-id" title="replay_node_tree_get_iter_for_id ()">replay_node_tree_get_iter_for_id</a>    (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          <a class="link" href="ReplayNodeTree.html#replay-node-tree-get-prop" title="replay_node_tree_get_prop ()">replay_node_tree_get_prop</a>           (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          <a class="link" href="ReplayNodeTree.html#replay-node-tree-get-props" title="replay_node_tree_get_props ()">replay_node_tree_get_props</a>          (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       <a class="link" href="ReplayNodeTree.html#replay-node-tree-get-tree-path" title="replay_node_tree_get_tree_path ()">replay_node_tree_get_tree_path</a>      (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-insert-child" title="replay_node_tree_insert_child ()">replay_node_tree_insert_child</a>       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *parent</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> index</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *child_iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-move-to-group" title="replay_node_tree_move_to_group ()">replay_node_tree_move_to_group</a>      (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *group_iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="returnvalue">ReplayNodeTree</span></a> *    <a class="link" href="ReplayNodeTree.html#replay-node-tree-new" title="replay_node_tree_new ()">replay_node_tree_new</a>                (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-pop-override-props" title="replay_node_tree_pop_override_props ()">replay_node_tree_pop_override_props</a> (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-pop-props" title="replay_node_tree_pop_props ()">replay_node_tree_pop_props</a>          (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-push-override-props" title="replay_node_tree_push_override_props ()">replay_node_tree_push_override_props</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-push-props" title="replay_node_tree_push_props ()">replay_node_tree_push_props</a>         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-remove-all-groups" title="replay_node_tree_remove_all_groups ()">replay_node_tree_remove_all_groups</a>  (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-remove-from-group" title="replay_node_tree_remove_from_group ()">replay_node_tree_remove_from_group</a>  (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-remove-group" title="replay_node_tree_remove_group ()">replay_node_tree_remove_group</a>       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-request-hidden" title="replay_node_tree_request_hidden ()">replay_node_tree_request_hidden</a>     (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden_request</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayNodeTree.html#replay-node-tree-set-hidden" title="replay_node_tree_set_hidden ()">replay_node_tree_set_hidden</a>         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayNodeTree.html#replay-node-tree-unhide-all" title="replay_node_tree_unhide_all ()">replay_node_tree_unhide_all</a>         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTree.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayNodeTree
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTree.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayNodeTree implements
+ <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html">GtkTreeModel</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTree.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayNodeTree.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayNodeTree-struct"></a><h3>struct ReplayNodeTree</h3>
+<pre class="programlisting">struct ReplayNodeTree;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayNodeTreeClass"></a><h3>struct ReplayNodeTreeClass</h3>
+<pre class="programlisting">struct ReplayNodeTreeClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-clear-all-override-props"></a><h3>replay_node_tree_clear_all_override_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_clear_all_override_props
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-clear-override-props"></a><h3>replay_node_tree_clear_override_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_clear_override_props
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-create-group"></a><h3>replay_node_tree_create_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_create_group       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *group</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *color</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-find-group"></a><h3>replay_node_tree_find_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_find_group         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *group_id</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-get-iter-for-id"></a><h3>replay_node_tree_get_iter_for_id ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_get_iter_for_id    (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-get-prop"></a><h3>replay_node_tree_get_prop ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          replay_node_tree_get_prop           (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *name</code></em>);</pre>
+<p>
+Looks up the current value of the <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> with the given name for the
+specified node, returning a reference to the <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> if found,
+otherwise NULL. Must be freed using <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#g-variant-unref"><code class="function">g_variant_unref()</code></a> when finished
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>A <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> referencing the node in the tree to lookup</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td>The name of the property to lookup</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A reference to the <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> if found, otherwise NULL. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-get-props"></a><h3>replay_node_tree_get_props ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          replay_node_tree_get_props          (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+<p>
+Returns a <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> containing the properties for this
+node.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>A <a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> referencing the node in the tree to lookup</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>a  <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> containing the properties for this
+node. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-get-tree-path"></a><h3>replay_node_tree_get_tree_path ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreePath"><span class="returnvalue">GtkTreePath</span></a> *       replay_node_tree_get_tree_path      (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-insert-child"></a><h3>replay_node_tree_insert_child ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_insert_child       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *node</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *parent</code></em>,
+                                                         <em class="parameter"><code><span class="type">int</span> index</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *child_iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-move-to-group"></a><h3>replay_node_tree_move_to_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_move_to_group      (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *group_iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-new"></a><h3>replay_node_tree_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="returnvalue">ReplayNodeTree</span></a> *    replay_node_tree_new                (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-pop-override-props"></a><h3>replay_node_tree_pop_override_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_pop_override_props (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-pop-props"></a><h3>replay_node_tree_pop_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_pop_props          (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-push-override-props"></a><h3>replay_node_tree_push_override_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_push_override_props
+                                                        (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-push-props"></a><h3>replay_node_tree_push_props ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_push_props         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-remove-all-groups"></a><h3>replay_node_tree_remove_all_groups ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_remove_all_groups  (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-remove-from-group"></a><h3>replay_node_tree_remove_from_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_remove_from_group  (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-remove-group"></a><h3>replay_node_tree_remove_group ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_remove_group       (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-request-hidden"></a><h3>replay_node_tree_request_hidden ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_request_hidden     (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden_request</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-set-hidden"></a><h3>replay_node_tree_set_hidden ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_node_tree_set_hidden         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/gtk3/GtkTreeModel.html#GtkTreeIter"><span class="type">GtkTreeIter</span></a> *iter</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> hidden</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-node-tree-unhide-all"></a><h3>replay_node_tree_unhide_all ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_node_tree_unhide_all         (<em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *self</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

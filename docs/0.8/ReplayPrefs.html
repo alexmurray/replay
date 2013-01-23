@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayPrefs</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayEventGraph.html" title="ReplayEventGraph">
+<link rel="next" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayEventGraph.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayMessageTreeView.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayPrefs.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayPrefs.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayPrefs.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayPrefs.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayPrefs"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayPrefs.top_of_page"></a>ReplayPrefs</span></h2>
+<p>ReplayPrefs</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayPrefs.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayPrefs.html#ReplayPrefs-struct" title="struct ReplayPrefs">ReplayPrefs</a>;
+struct              <a class="link" href="ReplayPrefs.html#ReplayPrefsClass" title="struct ReplayPrefsClass">ReplayPrefsClass</a>;
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayPrefs.html#replay-prefs-get-absolute-time" title="replay_prefs_get_absolute_time ()">replay_prefs_get_absolute_time</a>      (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayPrefs.html#replay-prefs-get-label-edges" title="replay_prefs_get_label_edges ()">replay_prefs_get_label_edges</a>        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayPrefs.html#replay-prefs-get-label-messages" title="replay_prefs_get_label_messages ()">replay_prefs_get_label_messages</a>     (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayPrefs.html#replay-prefs-get-label-nodes" title="replay_prefs_get_label_nodes ()">replay_prefs_get_label_nodes</a>        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);
+<a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="returnvalue">ReplayPrefs</span></a> *       <a class="link" href="ReplayPrefs.html#replay-prefs-new" title="replay_prefs_new ()">replay_prefs_new</a>                    (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *timeline_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventTextView.html" title="ReplayEventTextView"><span class="type">ReplayEventTextView</span></a> *text_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a> *message_tree_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *graph_view</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayPrefs.html#replay-prefs-set-absolute-time" title="replay_prefs_set_absolute_time ()">replay_prefs_set_absolute_time</a>      (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayPrefs.html#replay-prefs-set-label-edges" title="replay_prefs_set_label_edges ()">replay_prefs_set_label_edges</a>        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_edges</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayPrefs.html#replay-prefs-set-label-messages" title="replay_prefs_set_label_messages ()">replay_prefs_set_label_messages</a>     (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayPrefs.html#replay-prefs-set-label-nodes" title="replay_prefs_set_label_nodes ()">replay_prefs_set_label_nodes</a>        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_nodes</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayPrefs.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----ReplayPrefs
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayPrefs.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--absolute-time" title='The "absolute-time" property'>absolute-time</a>"            <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--event-text-view" title='The "event-text-view" property'>event-text-view</a>"          <a class="link" href="ReplayEventTextView.html" title="ReplayEventTextView"><span class="type">ReplayEventTextView</span></a>*  : Write / Construct Only
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--graph-view" title='The "graph-view" property'>graph-view</a>"               <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>*      : Write / Construct Only
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--label-edges" title='The "label-edges" property'>label-edges</a>"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--label-messages" title='The "label-messages" property'>label-messages</a>"           <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--label-nodes" title='The "label-nodes" property'>label-nodes</a>"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--message-tree-view" title='The "message-tree-view" property'>message-tree-view</a>"        <a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a>*  : Write / Construct Only
+  "<a class="link" href="ReplayPrefs.html#ReplayPrefs--timeline-view" title='The "timeline-view" property'>timeline-view</a>"            <a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a>*   : Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayPrefs.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayPrefs.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayPrefs-struct"></a><h3>struct ReplayPrefs</h3>
+<pre class="programlisting">struct ReplayPrefs;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefsClass"></a><h3>struct ReplayPrefsClass</h3>
+<pre class="programlisting">struct ReplayPrefsClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-get-absolute-time"></a><h3>replay_prefs_get_absolute_time ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_prefs_get_absolute_time      (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-get-label-edges"></a><h3>replay_prefs_get_label_edges ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_prefs_get_label_edges        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-get-label-messages"></a><h3>replay_prefs_get_label_messages ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_prefs_get_label_messages     (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-get-label-nodes"></a><h3>replay_prefs_get_label_nodes ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_prefs_get_label_nodes        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-new"></a><h3>replay_prefs_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="returnvalue">ReplayPrefs</span></a> *       replay_prefs_new                    (<em class="parameter"><code><a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a> *timeline_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventTextView.html" title="ReplayEventTextView"><span class="type">ReplayEventTextView</span></a> *text_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a> *message_tree_view</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *graph_view</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-set-absolute-time"></a><h3>replay_prefs_set_absolute_time ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_prefs_set_absolute_time      (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-set-label-edges"></a><h3>replay_prefs_set_label_edges ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_prefs_set_label_edges        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_edges</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-set-label-messages"></a><h3>replay_prefs_set_label_messages ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_prefs_set_label_messages     (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_messages</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-prefs-set-label-nodes"></a><h3>replay_prefs_set_label_nodes ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_prefs_set_label_nodes        (<em class="parameter"><code><a class="link" href="ReplayPrefs.html" title="ReplayPrefs"><span class="type">ReplayPrefs</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_nodes</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayPrefs.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayPrefs--absolute-time"></a><h3>The <code class="literal">"absolute-time"</code> property</h3>
+<pre class="programlisting">  "absolute-time"            <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
+<p>Show times as absolute or relative.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--event-text-view"></a><h3>The <code class="literal">"event-text-view"</code> property</h3>
+<pre class="programlisting">  "event-text-view"          <a class="link" href="ReplayEventTextView.html" title="ReplayEventTextView"><span class="type">ReplayEventTextView</span></a>*  : Write / Construct Only</pre>
+<p>The ReplayEventTextView.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--graph-view"></a><h3>The <code class="literal">"graph-view"</code> property</h3>
+<pre class="programlisting">  "graph-view"               <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>*      : Write / Construct Only</pre>
+<p>The ReplayGraphView.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--label-edges"></a><h3>The <code class="literal">"label-edges"</code> property</h3>
+<pre class="programlisting">  "label-edges"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
+<p>Label edges in the graph view.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--label-messages"></a><h3>The <code class="literal">"label-messages"</code> property</h3>
+<pre class="programlisting">  "label-messages"           <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
+<p>Label messages in the timeline view.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--label-nodes"></a><h3>The <code class="literal">"label-nodes"</code> property</h3>
+<pre class="programlisting">  "label-nodes"              <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write</pre>
+<p>Label nodes in the graph view.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--message-tree-view"></a><h3>The <code class="literal">"message-tree-view"</code> property</h3>
+<pre class="programlisting">  "message-tree-view"        <a class="link" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView"><span class="type">ReplayMessageTreeView</span></a>*  : Write / Construct Only</pre>
+<p>The ReplayMessageTreeView.</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayPrefs--timeline-view"></a><h3>The <code class="literal">"timeline-view"</code> property</h3>
+<pre class="programlisting">  "timeline-view"            <a class="link" href="ReplayTimelineView.html" title="ReplayTimelineView"><span class="type">ReplayTimelineView</span></a>*   : Write / Construct Only</pre>
+<p>The ReplayTimelineView.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

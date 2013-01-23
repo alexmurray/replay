@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayEdgeCreateEvent</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayNodePropsEvent.html" title="ReplayNodePropsEvent">
+<link rel="next" href="ReplayEdgeDeleteEvent.html" title="ReplayEdgeDeleteEvent">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayNodePropsEvent.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="ReplayEdgeDeleteEvent.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayEdgeCreateEvent.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayEdgeCreateEvent.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayEdgeCreateEvent.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayEdgeCreateEvent.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayEdgeCreateEvent"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayEdgeCreateEvent.top_of_page"></a>ReplayEdgeCreateEvent</span></h2>
+<p>ReplayEdgeCreateEvent</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayEdgeCreateEvent.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">struct              <a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent-struct" title="struct ReplayEdgeCreateEvent">ReplayEdgeCreateEvent</a>;
+struct              <a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEventClass" title="struct ReplayEdgeCreateEventClass">ReplayEdgeCreateEventClass</a>;
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-get-directed" title="replay_edge_create_event_get_directed ()">replay_edge_create_event_get_directed</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-get-head" title="replay_edge_create_event_get_head ()">replay_edge_create_event_get_head</a>   (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-get-id" title="replay_edge_create_event_get_id ()">replay_edge_create_event_get_id</a>     (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-get-props" title="replay_edge_create_event_get_props ()">replay_edge_create_event_get_props</a>  (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);
+const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-get-tail" title="replay_edge_create_event_get_tail ()">replay_edge_create_event_get_tail</a>   (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);
+<a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       <a class="link" href="ReplayEdgeCreateEvent.html#replay-edge-create-event-new" title="replay_edge_create_event_new ()">replay_edge_create_event_new</a>        (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> directed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tail</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *head</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEdgeCreateEvent.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a class="link" href="ReplayEvent.html" title="ReplayEvent">ReplayEvent</a>
+         +----ReplayEdgeCreateEvent
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEdgeCreateEvent.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent--directed" title='The "directed" property'>directed</a>"                 <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write / Construct Only
+  "<a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent--head" title='The "head" property'>head</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent--id" title='The "id" property'>id</a>"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+  "<a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent--props" title='The "props" property'>props</a>"                    <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a>*             : Read / Write / Construct Only
+  "<a class="link" href="ReplayEdgeCreateEvent.html#ReplayEdgeCreateEvent--tail" title='The "tail" property'>tail</a>"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayEdgeCreateEvent.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayEdgeCreateEvent.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent-struct"></a><h3>struct ReplayEdgeCreateEvent</h3>
+<pre class="programlisting">struct ReplayEdgeCreateEvent;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEventClass"></a><h3>struct ReplayEdgeCreateEventClass</h3>
+<pre class="programlisting">struct ReplayEdgeCreateEventClass {
+};
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-get-directed"></a><h3>replay_edge_create_event_get_directed ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>            replay_edge_create_event_get_directed
+                                                        (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the directed of the edge created by this event
+Get the directed of a edge in a <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-get-head"></a><h3>replay_edge_create_event_get_head ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_edge_create_event_get_head   (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the head of the edge created by this event
+Get the head of a edge in a <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-get-id"></a><h3>replay_edge_create_event_get_id ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_edge_create_event_get_id     (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the id of the edge created by this event
+Get the id of a edge in a <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-get-props"></a><h3>replay_edge_create_event_get_props ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="returnvalue">GVariant</span></a> *          replay_edge_create_event_get_props  (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the props of the edge created by this event
+Get the props of a edge in a <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> event. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-get-tail"></a><h3>replay_edge_create_event_get_tail ()</h3>
+<pre class="programlisting">const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *       replay_edge_create_event_get_tail   (<em class="parameter"><code><a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>A <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the tail of the edge created by this event
+Get the tail of a edge in a <a class="link" href="ReplayEdgeCreateEvent.html" title="ReplayEdgeCreateEvent"><span class="type">ReplayEdgeCreateEvent</span></a> event</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-edge-create-event-new"></a><h3>replay_edge_create_event_new ()</h3>
+<pre class="programlisting"><a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="returnvalue">ReplayEvent</span></a> *       replay_edge_create_event_new        (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *source</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *id</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> directed</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *tail</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *head</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> *props</code></em>);</pre>
+<p>
+Creates a <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a> describing the creation of an edge
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
+<td>The timestamp when this event occurred in usecs since the epoch</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>source</code></em> :</span></p></td>
+<td>A string describing the source of this event</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>id</code></em> :</span></p></td>
+<td>A unique to identify the edge</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>directed</code></em> :</span></p></td>
+<td>Whether is this a directed or undirected edge</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tail</code></em> :</span></p></td>
+<td>The unique id of the node which is the tail for this edge</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>head</code></em> :</span></p></td>
+<td>The unique id of the node which is the head for this edge</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>props</code></em> :</span></p></td>
+<td>The <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a> describing the props for this edge</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A new <a class="link" href="ReplayEvent.html" title="ReplayEvent"><span class="type">ReplayEvent</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayEdgeCreateEvent.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent--directed"></a><h3>The <code class="literal">"directed"</code> property</h3>
+<pre class="programlisting">  "directed"                 <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>              : Read / Write / Construct Only</pre>
+<p>Human readable directed of the object.</p>
+<p>Default value: FALSE</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent--head"></a><h3>The <code class="literal">"head"</code> property</h3>
+<pre class="programlisting">  "head"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable head of the object.</p>
+<p>Default value: "no-head-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent--id"></a><h3>The <code class="literal">"id"</code> property</h3>
+<pre class="programlisting">  "id"                       <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable id of the object.</p>
+<p>Default value: "no-id-set"</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent--props"></a><h3>The <code class="literal">"props"</code> property</h3>
+<pre class="programlisting">  "props"                    <a href="/usr/share/gtk-doc/html/glib/glib-GVariant.html#GVariant"><span class="type">GVariant</span></a>*             : Read / Write / Construct Only</pre>
+<p>The properties of the object.</p>
+<p>Allowed values: GVariant&lt;a{sv}&gt;</p>
+<p>Default value: @a{sv} {}</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayEdgeCreateEvent--tail"></a><h3>The <code class="literal">"tail"</code> property</h3>
+<pre class="programlisting">  "tail"                     <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a>*                : Read / Write / Construct Only</pre>
+<p>Human readable tail of the object.</p>
+<p>Default value: "no-tail-set"</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

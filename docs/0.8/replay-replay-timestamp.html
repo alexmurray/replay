@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>replay-timestamp</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="replay-replay-string-utils.html" title="replay-string-utils">
+<link rel="next" href="replay-replay-config.html" title="replay-config">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="replay-replay-string-utils.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="replay-replay-config.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#replay-replay-timestamp.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#replay-replay-timestamp.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#replay-replay-timestamp.object-hierarchy" class="shortcut">Object Hierarchy</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="replay-replay-timestamp"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="replay-replay-timestamp.top_of_page"></a>replay-timestamp</span></h2>
+<p>replay-timestamp</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="replay-replay-timestamp.synopsis"></a><h2>Synopsis</h2>
+<a name="ReplayTimeUnit"></a><pre class="synopsis">#define             <a class="link" href="replay-replay-timestamp.html#REPLAY-DEFAULT-ABSOLUTE-TIME:CAPS" title="REPLAY_DEFAULT_ABSOLUTE_TIME">REPLAY_DEFAULT_ABSOLUTE_TIME</a>
+#define             <a class="link" href="replay-replay-timestamp.html#REPLAY-DEFAULT-TIME-UNIT:CAPS" title="REPLAY_DEFAULT_TIME_UNIT">REPLAY_DEFAULT_TIME_UNIT</a>
+enum                <a class="link" href="replay-replay-timestamp.html#ReplayTimeUnit-enum" title="enum ReplayTimeUnit">ReplayTimeUnit</a>;
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              <a class="link" href="replay-replay-timestamp.html#replay-timestamp-from-times" title="replay_timestamp_from_times ()">replay_timestamp_from_times</a>         (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> times[REPLAY_NUM_TIME_UNITS]</code></em>);
+<a class="link" href="replay-replay-timestamp.html#ReplayTimeUnit"><span class="returnvalue">ReplayTimeUnit</span></a>      <a class="link" href="replay-replay-timestamp.html#replay-timestamp-get-times" title="replay_timestamp_get_times ()">replay_timestamp_get_times</a>          (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> times[REPLAY_NUM_TIME_UNITS]</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             <a class="link" href="replay-replay-timestamp.html#replay-timestamp-to-string" title="replay_timestamp_to_string ()">replay_timestamp_to_string</a>          (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="replay-replay-timestamp.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  GEnum
+   +----ReplayTimeUnit
+</pre>
+</div>
+<div class="refsect1">
+<a name="replay-replay-timestamp.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="replay-replay-timestamp.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="REPLAY-DEFAULT-ABSOLUTE-TIME:CAPS"></a><h3>REPLAY_DEFAULT_ABSOLUTE_TIME</h3>
+<pre class="programlisting">#define REPLAY_DEFAULT_ABSOLUTE_TIME FALSE
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="REPLAY-DEFAULT-TIME-UNIT:CAPS"></a><h3>REPLAY_DEFAULT_TIME_UNIT</h3>
+<pre class="programlisting">#define REPLAY_DEFAULT_TIME_UNIT REPLAY_TIME_UNIT_SECONDS
+</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayTimeUnit-enum"></a><h3>enum ReplayTimeUnit</h3>
+<pre class="programlisting">typedef enum {
+  REPLAY_TIME_UNIT_MICROSECONDS = 0,
+  REPLAY_TIME_UNIT_MILLISECONDS,
+  REPLAY_TIME_UNIT_SECONDS,
+  REPLAY_TIME_UNIT_MINUTES,
+  REPLAY_TIME_UNIT_HOURS,
+  REPLAY_TIME_UNIT_DAYS,
+  REPLAY_NUM_TIME_UNITS
+} ReplayTimeUnit;
+</pre>
+<p>
+The time unit used to display timestamps
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-MICROSECONDS:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_MICROSECONDS</code></span></p></td>
+<td>Time in microseconds
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-MILLISECONDS:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_MILLISECONDS</code></span></p></td>
+<td>Time in milliseconds
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-SECONDS:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_SECONDS</code></span></p></td>
+<td>Time in seconds
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-MINUTES:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_MINUTES</code></span></p></td>
+<td>Time in minutes
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-HOURS:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_HOURS</code></span></p></td>
+<td>Time in hours
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-TIME-UNIT-DAYS:CAPS"></a><span class="term"><code class="literal">REPLAY_TIME_UNIT_DAYS</code></span></p></td>
+<td>Time in days
+</td>
+</tr>
+<tr>
+<td><p><a name="REPLAY-NUM-TIME-UNITS:CAPS"></a><span class="term"><code class="literal">REPLAY_NUM_TIME_UNITS</code></span></p></td>
+<td>The number of different time units
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timestamp-from-times"></a><h3>replay_timestamp_from_times ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="returnvalue">gint64</span></a>              replay_timestamp_from_times         (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> times[REPLAY_NUM_TIME_UNITS]</code></em>);</pre>
+<p>
+Converts a series of timestamp components into a timestamp (as microseconds
+since the epoch).
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>times</code></em> :</span></p></td>
+<td>Filled with the various time components of a <em class="parameter"><code>timestamp</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A timestamp as microseconds since the epoch</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timestamp-get-times"></a><h3>replay_timestamp_get_times ()</h3>
+<pre class="programlisting"><a class="link" href="replay-replay-timestamp.html#ReplayTimeUnit"><span class="returnvalue">ReplayTimeUnit</span></a>      replay_timestamp_get_times          (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> times[REPLAY_NUM_TIME_UNITS]</code></em>);</pre>
+<p>
+Breaks down <em class="parameter"><code>timestamp</code></em> into it's various components, and returns the
+maximum component as a return values
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>timestamp</code></em> :</span></p></td>
+<td>A timestamp in microseconds since epoch</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>times</code></em> :</span></p></td>
+<td>Filled with the various time components in <em class="parameter"><code>timestamp</code></em>. <span class="annotation">[<acronym title="Parameter for returning results. Default is transfer full."><span class="acronym">out</span></acronym>][<acronym title="NULL is ok, both for passing and for returning."><span class="acronym">allow-none</span></acronym>]</span>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The maximum time unit of <em class="parameter"><code>timestamp</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-timestamp-to-string"></a><h3>replay_timestamp_to_string ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *             replay_timestamp_to_string          (<em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> timestamp</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute</code></em>);</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>

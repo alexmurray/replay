@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ReplayGraphView</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+<link rel="home" href="index.html" title="Replay Reference Manual">
+<link rel="up" href="ch02.html" title="Replay Library">
+<link rel="prev" href="ReplayMessageTreeView.html" title="ReplayMessageTreeView">
+<link rel="next" href="replay-replay-event-string.html" title="replay-event-string">
+<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ReplayMessageTreeView.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Replay Reference Manual</th>
+<td><a accesskey="n" href="replay-replay-event-string.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#ReplayGraphView.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#ReplayGraphView.description" class="shortcut">Description</a>
+                   | 
+                  <a href="#ReplayGraphView.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                   | 
+                  <a href="#ReplayGraphView.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                   | 
+                  <a href="#ReplayGraphView.properties" class="shortcut">Properties</a>
+                   | 
+                  <a href="#ReplayGraphView.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry">
+<a name="ReplayGraphView"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="ReplayGraphView.top_of_page"></a>ReplayGraphView</span></h2>
+<p>ReplayGraphView</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="ReplayGraphView.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">                    <a class="link" href="ReplayGraphView.html#ReplayGraphView-struct" title="ReplayGraphView">ReplayGraphView</a>;
+                    <a class="link" href="ReplayGraphView.html#ReplayGraphViewClass" title="ReplayGraphViewClass">ReplayGraphViewClass</a>;
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             <a class="link" href="ReplayGraphView.html#replay-graph-view-get-max-fps" title="replay_graph_view_get_max_fps ()">replay_graph_view_get_max_fps</a>       (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **            <a class="link" href="ReplayGraphView.html#replay-graph-view-get-selected-node-ids" title="replay_graph_view_get_selected_node_ids ()">replay_graph_view_get_selected_node_ids</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);
+<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         <a class="link" href="ReplayGraphView.html#replay-graph-view-new" title="replay_graph_view_new ()">replay_graph_view_new</a>               (<em class="parameter"><code><span class="type">void</span></code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-absolute-time" title="replay_graph_view_set_absolute_time ()">replay_graph_view_set_absolute_time</a> (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-data" title="replay_graph_view_set_data ()">replay_graph_view_set_data</a>          (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *node_tree</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-label-edges" title="replay_graph_view_set_label_edges ()">replay_graph_view_set_label_edges</a>   (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_edges</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-label-nodes" title="replay_graph_view_set_label_nodes ()">replay_graph_view_set_label_nodes</a>   (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_nodes</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-max-fps" title="replay_graph_view_set_max_fps ()">replay_graph_view_set_max_fps</a>       (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> max_fps</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-selected-node-ids" title="replay_graph_view_set_selected_node_ids ()">replay_graph_view_set_selected_node_ids</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **node_ids</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-show-hud" title="replay_graph_view_set_show_hud ()">replay_graph_view_set_show_hud</a>      (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_hud</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-set-two-dimensional" title="replay_graph_view_set_two_dimensional ()">replay_graph_view_set_two_dimensional</a>
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> two_dimensional</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="ReplayGraphView.html#replay-graph-view-unset-data" title="replay_graph_view_unset_data ()">replay_graph_view_unset_data</a>        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GObject">GObject</a>
+   +----<a href="/usr/share/gtk-doc/html/gobject/gobject-The-Base-Object-Type.html#GInitiallyUnowned">GInitiallyUnowned</a>
+         +----<a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html">GtkWidget</a>
+               +----<a href="/usr/share/gtk-doc/html/gtk3/GtkDrawingArea.html">GtkDrawingArea</a>
+                     +----ReplayGraphView
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+ReplayGraphView implements
+ AtkImplementorIface and  <a href="/usr/share/gtk-doc/html/gtk3/GtkBuildable.html">GtkBuildable</a>.</p>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayGraphView.html#ReplayGraphView--max-fps" title='The "max-fps" property'>max-fps</a>"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write
+  "<a class="link" href="ReplayGraphView.html#ReplayGraphView--selected-node-ids" title='The "selected-node-ids" property'>selected-node-ids</a>"        <a href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html#GStrv"><span class="type">GStrv</span></a>                 : Read / Write
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="ReplayGraphView.html#ReplayGraphView-processing" title='The "processing" signal'>processing</a>"                                     : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a>
+</pre>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.description"></a><h2>Description</h2>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.details"></a><h2>Details</h2>
+<div class="refsect2">
+<a name="ReplayGraphView-struct"></a><h3>ReplayGraphView</h3>
+<pre class="programlisting">typedef struct _ReplayGraphView ReplayGraphView;</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayGraphViewClass"></a><h3>ReplayGraphViewClass</h3>
+<pre class="programlisting">typedef struct {
+  GtkDrawingAreaClass parent_class;
+
+  void (* processing) (ReplayGraphView *replay_graph_view,
+                      gboolean processing);
+} ReplayGraphViewClass;
+</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><span class="type">GtkDrawingAreaClass</span> <em class="structfield"><code><a name="ReplayGraphViewClass.parent-class"></a>parent_class</code></em>;</span></p></td>
+<td>The parent class</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="structfield"><code><a name="ReplayGraphViewClass.processing"></a>processing</code></em> ()</span></p></td>
+<td>Signal emitted when processing events in the graph view</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-get-max-fps"></a><h3>replay_graph_view_get_max_fps ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="returnvalue">gdouble</span></a>             replay_graph_view_get_max_fps       (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>The current maximum fps</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-get-selected-node-ids"></a><h3>replay_graph_view_get_selected_node_ids ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> **            replay_graph_view_get_selected_node_ids
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>A NULL-terminated array of the selected node ids. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-new"></a><h3>replay_graph_view_new ()</h3>
+<pre class="programlisting"><a href="/usr/share/gtk-doc/html/gtk3/GtkWidget.html"><span class="returnvalue">GtkWidget</span></a> *         replay_graph_view_new               (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-absolute-time"></a><h3>replay_graph_view_set_absolute_time ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_absolute_time (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> absolute_time</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-data"></a><h3>replay_graph_view_set_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_data          (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayEventStore.html" title="ReplayEventStore"><span class="type">ReplayEventStore</span></a> *event_store</code></em>,
+                                                         <em class="parameter"><code><a class="link" href="ReplayNodeTree.html" title="ReplayNodeTree"><span class="type">ReplayNodeTree</span></a> *node_tree</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-label-edges"></a><h3>replay_graph_view_set_label_edges ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_label_edges   (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_edges</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-label-nodes"></a><h3>replay_graph_view_set_label_nodes ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_label_nodes   (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> label_nodes</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-max-fps"></a><h3>replay_graph_view_set_max_fps ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_max_fps       (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a> max_fps</code></em>);</pre>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>The <a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max_fps</code></em> :</span></p></td>
+<td>The maximum fps to set</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-selected-node-ids"></a><h3>replay_graph_view_set_selected_node_ids ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_selected_node_ids
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code>const <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **node_ids</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-show-hud"></a><h3>replay_graph_view_set_show_hud ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_show_hud      (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> show_hud</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-set-two-dimensional"></a><h3>replay_graph_view_set_two_dimensional ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_set_two_dimensional
+                                                        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>,
+                                                         <em class="parameter"><code><a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a> two_dimensional</code></em>);</pre>
+</div>
+<hr>
+<div class="refsect2">
+<a name="replay-graph-view-unset-data"></a><h3>replay_graph_view_unset_data ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                replay_graph_view_unset_data        (<em class="parameter"><code><a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *self</code></em>);</pre>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="ReplayGraphView--max-fps"></a><h3>The <code class="literal">"max-fps"</code> property</h3>
+<pre class="programlisting">  "max-fps"                  <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gdouble"><span class="type">gdouble</span></a>               : Read / Write</pre>
+<p>The maximum framerate to animate.</p>
+<p>Allowed values: [0,100]</p>
+<p>Default value: 100</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="ReplayGraphView--selected-node-ids"></a><h3>The <code class="literal">"selected-node-ids"</code> property</h3>
+<pre class="programlisting">  "selected-node-ids"        <a href="/usr/share/gtk-doc/html/gobject/gobject-Boxed-Types.html#GStrv"><span class="type">GStrv</span></a>                 : Read / Write</pre>
+<p>The ids of the nodes which are currently selected.</p>
+</div>
+</div>
+<div class="refsect1">
+<a name="ReplayGraphView.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2">
+<a name="ReplayGraphView-processing"></a><h3>The <code class="literal">"processing"</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                user_function                      (<a class="link" href="ReplayGraphView.html" title="ReplayGraphView"><span class="type">ReplayGraphView</span></a> *replaygraphview,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gboolean"><span class="type">gboolean</span></a>         arg1,
+                                                        <a href="/usr/share/gtk-doc/html/glib/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>         user_data)            : <a href="/usr/share/gtk-doc/html/gobject/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS"><code class="literal">Run Last</code></a></pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.18</div>
+</body>
+</html>
