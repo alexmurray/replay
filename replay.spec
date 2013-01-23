@@ -1,5 +1,5 @@
 Name:           replay
-Version:        0.8.0
+Version:        0.8.1
 Release:        1%{?dist}
 Summary:        Visualiser for interconnected systems
 
@@ -82,6 +82,8 @@ fi
 
 
 %changelog
+* Wed Jan 23 2013 Alex Murray <murray.alex@gmail.com> 0.8.1-1
+- RPM of 0.8.1 release
 * Thu Jan 10 2013 Alex Murray <murray.alex@gmail.com> 0.8.0-1
 - RPM of 0.8.0 release
 * Mon Dec 17 2012 Alex Murray <murray.alex@gmail.com> 0.7.0-1
