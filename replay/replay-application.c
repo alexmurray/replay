@@ -338,6 +338,10 @@ replay_application_startup(GApplication *application)
   gtk_application_set_app_menu(GTK_APPLICATION(application), G_MENU_MODEL(gtk_builder_get_object(builder, "app-menu")));
   g_object_unref(builder);
 
+  /* ensure we look in the directory we installed the typelib file when
+     compiling */
+  g_irepository_prepend_search_path(TYPELIBDIR);
+
   /* setup plugins once only for the entire application */
   if (!g_irepository_require(g_irepository_get_default(), "Peas", "1.0",
                              0, &error))

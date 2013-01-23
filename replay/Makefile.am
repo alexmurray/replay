@@ -4,6 +4,7 @@ AM_CFLAGS =     $(WARNING_CFLAGS) \
 		-DREPLAY_DATADIR=\""$(datadir)/$(PACKAGE)"\" \
 		-DREPLAY_TEXTURES_DIR=\""$(datadir)/$(PACKAGE)/textures"\" \
 		-DLIBDIR=\""$(libdir)"\" \
+		-DTYPELIBDIR=\""$(typelibdir)"\" \
 		-DSYSCONFDIR=\""$(sysconfdir)"\" \
 		-DPREFIX=\""$(prefix)"\" \
 		-I$(top_srcdir) \
