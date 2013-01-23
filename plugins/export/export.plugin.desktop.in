@@ -1,0 +1,7 @@
+[Plugin]
+Module=export
+Loader=python
+_Name=Events Exporter / Importer
+_Description=Export the event log into a standardized format
+Authors=Alex Murray <murray.alex@gmail.com>
+Copyright=Copyright © 2012 Commonwealth of Australia
