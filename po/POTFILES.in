@@ -1,4 +1,6 @@
 data/replay.desktop.in
+plugins/export/export.plugin.desktop.in
+plugins/export/export.py
 plugins/fdr/fdr.plugin.desktop.in
 plugins/filters/filters.plugin.desktop.in
 plugins/filters/replay-filter-list.c

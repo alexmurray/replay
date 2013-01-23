@@ -21,6 +21,7 @@ from gi.repository import Gio
 from gi.repository import Replay
 
 import json
+import gettext
 
 VERSION = 1.0
 
@@ -28,7 +29,7 @@ class EventExporter(Replay.Task):
     __gtype_name__ = 'EventExporter'
 
     def __init__(self, path):
-        Replay.Task.__init__(self, icon=Gtk.STOCK_SAVE, description='Exporting events to ' + path)
+        Replay.Task.__init__(self, icon=Gtk.STOCK_SAVE, description=_('Exporting events to %s') % path)
         self._path = path
 
     def event_to_dict(self, event):
@@ -82,7 +83,7 @@ class EventExporter(Replay.Task):
             e['id'] = event.get_id()
             e['props'] = event.get_props().unpack()
         else:
-            self.emit_error('Unable to export unknown event: "%s"' % event)
+            self.emit_error(_('Unable to export unknown event: "%s"') % event)
 
         return e
 
@@ -128,7 +129,7 @@ class ExportPlugin(GObject.Object, Replay.WindowActivatable):
     def on_export_action(self, widget):
         # create a dialog to choose the file to export to and then
         # create a EventExporter to do the actual export
-        dialog = Gtk.FileChooserDialog("Export events...",
+        dialog = Gtk.FileChooserDialog(_('Export Events...'),
                                        self.window,
                                        Gtk.FileChooserAction.SAVE,
                                        (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -136,7 +137,7 @@ class ExportPlugin(GObject.Object, Replay.WindowActivatable):
         dialog.set_do_overwrite_confirmation(True)
 
         filter = Gtk.FileFilter()
-        filter.set_name('Replay Events')
+        filter.set_name(_('Replay Events'))
         filter.add_pattern('*.rpl')
         dialog.add_filter(filter)
         response = dialog.run()
@@ -156,7 +157,7 @@ class ExportPlugin(GObject.Object, Replay.WindowActivatable):
         self._action_group.set_translation_domain('replay')
         self._action_group.add_actions([('ExportEventsAction',
                                         Gtk.STOCK_SAVE,
-                                        'Export events',
+                                        _('Export Events'),
                                         '<control>E',
                                         None,
                                         self.on_export_action)])
@@ -190,7 +191,7 @@ class EventsFileLoader(Replay.FileLoader):
     __gtype_name__ = 'EventsFileLoader'
 
     def __init__(self):
-        Replay.FileLoader.__init__(self, name='Replay Events', pattern='*.rpl')
+        Replay.FileLoader.__init__(self, name=_('Replay Events'), pattern='*.rpl')
 
     def props_to_variant(self, props):
         v = {}
@@ -204,7 +205,7 @@ class EventsFileLoader(Replay.FileLoader):
             elif type(value) == bool:
                 v[name] = GLib.Variant('b', value)
             else:
-                self.emit_error('Unable to convert property of type "%s" to a GVariant - please report this as a bug at https://github.com/alexmurray/replay/issues' % str(type(value)))
+                self.emit_error(_('Unable to convert property of type "%s" to a GVariant - please report this as a bug at https://github.com/alexmurray/replay/issues') % str(type(value)))
         return GLib.Variant('a{sv}', v)
 
     def dict_to_event(self, e):
@@ -267,7 +268,7 @@ class EventsFileLoader(Replay.FileLoader):
                                               e['id'],
                                               self.props_to_variant(e['props']))
         else:
-            self.emit_error('Unable to import unknown event: "%s"' % str(e))
+            self.emit_error(_('Unable to import unknown event: "%s"') % str(e))
 
         return event
 
@@ -276,7 +277,7 @@ class EventsFileLoader(Replay.FileLoader):
         fp = open(path, 'r')
         events_json = json.load(fp)
         if events_json['version'] != VERSION:
-            self.emit_error('Invalid version "%f"' % events_json['version'])
+            self.emit_error(_('Invalid version "%f"') % events_json['version'])
             self.emit_progress(1.0)
             return
 
