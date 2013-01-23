@@ -2,7 +2,7 @@
 # ================= initialization =================== #
 m4_define([replay_major_version],  0)
 m4_define([replay_minor_version],  8)
-m4_define([replay_micro_version],  0)
+m4_define([replay_micro_version],  1)
 m4_define([replay_version], [replay_major_version].[replay_minor_version].[replay_micro_version])
 
 AC_PREREQ([2.68])
