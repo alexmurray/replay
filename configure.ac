@@ -6,7 +6,7 @@ m4_define([replay_micro_version],  0)
 m4_define([replay_version], [replay_major_version].[replay_minor_version].[replay_micro_version])
 
 AC_PREREQ([2.68])
-AC_INIT([Replay],[replay_version],[https://github.com/alexmurray/replay/issues/new],[replay],[http://alexmurray.github.com/replay])
+AC_INIT([replay],[replay_version],[https://github.com/alexmurray/replay/issues/new],[replay],[http://alexmurray.github.com/replay])
 
 AC_CONFIG_SRCDIR([replay/replay.c])
 AC_CONFIG_HEADERS([replay/config.h])
