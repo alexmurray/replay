@@ -325,7 +325,7 @@ class EventsFileLoader(Replay.FileLoader):
         try:
             self.emit_progress(float(self._n) / float(self._file_size) / 2)
             ins.read_bytes_async(self._CHUNK_SIZE,
-                                 GLib.PRIORITY_DEFAULT, None,
+                                 GLib.PRIORITY_DEFAULT_IDLE, None,
                                  self.read_bytes_async_ready_cb, None)
         except GLib.Error as e:
             self.emit_error(e.message)
@@ -346,7 +346,7 @@ class EventsFileLoader(Replay.FileLoader):
         try:
             ins = gfile.read_finish(result)
             ins.query_info_async(Gio.FILE_ATTRIBUTE_STANDARD_SIZE,
-                                 GLib.PRIORITY_DEFAULT,
+                                 GLib.PRIORITY_DEFAULT_IDLE,
                                  None, self.query_info_async_ready_cb,
                                  self)
         except GLib.Error as e:
@@ -355,7 +355,7 @@ class EventsFileLoader(Replay.FileLoader):
     def do_load_file(self, gfile):
         # load gfile async using gio so we don't block UI
         try:
-            gfile.read_async(GLib.PRIORITY_DEFAULT, None,
+            gfile.read_async(GLib.PRIORITY_DEFAULT_IDLE, None,
                              self.file_read_async_ready_cb,
                              None)
         except GLib.Error as e:
