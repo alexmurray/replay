@@ -16,6 +16,7 @@
 
 from gi.repository import GObject
 from gi.repository import GLib
+from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Gio
 from gi.repository import Replay
@@ -272,19 +273,95 @@ class EventsFileLoader(Replay.FileLoader):
 
         return event
 
-    def do_load_file(self, file):
-        path = file.get_path()
-        fp = open(path, 'r')
-        events_json = json.load(fp)
-        if events_json['version'] != VERSION:
-            self.emit_error(_('Invalid version "%f"') % events_json['version'])
-            self.emit_progress(1.0)
-            return
-
-        for e in events_json['events']:
+    def emit_events(self, events):
+        start = self._i
+        end = start + (len(events) / 100)
+        for e in events[start:end]:
             event = self.dict_to_event(e)
             self.emit_event(event)
-        self.emit_progress(1.0)
+            self._i += 1
+        progress = (float(self._i) / float(len(events)) / 2.0) + 0.5
+        self.emit_progress(progress)
+        # get called again if not at end
+        return self._i != len(events)
+
+    def process_data(self):
+        self._i = 0
+        try:
+            data = json.loads(self._data)
+            self._data = None
+            if data['version'] != VERSION:
+                self.emit_error(_('Invalid version "%f"') % data['version'])
+                self._json = None
+                self.emit_progress(1.0)
+                return
+            Gdk.threads_add_idle(GLib.PRIORITY_DEFAULT_IDLE,
+                                 self.emit_events,
+                                 data['events'])
+        except Exception as e:
+            self.emit_error(str(e))
+            self.emit_progress(1.0)
+
+    def read_bytes_async_ready_cb(self, ins, result, data):
+        try:
+            data = ins.read_bytes_finish(result)
+            if data is None:
+                self.emit_error('Error reading data from stream')
+            elif data.get_size() == 0:
+                self.emit_progress(0.5)
+                self.process_data()
+            else:
+                self._n += data.get_size()
+                self._data = self._data + data.unref_to_array()
+                self.read_stream(ins)
+
+        except GLib.Error as e:
+            self.emit_error(e)
+        except Exception as e:
+            self.emit_error(str(e))
+
+    def read_stream(self, ins):
+        # do an async read of 1000 bytes
+        try:
+            self.emit_progress(float(self._n) / float(self._file_size) / 2)
+            ins.read_bytes_async(self._CHUNK_SIZE,
+                                 GLib.PRIORITY_DEFAULT, None,
+                                 self.read_bytes_async_ready_cb, None)
+        except GLib.Error as e:
+            self.emit_error(e.message)
+
+    def query_info_async_ready_cb(self, ins, result, data):
+        try:
+            info = ins.query_info_finish(result)
+            self._file_size = info.get_attribute_uint64(Gio.FILE_ATTRIBUTE_STANDARD_SIZE)
+            self._CHUNK_SIZE = 50000
+            self._n = 0
+            self._data = ''
+            self.read_stream(ins)
+        except GLib.Error as e:
+            self.emit_error(e.message)
+            self.emit_progress(1.0)
+
+    def file_read_async_ready_cb(self, gfile, result, data):
+        try:
+            ins = gfile.read_finish(result)
+            ins.query_info_async(Gio.FILE_ATTRIBUTE_STANDARD_SIZE,
+                                 GLib.PRIORITY_DEFAULT,
+                                 None, self.query_info_async_ready_cb,
+                                 self)
+        except GLib.Error as e:
+            self.emit_error(e.message)
+            self.emit_progress(1.0)
+    def do_load_file(self, gfile):
+        # load gfile async using gio so we don't block UI
+        try:
+            gfile.read_async(GLib.PRIORITY_DEFAULT, None,
+                             self.file_read_async_ready_cb,
+                             None)
+        except GLib.Error as e:
+            self.emit_error(e.message)
+        except Exception as e:
+            self.emit_error(str(e))
 
 
 class ImportPlugin(GObject.Object, Replay.ApplicationActivatable):
