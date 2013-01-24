@@ -24,6 +24,7 @@
 #include "config.h"
 #endif
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <replay/replay-events.h>
 #include <replay/replay-message-tree-view.h>
@@ -34,10 +35,8 @@ G_DEFINE_TYPE(ReplayMessageTreeView, replay_message_tree_view, GTK_TYPE_TREE_VIE
 
 struct _ReplayMessageTreeViewPrivate
 {
-  GtkCellRenderer *node_renderer;
-  GtkTreeViewColumn *node_col;
-  GtkCellRenderer *details_renderer;
-  GtkTreeViewColumn *details_col;
+  GtkCellRenderer *renderer;
+  GtkTreeViewColumn *col;
 
   gboolean absolute_time;
 
@@ -48,14 +47,13 @@ struct _ReplayMessageTreeViewPrivate
 
 #define REPLAY_MESSAGE_TREE_VIEW_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE((obj), REPLAY_TYPE_MESSAGE_TREE_VIEW, ReplayMessageTreeViewPrivate))
 
-static gchar *replay_message_tree_view_get_event_markup(ReplayMessageTreeView *self,
-                                                     GtkTreeModel *model,
-                                                     GtkTreeIter *iter)
+static gchar *get_msg_description(GtkTreeModel *model,
+                                  GtkTreeIter *iter)
 {
   ReplayMsgSendEvent *event = NULL;
-  gchar *markup = NULL;
+  gchar *desc = NULL;
 
-  g_return_val_if_fail(REPLAY_IS_MESSAGE_TREE(model), markup);
+  g_return_val_if_fail(REPLAY_IS_MESSAGE_TREE(model), desc);
 
   gtk_tree_model_get(model,
                      iter,
@@ -64,20 +62,56 @@ static gchar *replay_message_tree_view_get_event_markup(ReplayMessageTreeView *s
 
   if (event)
   {
-    g_variant_lookup(replay_msg_send_event_get_props(event), "description", "s", &markup);
+    g_variant_lookup(replay_msg_send_event_get_props(event), "description", "s", &desc);
     g_object_unref(event);
   }
 
-  return markup;
+  return desc;
 }
 
-static void replay_message_tree_view_event_markup_data(GtkTreeViewColumn *tree_column,
-                                                    GtkCellRenderer *cell,
-                                                    GtkTreeModel *model,
-                                                    GtkTreeIter *iter,
-                                                    gpointer data)
+static gchar *get_send_node_name(ReplayMessageTreeView *self,
+                                 GtkTreeModel *model,
+                                 GtkTreeIter *iter)
+{
+  ReplayMessageTreeViewPrivate *priv;
+  ReplayMsgSendEvent *event = NULL;
+  const gchar *id;
+  GtkTreeIter node_iter;
+  gchar *name = NULL;
+
+  priv = self->priv;
+
+  gtk_tree_model_get(model,
+                     iter,
+                     REPLAY_MESSAGE_TREE_COL_MSG_SEND_EVENT, &event,
+                     -1);
+
+  id = replay_msg_send_event_get_node(event);
+  replay_node_tree_get_iter_for_id(priv->node_tree,
+                                   &node_iter, id);
+  gtk_tree_model_get(GTK_TREE_MODEL(priv->node_tree),
+                     &node_iter,
+                     REPLAY_NODE_TREE_COL_LABEL, &name,
+                     -1);
+  g_object_unref(event);
+
+  if (!name)
+  {
+  /* no send event - or couldn't get sender is unknown */
+    name = g_strdup(_("?"));
+  }
+  return name;
+}
+
+static void event_data(GtkTreeViewColumn *tree_column,
+                       GtkCellRenderer *cell,
+                       GtkTreeModel *model,
+                       GtkTreeIter *iter,
+                       gpointer data)
 {
   ReplayMessageTreeView *self;
+  gchar *name = NULL;
+  gchar *message = NULL;
   gchar *markup = NULL;
   gboolean current = FALSE;
 
@@ -85,15 +119,17 @@ static void replay_message_tree_view_event_markup_data(GtkTreeViewColumn *tree_c
 
   self = REPLAY_MESSAGE_TREE_VIEW(data);
 
-  markup = replay_message_tree_view_get_event_markup(self, model, iter);
-  if (markup)
-  {
-    /* strip whitespace from markup */
-    markup = g_strstrip(markup);
-  }
+  name = get_send_node_name(self, model, iter);
+  message = get_msg_description(model, iter);
+  markup = g_strjoin(" → ", name, message, NULL);
+
+  /* strip whitespace from markup */
+  markup = g_strstrip(markup);
 
   g_object_set(cell, "markup", markup, NULL);
   g_free(markup);
+  g_free(message);
+  g_free(name);
 
   /* see if this event is current one - change markup in that case */
   gtk_tree_model_get(model, iter,
@@ -111,8 +147,8 @@ static void replay_message_tree_view_event_markup_data(GtkTreeViewColumn *tree_c
 }
 
 static void replay_message_tree_view_row_activated(GtkTreeView *tree_view,
-                                                GtkTreePath *path,
-                                                GtkTreeViewColumn *column)
+                                                   GtkTreePath *path,
+                                                   GtkTreeViewColumn *column)
 {
   ReplayMessageTree *message_tree;
   GtkTreeIter iter;
@@ -130,8 +166,8 @@ static void replay_message_tree_view_row_activated(GtkTreeView *tree_view,
   if (GTK_TREE_VIEW_CLASS(replay_message_tree_view_parent_class)->row_activated)
   {
     GTK_TREE_VIEW_CLASS(replay_message_tree_view_parent_class)->row_activated(tree_view,
-                                                                           path,
-                                                                           column);
+                                                                              path,
+                                                                              column);
   }
 }
 
@@ -154,11 +190,11 @@ static void replay_message_tree_view_class_init(ReplayMessageTreeViewClass *klas
 
 }
 
-static gboolean replay_message_tree_view_search_equal(GtkTreeModel *model,
-                                                   gint column,
-                                                   const gchar *key,
-                                                   GtkTreeIter *iter,
-                                                   gpointer search_data)
+static gboolean search_equal(GtkTreeModel *model,
+                             gint column,
+                             const gchar *key,
+                             GtkTreeIter *iter,
+                             gpointer search_data)
 {
   gboolean result = TRUE; /* no match */
   gchar *markup = NULL;
@@ -167,8 +203,7 @@ static gboolean replay_message_tree_view_search_equal(GtkTreeModel *model,
   g_return_val_if_fail(REPLAY_IS_MESSAGE_TREE(model), result);
   g_return_val_if_fail(REPLAY_IS_MESSAGE_TREE_VIEW(search_data), result);
 
-  markup = replay_message_tree_view_get_event_markup(REPLAY_MESSAGE_TREE_VIEW(search_data),
-                                                  model, iter);
+  markup = get_msg_description(model, iter);
   if (markup != NULL)
   {
     /* strip markup text */
@@ -184,60 +219,6 @@ static gboolean replay_message_tree_view_search_equal(GtkTreeModel *model,
   return result;
 }
 
-static void replay_message_tree_view_node_data(GtkTreeViewColumn *tree_column,
-                                            GtkCellRenderer *cell,
-                                            GtkTreeModel *model,
-                                            GtkTreeIter *iter,
-                                            gpointer data)
-{
-  ReplayMessageTreeView *self;
-  ReplayMessageTreeViewPrivate *priv;
-  ReplayEvent *event = NULL;
-  gchar *markup;
-
-  g_return_if_fail(REPLAY_IS_MESSAGE_TREE_VIEW(data));
-  g_return_if_fail(REPLAY_IS_MESSAGE_TREE(model));
-
-  self = REPLAY_MESSAGE_TREE_VIEW(data);
-  priv = self->priv;
-
-  g_return_if_fail(tree_column == priv->node_col);
-
-  gtk_tree_model_get(model,
-                     iter,
-                     REPLAY_MESSAGE_TREE_COL_MSG_SEND_EVENT, &event,
-                     -1);
-
-  if (event)
-  {
-    const gchar *id = replay_event_get_node_id(event);
-    GtkTreeIter node_iter;
-    gchar *label;
-
-    if (id != NULL) {
-      gboolean ret = replay_node_tree_get_iter_for_id(priv->node_tree, &node_iter, id);
-      if (ret) {
-        gtk_tree_model_get(GTK_TREE_MODEL(priv->node_tree),
-                           &node_iter,
-                           REPLAY_NODE_TREE_COL_LABEL, &label,
-                           -1);
-        g_object_set(cell, "markup", label, NULL);
-
-        g_object_unref(event);
-        goto out;
-
-      }
-    }
-  }
-  /* no send event - or couldn't get sender is unknown */
-  markup = g_strdup("unknown");
-  g_object_set(cell, "markup", markup, NULL);
-  g_object_set(cell, "background-set", FALSE, NULL);
-  g_free(markup);
-out:
-  return;
-}
-
 static void replay_message_tree_view_init(ReplayMessageTreeView *self)
 {
   ReplayMessageTreeViewPrivate *priv;
@@ -250,37 +231,17 @@ static void replay_message_tree_view_init(ReplayMessageTreeView *self)
 
   gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(self), FALSE);
 
-  priv->node_renderer = gtk_cell_renderer_text_new();
-  /* node renderer is always right aligned */
-  g_object_set(priv->node_renderer, "xalign", 1.0, NULL);
-
-  priv->node_col = gtk_tree_view_column_new();
-  gtk_tree_view_column_pack_start(priv->node_col, priv->node_renderer,
-                                  TRUE);
-  gtk_tree_view_column_set_cell_data_func(priv->node_col,
-                                          priv->node_renderer,
-                                          replay_message_tree_view_node_data,
+  priv->renderer = gtk_cell_renderer_text_new();
+  priv->col = gtk_tree_view_column_new();
+  gtk_tree_view_column_pack_start(priv->col, priv->renderer, TRUE);
+  gtk_tree_view_column_set_cell_data_func(priv->col,
+                                          priv->renderer,
+                                          event_data,
                                           self,
                                           NULL);
-  gtk_tree_view_column_set_title(priv->node_col, "Sender");
-  gtk_tree_view_append_column(GTK_TREE_VIEW(self), priv->node_col);
+  gtk_tree_view_column_set_title(priv->col, _("Message"));
+  gtk_tree_view_append_column(GTK_TREE_VIEW(self), priv->col);
 
-  priv->details_renderer = gtk_cell_renderer_text_new();
-  priv->details_col = gtk_tree_view_column_new();
-  gtk_tree_view_column_pack_start(priv->details_col, priv->details_renderer,
-                                  TRUE);
-  gtk_tree_view_column_set_cell_data_func(priv->details_col,
-                                          priv->details_renderer,
-                                          replay_message_tree_view_event_markup_data,
-                                          self,
-                                          NULL);
-  gtk_tree_view_column_set_title(priv->details_col, "Message Details");
-  gtk_tree_view_append_column(GTK_TREE_VIEW(self), priv->details_col);
-
-
-  /* use details column as expander column */
-  gtk_tree_view_set_expander_column(GTK_TREE_VIEW(self),
-                                    priv->details_col);
 
   /* use details as search column */
   gtk_tree_view_set_search_column(GTK_TREE_VIEW(self),
@@ -291,7 +252,7 @@ static void replay_message_tree_view_init(ReplayMessageTreeView *self)
   /* but we need to specifically do our own search compare since will try and
      compare strings against pointers to events... */
   gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(self),
-                                      replay_message_tree_view_search_equal,
+                                      search_equal,
                                       self,
                                       NULL);
 

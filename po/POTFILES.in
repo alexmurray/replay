@@ -18,6 +18,7 @@ replay/replay-event-processor.c
 replay/replay-graph-view.c
 replay/replay-log-window.c
 replay/replay-log.c
+replay/replay-message-tree-view.c
 replay/replay-prefs.c
 replay/replay-window.c
 [type: gettext/glade]ui/replay-prefs.ui
