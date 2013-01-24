@@ -27,14 +27,18 @@
  *  gchar *source;
  *  struct timeval tv;
  *  gint64 timestamp;
+ *  GVariant *props;
  *
- *  // create a node idd foo, color blue
+ *  // create a node with id 'foo', color blue
  *  gettimeofday(&tv, NULL);
  *  timestamp = (tv.tv_sec * G_USEC_PER_SEC) + tv.tv_usec;
  *  source = g_strdup_printf("%s: %d", __FILE__, __LINE__);
- *  event = replay_node_create_event_new(timestamp, source, "foo",
- *                                    "color", G_TYPE_STRING, "blue");
- *  // use event
+ *  props = g_variant_new_parsed("{ 'color': %v }",
+ *                               g_variant_new_string("blue"));
+ *  event = replay_node_create_event_new(timestamp, source, "foo", props);
+ *
+ *  // use event - the props #GVariant is owned by the event so doesn't need
+ *  // to be freed
  *
  *  g_object_unref(event);
  *  g_free(source);

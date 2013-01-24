@@ -208,9 +208,9 @@ replay_msg_send_event_init(ReplayMsgSendEvent *self)
  * replay_msg_send_event_get_id:
  * @self: A #ReplayMsgSendEvent
  *
- * Return value: the id of the edge created by this event
+ * Return value: the id of the message sent by this event
  *
- * Get the id of a edge in a #ReplayMsgSendEvent event
+ * Get the id of a message in a #ReplayMsgSendEvent event
  */
 const gchar *
 replay_msg_send_event_get_id(ReplayMsgSendEvent *self)
@@ -223,9 +223,9 @@ replay_msg_send_event_get_id(ReplayMsgSendEvent *self)
  * replay_msg_send_event_get_node:
  * @self: A #ReplayMsgSendEvent
  *
- * Return value: the node of the edge created by this event
+ * Return value: the id of the node sending the message
  *
- * Get the node of a edge in a #ReplayMsgSendEvent event
+ * Get the sending node id in a #ReplayMsgSendEvent event
  */
 const gchar *
 replay_msg_send_event_get_node(ReplayMsgSendEvent *self)
@@ -238,9 +238,9 @@ replay_msg_send_event_get_node(ReplayMsgSendEvent *self)
  * replay_msg_send_event_get_edge:
  * @self: A #ReplayMsgSendEvent
  *
- * Return value: the edge of the edge created by this event
+ * Return value: the id of the edge the message is sent upon
  *
- * Get the edge of a edge in a #ReplayMsgSendEvent event
+ * Get the id of the edge in a #ReplayMsgSendEvent event
  */
 const gchar *
 replay_msg_send_event_get_edge(ReplayMsgSendEvent *self)
@@ -253,9 +253,9 @@ replay_msg_send_event_get_edge(ReplayMsgSendEvent *self)
  * replay_msg_send_event_get_parent:
  * @self: A #ReplayMsgSendEvent
  *
- * Return value: the parent of the edge created by this event
+ * Return value: the id of the parent message which caused this message send event
  *
- * Get the parent of a edge in a #ReplayMsgSendEvent event
+ * Get the message id fo the parent in a #ReplayMsgSendEvent event
  */
 const gchar *
 replay_msg_send_event_get_parent(ReplayMsgSendEvent *self)
@@ -268,9 +268,9 @@ replay_msg_send_event_get_parent(ReplayMsgSendEvent *self)
  * replay_msg_send_event_get_props:
  * @self: A #ReplayMsgSendEvent
  *
- * Return value: (transfer none): the props of the edge created by this event
+ * Return value: (transfer none): the props of the message sent by this event
  *
- * Get the props of a edge in a #ReplayMsgSendEvent event
+ * Get the props of a message in a #ReplayMsgSendEvent event
  */
 GVariant *
 replay_msg_send_event_get_props(ReplayMsgSendEvent *self)
