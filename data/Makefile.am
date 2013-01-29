@@ -1,3 +1,7 @@
+# layout for gdl
+layoutdir         = $(datadir)/replay
+layout_DATA       = layout.xml
+
 # gsettings schema
 gsettings_SCHEMAS	= au.gov.defence.dsto.parallax.replay.gschema.xml
 @GSETTINGS_RULES@

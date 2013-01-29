@@ -22,6 +22,7 @@
 #include <glib/gi18n.h>
 #include <stdio.h>
 #include <gtk/gtk.h>
+#include <gdl/gdl.h>
 #include <glib.h>
 #include <libpeas/peas.h>
 #include <libpeas-gtk/peas-gtk.h>
@@ -54,10 +55,6 @@ G_DEFINE_TYPE(ReplayWindow, replay_window, GTK_TYPE_APPLICATION_WINDOW);
 #define WINDOW_MAXIMIZED_KEY "window-maximized"
 #define WINDOW_WIDTH_KEY "window-width"
 #define WINDOW_HEIGHT_KEY "window-height"
-#define HPANED_POSITION_KEY "hpaned-position"
-#define VPANED_POSITION_KEY "vpaned-position"
-#define TIMELINE_VIEW_HPANED_POSITION_KEY "timeline-hpaned-position"
-#define TIMELINE_VIEW_VPANED_POSITION_KEY "timeline-vpaned-position"
 
 
 /* signals we emit */
@@ -97,8 +94,11 @@ struct _ReplayWindowPrivate
   GtkWidget *graph_view;
   GtkWidget *message_tree_view;
   GtkWidget *scrolled_window;
-  GtkWidget *hpaned;
-  GtkWidget *vpaned;
+
+  /* packing using gdl */
+  GtkWidget *dock;
+  GdlDockLayout *layout;
+
   GtkWidget *menubar;
   GtkHBox *hbox;
   GtkWidget *toolbar_box; /* to allow to pack / unpack toolbar for fullscreen
@@ -167,6 +167,7 @@ static void event_source_notify_description_cb(ReplayEventSource *event_source,
 static void set_widget_data(ReplayWindow *self);
 static void replay_window_dispose(GObject *object);
 static void replay_window_finalize(GObject *object);
+static void replay_window_realize(GtkWidget *widget);
 static void replay_window_drag_data_received(GtkWidget *widget,
                                           GdkDragContext *drag_context,
                                           gint x, gint y,
@@ -546,6 +547,7 @@ static void replay_window_class_init(ReplayWindowClass *klass)
   obj_class->finalize = replay_window_finalize;
   obj_class->get_property = replay_window_get_property;
   obj_class->set_property = replay_window_set_property;
+  widget_class->realize = replay_window_realize;
   widget_class->drag_data_received = replay_window_drag_data_received;
   widget_class->window_state_event = replay_window_state_event;
   widget_class->delete_event = replay_window_delete_event;
@@ -803,9 +805,10 @@ static void replay_window_restore_layout(ReplayWindow *self)
 {
   ReplayWindowPrivate *priv;
   GSettings *settings;
-  int position;
   gboolean maximized;
   gboolean info_bar_visible;
+  gchar *path;
+  gboolean ret;
 
   priv = self->priv;
 
@@ -830,33 +833,27 @@ static void replay_window_restore_layout(ReplayWindow *self)
   {
     gtk_window_unmaximize(GTK_WINDOW(self));
   }
-
-  position = g_settings_get_int(settings, HPANED_POSITION_KEY);
-  if (position)
-  {
-    gtk_paned_set_position(GTK_PANED(priv->hpaned), position);
-  }
-
-  position = g_settings_get_int(settings, VPANED_POSITION_KEY);
-  if (position)
-  {
-    gtk_paned_set_position(GTK_PANED(priv->vpaned), position);
-  }
-
-  position = g_settings_get_int(settings, TIMELINE_VIEW_HPANED_POSITION_KEY);
-  if (position)
-  {
-    replay_timeline_view_set_hpaned_position(REPLAY_TIMELINE_VIEW(priv->timeline_view),
-                                          position);
-  }
-  position = g_settings_get_int(settings, TIMELINE_VIEW_VPANED_POSITION_KEY);
-  if (position)
-  {
-    replay_timeline_view_set_vpaned_position(REPLAY_TIMELINE_VIEW(priv->timeline_view),
-                                          position);
-  }
-
   g_object_unref(settings);
+
+  /* restore gdl dock layout */
+  path = g_build_filename(g_get_user_config_dir(), PACKAGE, "layout.xml", NULL);
+  printf("loading window layout\n");
+  ret = gdl_dock_layout_load_from_file(priv->layout, path);
+  if (!ret)
+  {
+    /* try loading system installed layout */
+    g_free(path);
+    path = g_build_filename(REPLAY_DATADIR, "layout.xml", NULL);
+    ret = gdl_dock_layout_load_from_file(priv->layout, path);
+    if (!ret)
+    {
+      g_warning("failed to load dock layout from system path - replay is not installed correctly!");
+    }
+  }
+
+  gdl_dock_layout_load_layout(priv->layout, PACKAGE);
+  g_free(path);
+
 
   if (info_bar_visible)
   {
@@ -1008,6 +1005,7 @@ static void replay_window_init(ReplayWindow *self)
   PeasEngine *engine;
   GtkWidget *plugin_manager;
   GtkWidget *content_area;
+  GtkWidget *timeline_item, *msg_item, *graph_item;
 
   g_return_if_fail(REPLAY_IS_WINDOW(self));
 
@@ -1156,32 +1154,53 @@ static void replay_window_init(ReplayWindow *self)
                                 GTK_MESSAGE_ERROR);
 
   /* now create other widgets */
-  priv->hpaned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
+  priv->dock = gdl_dock_new();
+  priv->layout = gdl_dock_layout_new(G_OBJECT(priv->dock));
   priv->scrolled_window = gtk_scrolled_window_new(NULL, NULL);
   gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(priv->scrolled_window),
                                  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
   priv->message_tree_view = replay_message_tree_view_new();
   gtk_container_add(GTK_CONTAINER(priv->scrolled_window), priv->message_tree_view);
-  gtk_paned_pack1(GTK_PANED(priv->hpaned), priv->scrolled_window, FALSE, TRUE);
-  priv->graph_view = replay_graph_view_new();
-  g_signal_connect_swapped(priv->graph_view, "processing",
-                           G_CALLBACK(show_activity), self);
-  gtk_paned_pack2(GTK_PANED(priv->hpaned), priv->graph_view, TRUE, TRUE);
-
-  priv->vpaned = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
   priv->timeline_view = replay_timeline_view_new();
   g_signal_connect_swapped(priv->timeline_view, "rendering",
                            G_CALLBACK(show_activity), self);
-  gtk_paned_pack1(GTK_PANED(priv->vpaned), priv->timeline_view, FALSE, TRUE);
-  gtk_paned_pack2(GTK_PANED(priv->vpaned), priv->hpaned, TRUE, TRUE);
+  timeline_item = gdl_dock_item_new("timeline", _("Timeline"),
+                                GDL_DOCK_ITEM_BEH_NORMAL |
+                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+  gtk_container_add(GTK_CONTAINER(timeline_item), priv->timeline_view);
+  gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(timeline_item),
+                    GDL_DOCK_TOP);
 
-  gtk_box_pack_start(GTK_BOX(vbox), priv->vpaned,
+  msg_item = gdl_dock_item_new("message-tree", _("Message Tree"),
+                                GDL_DOCK_ITEM_BEH_NORMAL |
+                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+  gtk_container_add(GTK_CONTAINER(msg_item), priv->scrolled_window);
+  gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(msg_item),
+                    GDL_DOCK_BOTTOM);
+
+  priv->graph_view = replay_graph_view_new();
+  g_signal_connect_swapped(priv->graph_view, "processing",
+                           G_CALLBACK(show_activity), self);
+  graph_item = gdl_dock_item_new("graph", _("Graph"),
+                                GDL_DOCK_ITEM_BEH_NORMAL |
+                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+  gtk_container_add(GTK_CONTAINER(graph_item), priv->graph_view);
+  gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(graph_item),
+                    GDL_DOCK_RIGHT);
+  gdl_dock_item_dock_to(GDL_DOCK_ITEM(graph_item),
+                        GDL_DOCK_ITEM(msg_item),
+                        GDL_DOCK_RIGHT, -1);
+
+  gtk_box_pack_start(GTK_BOX(vbox), priv->dock,
                      TRUE, TRUE, 0);
 
   /* set all actions as insensitive */
   gtk_action_group_set_sensitive(priv->doc_actions, FALSE);
 
-  gtk_window_set_icon_name(GTK_WINDOW(self), "replay");
+  gtk_window_set_icon_name(GTK_WINDOW(self), PACKAGE);
   gtk_window_resize(GTK_WINDOW(self), 1600, 1060);
 
   priv->event_text_view = replay_event_text_view_new();
@@ -1265,8 +1284,6 @@ static void replay_window_init(ReplayWindow *self)
                    G_CALLBACK(on_extension_added), self);
   g_signal_connect(priv->set, "extension-removed",
                    G_CALLBACK(on_extension_removed), self);
-
-  replay_window_restore_layout(self);
 }
 
 #define REPLAY_FILE_LOADER_TASK_KEY "ReplayFileLoaderTaskKey"
@@ -1329,11 +1346,11 @@ static void replay_window_cleanup(ReplayWindow *self)
 static void replay_window_save_layout(ReplayWindow *self)
 {
   ReplayWindowPrivate *priv;
-  GSettings *settings;
-  int position;
   GtkAction *fullscreen_action;
   gboolean fullscreen;
   gboolean info_bar_visible;
+  gchar *path;
+  gboolean ret;
 
   priv = self->priv;
 
@@ -1344,8 +1361,6 @@ static void replay_window_save_layout(ReplayWindow *self)
     gtk_widget_hide(priv->info_bar);
   }
 
-  settings = g_settings_new("au.gov.defence.dsto.parallax.replay");
-
   /* save width and height if not fullscreen as otherwise we get quite
    * distorted values */
   fullscreen_action = gtk_action_group_get_action(priv->global_actions,
@@ -1353,32 +1368,35 @@ static void replay_window_save_layout(ReplayWindow *self)
   fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(fullscreen_action));
   if (!fullscreen)
   {
+    GSettings *settings;
     int width, height;
+
+    settings = g_settings_new("au.gov.defence.dsto.parallax.replay");
+
     gtk_window_get_size(GTK_WINDOW(self), &width, &height);
 
     g_settings_set_int(settings, WINDOW_WIDTH_KEY, width);
     g_settings_set_int(settings, WINDOW_HEIGHT_KEY, height);
+    g_object_unref(settings);
   }
 
-  position = gtk_paned_get_position(GTK_PANED(priv->hpaned));
-  g_settings_set_int(settings,
-                     HPANED_POSITION_KEY,
-                     position);
-  position = gtk_paned_get_position(GTK_PANED(priv->vpaned));
-  g_settings_set_int(settings,
-                     VPANED_POSITION_KEY,
-                     position);
+  /* save gdl dock layout */
+  /* check directory exists and create if needed */
+  path = g_build_filename(g_get_user_config_dir(), PACKAGE, NULL);
+  g_mkdir_with_parents(path, 0755);
+  g_free(path);
 
-  /* save properties for timeline view as well */
-  position = replay_timeline_view_get_hpaned_position(REPLAY_TIMELINE_VIEW(priv->timeline_view));
-  g_settings_set_int(settings,
-                     TIMELINE_VIEW_HPANED_POSITION_KEY,
-                     position);
-  position = replay_timeline_view_get_vpaned_position(REPLAY_TIMELINE_VIEW(priv->timeline_view));
-  g_settings_set_int(settings,
-                     TIMELINE_VIEW_VPANED_POSITION_KEY,
-                     position);
-  g_object_unref(settings);
+  path = g_build_filename(g_get_user_config_dir(), PACKAGE, "layout.xml", NULL);
+  printf("writing window layout\n");
+  gdl_dock_layout_save_layout(priv->layout, PACKAGE);
+  ret = gdl_dock_layout_save_to_file(priv->layout, path);
+  g_free(path);
+
+  if (!ret)
+  {
+    g_warning("failed to save window dock layout");
+  }
+
   if (info_bar_visible)
   {
     gtk_widget_show_all(priv->info_bar);
@@ -1583,7 +1601,7 @@ static void event_source_notify_description_cb(ReplayEventSource *event_source,
   if (description != NULL) {
     gtk_window_set_title(GTK_WINDOW(user_data), description);
   } else {
-    gtk_window_set_title(GTK_WINDOW(user_data), "Replay");
+    gtk_window_set_title(GTK_WINDOW(user_data), _("Replay"));
   }
 }
 
@@ -1787,6 +1805,13 @@ void replay_window_load_file(ReplayWindow *self, GFile *file)
     g_free(title);
     g_free(filename);
   }
+}
+
+static void
+replay_window_realize(GtkWidget *widget)
+{
+  GTK_WIDGET_CLASS(replay_window_parent_class)->realize(widget);
+  replay_window_restore_layout(REPLAY_WINDOW(widget));
 }
 
 static void replay_window_drag_data_received(GtkWidget *widget,
@@ -2329,7 +2354,7 @@ GtkWidget *replay_window_new(ReplayApplication *application)
 {
   return g_object_new(REPLAY_TYPE_WINDOW,
                       "application", application,
-                      "title", "Replay",
+                      "title", _("Replay"),
                       NULL);
 }
 
@@ -2518,7 +2543,7 @@ void replay_window_set_event_source(ReplayWindow *self,
     if (description != NULL) {
       gtk_window_set_title(GTK_WINDOW(self), description);
     } else {
-      gtk_window_set_title(GTK_WINDOW(self), "Replay");
+      gtk_window_set_title(GTK_WINDOW(self), _("Replay"));
     }
     g_object_notify_by_pspec(G_OBJECT(self), properties[PROP_EVENT_SOURCE]);
     message = g_strdup_printf("Using event source '%s'",

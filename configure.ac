@@ -107,12 +107,14 @@ GLIB_REQUIRED=2.26.0
 GTHREAD_REQUIRED=2.6.0
 GTK_REQUIRED=3.4.0
 LIBPEAS_REQUIRED=0.7.2
+GDL_REQUIRED=3.6.0
 
 PKG_CHECK_MODULES(REPLAY, [glib-2.0 >= $GLIB_REQUIRED
                            gthread-2.0 >= $GTHREAD_REQUIRED
    			   gtk+-3.0 >= $GTK_REQUIRED
                            libpeas-1.0 >= $LIBPEAS_REQUIRED
                            libpeas-gtk-1.0 >= $LIBPEAS_REQUIRED
+			   gdl-3.0 >= $GDL_REQUIRED
                            gio-unix-2.0
                            gtkglext-3.0
                            glu
