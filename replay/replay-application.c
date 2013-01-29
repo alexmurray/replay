@@ -135,15 +135,18 @@ static void action_about(GSimpleAction *action,
                         "program-name", "Replay",
                         "version", VERSION,
                         "copyright",
-                        "Copyright © 2012 Commonwealth of Australia\n\n"
-                        "This program comes with ABSOLUTELY NO WARRANTY;\n"
-                        "for details, visit http://www.gnu.org/licenses/gpl-3.0.html",
+                        "Copyright © 2012 Commonwealth of Australia",
                         "website", PACKAGE_URL,
                         "website-label", _("Replay homepage"),
                         "authors", authors,
                         "documenters", authors,
                         "artists", authors,
                         "logo-icon-name", PACKAGE,
+                        "license", _("Replay is licensed under the GNU General Public License version 3 (GPLv3)\n"
+                                     "with extensions as allowed under clause 7 of GPLv3 to clarify issues of\n"
+                                     "indemnity and liability.\n\n"
+                                     "For full details see the COPYING file distributed with Replay or view it online at\n"
+                                     "https://github.com/alexmurray/replay/blob/master/COPYING"),
                         NULL);
 }
 
