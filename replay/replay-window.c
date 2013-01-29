@@ -1006,8 +1006,6 @@ static void replay_window_init(ReplayWindow *self)
   PangoAttrList *attr_list;
   PangoAttribute *attr;
   PeasEngine *engine;
-  GdkScreen *screen;
-  GtkRequisition req;
   GtkWidget *plugin_manager;
   GtkWidget *content_area;
 
@@ -1103,19 +1101,6 @@ static void replay_window_init(ReplayWindow *self)
   gtk_container_add(GTK_CONTAINER(priv->toolbar_box), priv->toolbar);
   gtk_box_pack_start(GTK_BOX(vbox), priv->toolbar_box,
                      FALSE, TRUE, 0);
-
-  /* also create window for doing auto-hide toolbar */
-  priv->fs_toolbar = gtk_window_new(GTK_WINDOW_POPUP);
-  screen = gtk_window_get_screen(GTK_WINDOW(self));
-  gtk_widget_get_preferred_size(priv->toolbar, NULL, &req);
-  gtk_window_resize(GTK_WINDOW(priv->fs_toolbar),
-                    gdk_screen_get_width(screen),
-                    req.height);
-  gtk_window_set_transient_for(GTK_WINDOW(priv->fs_toolbar), GTK_WINDOW(self));
-  g_signal_connect(priv->fs_toolbar, "enter-notify-event",
-                   G_CALLBACK(slide_fs_toolbar_in), self);
-  g_signal_connect(priv->fs_toolbar, "leave-notify-event",
-                   G_CALLBACK(slide_fs_toolbar_out), self);
 
   priv->info_bar_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
@@ -2037,13 +2022,15 @@ static void close_cb(GtkAction *action,
 static void toggle_fullscreen_cb(GtkAction *action,
                                  gpointer data)
 {
+  ReplayWindow *self;
   ReplayWindowPrivate *priv;
   GtkAction *fullscreen_action;
   gboolean fullscreen;
 
   g_return_if_fail(REPLAY_IS_WINDOW(data));
 
-  priv = REPLAY_WINDOW(data)->priv;
+  self = REPLAY_WINDOW(data);
+  priv = self->priv;
 
   fullscreen_action = gtk_action_group_get_action(priv->global_actions,
                                                   "FullscreenAction");
@@ -2052,14 +2039,38 @@ static void toggle_fullscreen_cb(GtkAction *action,
 
   if (fullscreen)
   {
+    GdkScreen *screen;
+    gint monitor;
+    GdkRectangle rect;
+    GtkRequisition req;
+
+    /* create window for doing auto-hide toolbar */
+    priv->fs_toolbar = gtk_window_new(GTK_WINDOW_POPUP);
+    gtk_window_set_transient_for(GTK_WINDOW(priv->fs_toolbar), GTK_WINDOW(self));
+    g_signal_connect(priv->fs_toolbar, "enter-notify-event",
+                     G_CALLBACK(slide_fs_toolbar_in), self);
+    g_signal_connect(priv->fs_toolbar, "leave-notify-event",
+                     G_CALLBACK(slide_fs_toolbar_out), self);
+
     /* reparent toolbar into fs_toolbar window so we can auto-show / hide it */
     g_object_ref(priv->toolbar);
     gtk_container_remove(GTK_CONTAINER(priv->toolbar_box), priv->toolbar);
     gtk_container_add(GTK_CONTAINER(priv->fs_toolbar), priv->toolbar);
     g_object_unref(priv->toolbar);
+    /* set size of toolbar to respect current monitor width */
+    screen = gtk_window_get_screen(GTK_WINDOW(self));
+    monitor = gdk_screen_get_monitor_at_window(screen,
+                                               gtk_widget_get_window(GTK_WIDGET(self)));
+    gdk_screen_get_monitor_geometry(screen, monitor, &rect);
+    gtk_widget_get_preferred_size(priv->toolbar, NULL, &req);
+    gtk_window_resize(GTK_WINDOW(priv->fs_toolbar),
+                      rect.width,
+                      req.height);
+    gtk_window_move(GTK_WINDOW(priv->fs_toolbar),
+                    rect.x, rect.y);
     gtk_widget_show(priv->fs_toolbar);
     /* slide the toolbar out but wait 750ms first */
-    g_timeout_add(750, (GSourceFunc)slide_fs_toolbar_out, data);
+    priv->slide_id = g_timeout_add(750, (GSourceFunc)slide_fs_toolbar_out, data);
     gtk_window_fullscreen(GTK_WINDOW(data));
   }
   else
@@ -2068,7 +2079,19 @@ static void toggle_fullscreen_cb(GtkAction *action,
     gtk_container_remove(GTK_CONTAINER(priv->fs_toolbar), priv->toolbar);
     gtk_container_add(GTK_CONTAINER(priv->toolbar_box), priv->toolbar);
     g_object_unref(priv->toolbar);
-    gtk_widget_hide(priv->fs_toolbar);
+    /* delete floating toolbar window */
+    if (priv->slide_id)
+    {
+      g_source_remove(priv->slide_id);
+    }
+    g_signal_handlers_disconnect_by_func(priv->fs_toolbar,
+                                         G_CALLBACK(slide_fs_toolbar_in),
+                                         self);
+    g_signal_handlers_disconnect_by_func(priv->fs_toolbar,
+                                         G_CALLBACK(slide_fs_toolbar_out),
+                                         self);
+    gtk_widget_destroy(priv->fs_toolbar);
+    priv->fs_toolbar = NULL;
     gtk_window_unfullscreen(GTK_WINDOW(data));
   }
 }
