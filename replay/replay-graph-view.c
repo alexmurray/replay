@@ -3630,7 +3630,8 @@ static void add_activity_node_with_name(ReplayGraphView *self,
     add_activity(node, activity);
 
     /* add canonical node to active nodes list if we now have only 1 activity
-     * in its list */
+     * in its list - otherwise the canonical node should already be in the
+     * active list */
     node = get_canonical_node(node);
     if (g_list_length(node->activities) == 1)
     {
@@ -4085,8 +4086,19 @@ static void reparent_node(ReplayGraphView *self,
       add_node_to_visible_array(self, node);
     }
 
-    g_list_foreach(node->activities, (GFunc)remove_activity_from_node,
-                   _parent);
+    if (node->activities)
+    {
+      ReplayGraphViewNode *canonical;
+      g_list_foreach(node->activities, (GFunc)remove_activity_from_node,
+                     _parent);
+      canonical = get_canonical_node(_parent);
+      if (!canonical->activities)
+      {
+        priv->active_nodes = g_list_remove(priv->active_nodes,
+                                           canonical);
+      }
+      priv->active_nodes = g_list_prepend(priv->active_nodes, node);
+    }
     _parent->children = g_list_remove(_parent->children,
                                       node);
     _parent->num_children--;
@@ -4108,8 +4120,14 @@ static void reparent_node(ReplayGraphView *self,
     parent->num_children++;
     node->parent = parent;
 
-    g_list_foreach(node->activities, (GFunc)add_activity_to_node,
-                   parent);
+    if (node->activities)
+    {
+      g_list_foreach(node->activities, (GFunc)add_activity_to_node,
+                     parent);
+      priv->active_nodes = g_list_remove(priv->active_nodes, node);
+      priv->active_nodes = g_list_prepend(priv->active_nodes,
+                                          get_canonical_node(node));
+    }
 
     /* move parent a bit towards node it now contains - if this is the only
      * node it contains, set parent to node's location */
@@ -4144,6 +4162,11 @@ static void remove_node(ReplayGraphView *self, ReplayGraphViewNode *node)
   g_return_if_fail(REPLAY_IS_GRAPH_VIEW(self));
 
   priv = self->priv;
+
+  if (priv->hovered_node == node)
+  {
+    priv->hovered_node = NULL;
+  }
 
   /* if we have children, remove them - removing the last one will cause us to
    * inturn get removed, so don't access node pointer after calling
