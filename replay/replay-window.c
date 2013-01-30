@@ -837,7 +837,6 @@ static void replay_window_restore_layout(ReplayWindow *self)
 
   /* restore gdl dock layout */
   path = g_build_filename(g_get_user_config_dir(), PACKAGE, "layout.xml", NULL);
-  printf("loading window layout\n");
   ret = gdl_dock_layout_load_from_file(priv->layout, path);
   if (!ret)
   {
@@ -1393,7 +1392,6 @@ static void replay_window_save_layout(ReplayWindow *self)
   g_free(path);
 
   path = g_build_filename(g_get_user_config_dir(), PACKAGE, "layout.xml", NULL);
-  printf("writing window layout\n");
   gdl_dock_layout_save_layout(priv->layout, PACKAGE);
   ret = gdl_dock_layout_save_to_file(priv->layout, path);
   g_free(path);
