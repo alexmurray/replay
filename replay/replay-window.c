@@ -2585,18 +2585,42 @@ void replay_window_set_display_flags(ReplayWindow *self,
 
   if (changed & REPLAY_WINDOW_DISPLAY_MESSAGE_TREE)
   {
-    gtk_widget_set_visible(priv->scrolled_window,
-                           flags & REPLAY_WINDOW_DISPLAY_MESSAGE_TREE);
+    GdlDockItem *item = gdl_dock_get_item_by_name(GDL_DOCK(priv->dock),
+                                                  "message-tree");
+    if (flags & REPLAY_WINDOW_DISPLAY_MESSAGE_TREE)
+    {
+      gdl_dock_item_show_item(item);
+    }
+    else
+    {
+      gdl_dock_item_hide_item(item);
+    }
   }
   if (changed & REPLAY_WINDOW_DISPLAY_TIMELINE)
   {
-    gtk_widget_set_visible(priv->timeline_view,
-                           flags & REPLAY_WINDOW_DISPLAY_TIMELINE);
+    GdlDockItem *item = gdl_dock_get_item_by_name(GDL_DOCK(priv->dock),
+                                                  "timeline");
+    if (flags & REPLAY_WINDOW_DISPLAY_TIMELINE)
+    {
+      gdl_dock_item_show_item(item);
+    }
+    else
+    {
+      gdl_dock_item_hide_item(item);
+    }
   }
   if (changed & REPLAY_WINDOW_DISPLAY_GRAPH)
   {
-    gtk_widget_set_visible(priv->graph_view,
-                           flags & REPLAY_WINDOW_DISPLAY_GRAPH);
+    GdlDockItem *item = gdl_dock_get_item_by_name(GDL_DOCK(priv->dock),
+                                                  "graph");
+    if (flags & REPLAY_WINDOW_DISPLAY_GRAPH)
+    {
+      gdl_dock_item_show_item(item);
+    }
+    else
+    {
+      gdl_dock_item_hide_item(item);
+    }
   }
   g_object_notify_by_pspec(G_OBJECT(self), properties[PROP_DISPLAY_FLAGS]);
 }
