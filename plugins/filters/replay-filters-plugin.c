@@ -734,12 +734,16 @@ static void filter_list_row_deleted_cb(GtkTreeModel *model,
                                        gpointer data)
 {
   g_return_if_fail(REPLAY_IS_FILTERS_PLUGIN(data));
-  /* if there is now 0 rows in model don't need to refilter for each new entry
-   * in node tree */
-  if (gtk_tree_model_iter_n_children(model, NULL) == 0)
+  /* row-deleted gets emitted BEFORE the row is actually removed - so if there
+   * is now only 1 row left it will be this about-to-be-deleted row so there
+   * will be no rows left after this signal has finished and hence no filters
+   * - so we can disconnect from the row-inserted signal on the node tree
+   * since we don't need to refilter for each new entry in node tree as no
+   * filters anymore */
+  if (gtk_tree_model_iter_n_children(model, NULL) == 1)
   {
     ReplayFiltersPluginPrivate *priv = REPLAY_FILTERS_PLUGIN(data)->priv;
-    g_assert(priv->nt_ri_id > 0);
+    g_assert(priv->nt_ri_id);
     g_signal_handler_disconnect(priv->node_tree, priv->nt_ri_id);
     priv->nt_ri_id = 0;
   }
