@@ -1349,10 +1349,17 @@ static void replay_window_save_layout(ReplayWindow *self)
   GtkAction *fullscreen_action;
   gboolean fullscreen;
   gboolean info_bar_visible;
+  ReplayWindowDisplayFlags flags;
   gchar *path;
   gboolean ret;
 
   priv = self->priv;
+
+  /* restore all views first to make sure when we
+   * restore they're all visible since at the moment there is no way to
+   * manually restore a hidden view */
+  flags = priv->display_flags;
+  replay_window_set_display_flags(self, REPLAY_WINDOW_DISPLAY_ALL);
 
   /* first hide error bar if visible */
   info_bar_visible = gtk_widget_get_visible(priv->info_bar);
@@ -1380,7 +1387,6 @@ static void replay_window_save_layout(ReplayWindow *self)
     g_object_unref(settings);
   }
 
-  /* save gdl dock layout */
   /* check directory exists and create if needed */
   path = g_build_filename(g_get_user_config_dir(), PACKAGE, NULL);
   g_mkdir_with_parents(path, 0755);
@@ -1401,6 +1407,7 @@ static void replay_window_save_layout(ReplayWindow *self)
   {
     gtk_widget_show_all(priv->info_bar);
   }
+  replay_window_set_display_flags(self, flags);
 }
 
 static gboolean replay_window_delete_event(GtkWidget *widget,
