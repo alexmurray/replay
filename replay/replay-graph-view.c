@@ -4168,6 +4168,12 @@ static void remove_node(ReplayGraphView *self, ReplayGraphViewNode *node)
     priv->hovered_node = NULL;
   }
 
+  /* make sure node isn't in the active list */
+  if (node->activities)
+  {
+    priv->active_nodes = g_list_remove(priv->active_nodes, node);
+  }
+
   /* if we have children, remove them - removing the last one will cause us to
    * inturn get removed, so don't access node pointer after calling
    * remove_node on last child */
