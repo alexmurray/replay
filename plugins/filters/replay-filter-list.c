@@ -635,17 +635,10 @@ ReplayFilterList *replay_filter_list_new_from_file(const gchar *file_name,
     for (i = 0; i < length; i++)
     {
       gchar *pattern;
-      gint indice = -1;
       ReplayFilterAction action;
       gboolean override_node_color;
       gchar *group_name, *group_color, *node_color, *action_string;
       gchar **names = NULL;
-
-      indice = g_ascii_strtoll(indexes[i], NULL, 10);
-      if (indice != (gint)i)
-      {
-        indice = -1;
-      }
 
       action_string = g_key_file_get_string(key_file, indexes[i],
                                             REPLAY_FILTER_LIST_KEY_ACTION, NULL);
@@ -1582,7 +1575,7 @@ void replay_filter_list_disable_all_groups_with_name(ReplayFilterList *self,
 const gchar *
 replay_filter_action_to_string(ReplayFilterAction action)
 {
-  const gchar *string = _("Invalid action");
+  const gchar *string;
 
   switch (action)
   {
@@ -1599,6 +1592,7 @@ replay_filter_action_to_string(ReplayFilterAction action)
       break;
 
     default:
+      string = _("Invalid action");
       g_warning("Invalid action %d", action);
   }
   return string;

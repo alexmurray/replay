@@ -181,7 +181,7 @@ replay_network_server_load_events(ReplayNetworkServer *self,
   REPLAY_NETWORK_SERVER_GET_CLASS(self)->load_events(self, conn);
 
   /* set description to the remote address and port */
-  address = g_socket_connection_get_remote_address(conn, NULL);
+  address = g_socket_connection_get_remote_address(conn, &error);
   if (address) {
     inet = g_inet_socket_address_get_address(G_INET_SOCKET_ADDRESS(address));
     port = g_inet_socket_address_get_port(G_INET_SOCKET_ADDRESS(address));
@@ -192,6 +192,7 @@ replay_network_server_load_events(ReplayNetworkServer *self,
     g_free(inet_str);
     g_object_unref(address);
   } else {
+    g_assert(error);
     replay_event_source_set_description(REPLAY_EVENT_SOURCE(self), error->message);
     g_clear_error(&error);
   }

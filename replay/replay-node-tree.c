@@ -273,7 +273,7 @@ static void _remove_entry(ReplayNodeTree *self,
     {
       _next->index--;
       g_assert((_next->prev == NULL && _next->index == 0) ||
-               (_next->index == _next->prev->index + 1));
+               (_next->prev && _next->index == _next->prev->index + 1));
       _next = _next->next;
     }
   }
@@ -1070,7 +1070,8 @@ static void insert_entry_with_parent(ReplayNodeTree *self,
               priv->first_child == entry &&
               priv->last_child == entry &&
               priv->num_children == 1) ||
-             (entry->parent->first_child == entry &&
+             (entry->parent &&
+              entry->parent->first_child == entry &&
               entry->parent->last_child == entry &&
               entry->parent->num_children == 1))) ||
            (((entry->prev == NULL && entry->index == 0) ||

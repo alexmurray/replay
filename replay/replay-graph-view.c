@@ -2779,17 +2779,13 @@ static void replay_graph_view_draw_all_markups(ReplayGraphView *self)
     /* print children names as well */
     if (node->group && node->num_children > 0)
     {
-      ReplayGraphViewNode *child;
-      list = g_list_first(node->children);
-      child = (ReplayGraphViewNode *)list->data;
-
       text = replay_strconcat_and_free(text,
                                     g_strdup("\n\nChildren: "));
       for (list = g_list_first(node->children);
            list != NULL;
            list = g_list_next(list))
       {
-        child = (ReplayGraphViewNode *)list->data;
+        ReplayGraphViewNode *child = (ReplayGraphViewNode *)list->data;
         text = replay_strconcat_and_free(text,
                                       g_strdup_printf("\n"
                                                       "          %s%s",
@@ -6279,9 +6275,9 @@ static gboolean _process_events(gpointer data)
         GtkTreeIter parent;
         gtk_tree_path_up(old_path);
         gtk_tree_path_prev(old_path);
-        ret = gtk_tree_model_get_iter(GTK_TREE_MODEL(priv->event_store),
-                                      &parent,
-                                      old_path);
+        gtk_tree_model_get_iter(GTK_TREE_MODEL(priv->event_store),
+                                &parent,
+                                old_path);
         n = gtk_tree_model_iter_n_children(GTK_TREE_MODEL(priv->event_store),
                                            &parent);
         gtk_tree_path_append_index(old_path, n - 1);

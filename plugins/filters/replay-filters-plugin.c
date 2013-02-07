@@ -573,7 +573,7 @@ static gboolean set_filter_properties(GtkTreeModel *model,
     {
       /* tree paths will potentially change if we create a new group -
        * otherwise this will return an existing group */
-      GtkTreePath *old_tree_path = tree_path;
+      GtkTreePath *new_tree_path;
       /* will either create it or return existing one for us */
       if (!replay_node_tree_find_group(node_tree, props->group_name, &group_iter))
       {
@@ -587,15 +587,14 @@ static gboolean set_filter_properties(GtkTreeModel *model,
       }
       /* need to recalculate tree_path as will prob have changed after
        * inserting new group */
-      tree_path = gtk_tree_model_get_path(model, iter);
+      new_tree_path = gtk_tree_model_get_path(model, iter);
       group_path = gtk_tree_model_get_path(model, &group_iter);
-      if (!gtk_tree_path_is_ancestor(group_path, tree_path) &&
-          gtk_tree_path_compare(group_path, tree_path) != 0)
+      if (!gtk_tree_path_is_ancestor(group_path, new_tree_path) &&
+          gtk_tree_path_compare(group_path, new_tree_path) != 0)
       {
         props->rerun |= replay_node_tree_move_to_group(node_tree, &group_iter, iter);
       }
-      gtk_tree_path_free(tree_path);
-      tree_path = old_tree_path;
+      gtk_tree_path_free(new_tree_path);
       gtk_tree_path_free(group_path);
     }
     else

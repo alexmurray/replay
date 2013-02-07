@@ -117,7 +117,7 @@ static gchar *
 relative_to_string(gint64 times[REPLAY_NUM_TIME_UNITS],
                    ReplayTimeUnit max)
 {
-        gchar *string = g_strdup("");
+        gchar *string;
         ReplayTimeUnit min;
         ReplayTimeUnit i;
 

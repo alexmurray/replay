@@ -326,6 +326,7 @@ void replay_interval_list_set_interval_end(ReplayIntervalList *self,
     g_mutex_lock(&priv->mutex[interval->type][old_array]);
     ret = g_ptr_array_remove(priv->start_intervals[interval->type][old_array],
                              interval);
+    g_assert(ret);
     ret = g_ptr_array_remove(priv->end_intervals[interval->type][old_array],
                              interval);
     g_assert(ret);
