@@ -49,8 +49,6 @@
 /* inherit from GtkWindow */
 G_DEFINE_TYPE(ReplayWindow, replay_window, GTK_TYPE_APPLICATION_WINDOW);
 
-#define ZOOM_FACTOR 1.5
-
 #define WINDOW_MAXIMIZED_KEY "window-maximized"
 #define WINDOW_WIDTH_KEY "window-width"
 #define WINDOW_HEIGHT_KEY "window-height"
@@ -201,10 +199,6 @@ static void toggle_label_edges_cb(GtkAction *action,
                                   gpointer data);
 static void toggle_label_messages_cb(GtkAction *action,
                                      gpointer data);
-static void zoom_in_cb(GtkAction *action,
-                       gpointer data);
-static void zoom_out_cb(GtkAction *action,
-                        gpointer data);
 static void event_text_view_cb(GtkAction *action,
                                gpointer data);
 static void log_window_cb(GtkAction *action,
@@ -252,10 +246,6 @@ static GtkActionEntry doc_entries[] =
     N_("Print the timeline view"), G_CALLBACK(print_cb) },
 
   /* View Menu Items */
-  { "ZoomInAction", GTK_STOCK_ZOOM_IN, N_("Zoom _In"), "<control>plus",
-    N_("Increase zoom in timeline view"), G_CALLBACK(zoom_in_cb) },
-  { "ZoomOutAction", GTK_STOCK_ZOOM_OUT, N_("Zoom _Out"), "<control>minus",
-    N_("Decrease zoom in timeline view"), G_CALLBACK(zoom_out_cb) },
   { "ShowEventTextViewAction", GTK_STOCK_INFO, N_("Event Source"), "<control>U",
     N_("Show current event source"), G_CALLBACK(event_text_view_cb) },
 
@@ -294,8 +284,6 @@ static const gchar * const ui = "<ui>"
                                 "</menu>"
                                 "<menu name='ViewMenu' action='ViewMenuAction'>"
                                 "<menuitem action='FullscreenAction'/>"
-                                "<menuitem action='ZoomInAction'/>"
-                                "<menuitem action='ZoomOutAction'/>"
                                 "<separator/>"
                                 "<menuitem action='LogWindowAction'/>"
                                 "<menuitem action='ShowEventTextViewAction'/>"
@@ -2150,32 +2138,6 @@ static void toggle_label_messages_cb(GtkAction *action,
 
   label_messages = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
   replay_prefs_set_label_messages(priv->prefs, label_messages);
-}
-
-static void zoom_in_cb(GtkAction *action,
-                       gpointer data)
-{
-  ReplayTimelineView *timeline_view;
-
-  g_return_if_fail(REPLAY_IS_WINDOW(data));
-
-  timeline_view = REPLAY_TIMELINE_VIEW(REPLAY_WINDOW(data)->priv->timeline_view);
-  replay_timeline_view_set_x_resolution(timeline_view,
-                                     (replay_timeline_view_get_x_resolution(timeline_view) *
-                                      ZOOM_FACTOR));
-}
-
-static void zoom_out_cb(GtkAction *action,
-                        gpointer data)
-{
-  ReplayTimelineView *timeline_view;
-
-  g_return_if_fail(REPLAY_IS_WINDOW(data));
-
-  timeline_view = REPLAY_TIMELINE_VIEW(REPLAY_WINDOW(data)->priv->timeline_view);
-  replay_timeline_view_set_x_resolution(timeline_view,
-                                     (replay_timeline_view_get_x_resolution(timeline_view) /
-                                      ZOOM_FACTOR));
 }
 
 static void begin_print(GtkPrintOperation *op,
