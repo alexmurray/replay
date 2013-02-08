@@ -19,35 +19,15 @@
       <summary>Whether main Replay window is maximized</summary>
       <description>The maximization state for the main Replay window</description>
     </key>
-    <key name="hpaned-position" type="i">
-      <default>700</default>
-      <summary>Position of horizontal pane</summary>
-      <description>The position of the horizontal pane which divides the message tree view from the graph view</description>
-    </key>
-    <key name="vpaned-position" type="i">
-      <default>300</default>
-      <summary>Position of vertical pane</summary>
-      <description>The position of the vertical pane which divides the timeline view from the message tree and graph views</description>
-    </key>
-    <key name="timeline-hpaned-position" type="i">
-      <default>123</default>
-      <summary>Position of horizontal pane in timeline view</summary>
-      <description>The position of the horizontal pane which divides the node list from the main canvas of the timeline view</description>
-    </key>
-    <key name="timeline-vpaned-position" type="i">
-      <default>230</default>
-      <summary>Position of vertical pane in timeline view</summary>
-      <description>The position of the vertical pane which divides the main canvas of the timeline view from the timeline itself</description>
+    <key name="lock-views" type="b">
+      <default>true</default>
+      <summary>Whether can rearrage the views in the window</summary>
+      <description>The views can be rearranged when unlocked</description>
     </key>
     <key name="absolute-time" type="b">
       <default>false</default>
       <summary>Whether to display times as absolute or relative to start time</summary>
       <description>Whether to display times as absolute or relative to start time</description>
-    </key>
-    <key name="time-scale" enum="au.gov.defence.dsto.parallax.replay.time-scale">
-      <default>'seconds'</default>
-      <summary>Time scale</summary>
-      <description>The time scale to use when showing time values</description>
     </key>
     <key name="label-nodes" type="b">
       <default>false</default>

@@ -55,7 +55,7 @@ G_DEFINE_TYPE(ReplayWindow, replay_window, GTK_TYPE_APPLICATION_WINDOW);
 #define WINDOW_MAXIMIZED_KEY "window-maximized"
 #define WINDOW_WIDTH_KEY "window-width"
 #define WINDOW_HEIGHT_KEY "window-height"
-
+#define LOCK_VIEWS_KEY "lock-views"
 
 /* signals we emit */
 enum
@@ -194,6 +194,8 @@ static void page_setup_cb(GtkAction *action,
                           gpointer data);
 static void toggle_fullscreen_cb(GtkAction *action,
                                  gpointer data);
+static void toggle_lock_views_cb(GtkAction *action,
+                                 gpointer data);
 static void toggle_absolute_time_cb(GtkAction *action,
                                     gpointer data);
 static void toggle_label_nodes_cb(GtkAction *action,
@@ -239,6 +241,8 @@ static GtkToggleActionEntry global_toggle_entries[] =
 {
   { "FullscreenAction", GTK_STOCK_FULLSCREEN, N_("_Fullscreen"), "F11",
     N_("Switch to fullscreen view"), G_CALLBACK(toggle_fullscreen_cb) },
+  { "LockViewsAction", NULL, N_("_Lock Views"), NULL,
+    N_("Lock / unlock rearrangement of views"), G_CALLBACK(toggle_lock_views_cb) },
 };
 
 /* document actions that apply to the currently loaded event log - any defined
@@ -295,6 +299,7 @@ static const gchar * const ui = "<ui>"
                                 "</menu>"
                                 "<menu name='ViewMenu' action='ViewMenuAction'>"
                                 "<menuitem action='FullscreenAction'/>"
+                                "<menuitem action='LockViewsAction'/>"
                                 "<menuitem action='ZoomInAction'/>"
                                 "<menuitem action='ZoomOutAction'/>"
                                 "<separator/>"
@@ -800,12 +805,13 @@ log_appended_cb(ReplayLog *log,
   }
 }
 
-
 static void replay_window_restore_layout(ReplayWindow *self)
 {
   ReplayWindowPrivate *priv;
   GSettings *settings;
   gboolean maximized;
+  gboolean lock_views;
+  GtkAction *lock_views_action;
   gboolean info_bar_visible;
   gchar *path;
   gboolean ret;
@@ -833,6 +839,11 @@ static void replay_window_restore_layout(ReplayWindow *self)
   {
     gtk_window_unmaximize(GTK_WINDOW(self));
   }
+  lock_views = g_settings_get_boolean(settings, LOCK_VIEWS_KEY);
+  lock_views_action = gtk_action_group_get_action(priv->global_actions,
+                                                  "LockViewsAction");
+  gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(lock_views_action),
+                               lock_views);
   g_object_unref(settings);
 
   /* restore gdl dock layout */
@@ -1164,17 +1175,17 @@ static void replay_window_init(ReplayWindow *self)
   g_signal_connect_swapped(priv->timeline_view, "rendering",
                            G_CALLBACK(show_activity), self);
   timeline_item = gdl_dock_item_new("timeline", _("Timeline"),
-                                GDL_DOCK_ITEM_BEH_NORMAL |
-                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
-                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+                                    GDL_DOCK_ITEM_BEH_LOCKED |
+                                    GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                                    GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
   gtk_container_add(GTK_CONTAINER(timeline_item), priv->timeline_view);
   gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(timeline_item),
                     GDL_DOCK_TOP);
 
-  msg_item = gdl_dock_item_new("message-tree", _("Message Tree"),
-                                GDL_DOCK_ITEM_BEH_NORMAL |
-                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
-                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+  msg_item = gdl_dock_item_new("message-tree", _("Messages"),
+                               GDL_DOCK_ITEM_BEH_LOCKED |
+                               GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                               GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
   gtk_container_add(GTK_CONTAINER(msg_item), priv->scrolled_window);
   gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(msg_item),
                     GDL_DOCK_BOTTOM);
@@ -1183,9 +1194,9 @@ static void replay_window_init(ReplayWindow *self)
   g_signal_connect_swapped(priv->graph_view, "processing",
                            G_CALLBACK(show_activity), self);
   graph_item = gdl_dock_item_new("graph", _("Graph"),
-                                GDL_DOCK_ITEM_BEH_NORMAL |
-                                GDL_DOCK_ITEM_BEH_CANT_CLOSE |
-                                GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
+                                 GDL_DOCK_ITEM_BEH_LOCKED |
+                                 GDL_DOCK_ITEM_BEH_CANT_CLOSE |
+                                 GDL_DOCK_ITEM_BEH_CANT_ICONIFY);
   gtk_container_add(GTK_CONTAINER(graph_item), priv->graph_view);
   gdl_dock_add_item(GDL_DOCK(priv->dock), GDL_DOCK_ITEM(graph_item),
                     GDL_DOCK_RIGHT);
@@ -1349,6 +1360,9 @@ static void replay_window_save_layout(ReplayWindow *self)
   gboolean fullscreen;
   gboolean info_bar_visible;
   ReplayWindowDisplayFlags flags;
+  GtkAction *lock_views_action;
+  gboolean lock_views;
+  GSettings *settings;
   gchar *path;
   gboolean ret;
 
@@ -1367,6 +1381,8 @@ static void replay_window_save_layout(ReplayWindow *self)
     gtk_widget_hide(priv->info_bar);
   }
 
+  settings = g_settings_new("au.gov.defence.dsto.parallax.replay");
+
   /* save width and height if not fullscreen as otherwise we get quite
    * distorted values */
   fullscreen_action = gtk_action_group_get_action(priv->global_actions,
@@ -1374,17 +1390,18 @@ static void replay_window_save_layout(ReplayWindow *self)
   fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(fullscreen_action));
   if (!fullscreen)
   {
-    GSettings *settings;
     int width, height;
-
-    settings = g_settings_new("au.gov.defence.dsto.parallax.replay");
 
     gtk_window_get_size(GTK_WINDOW(self), &width, &height);
 
     g_settings_set_int(settings, WINDOW_WIDTH_KEY, width);
     g_settings_set_int(settings, WINDOW_HEIGHT_KEY, height);
-    g_object_unref(settings);
   }
+  lock_views_action = gtk_action_group_get_action(priv->global_actions,
+                                                  "LockViewsAction");
+  lock_views = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(lock_views_action));
+  g_settings_set_boolean(settings, LOCK_VIEWS_KEY, lock_views);
+  g_object_unref(settings);
 
   /* check directory exists and create if needed */
   path = g_build_filename(g_get_user_config_dir(), PACKAGE, NULL);
@@ -2121,6 +2138,23 @@ static void toggle_fullscreen_cb(GtkAction *action,
     priv->fs_toolbar = NULL;
     gtk_window_unfullscreen(GTK_WINDOW(data));
   }
+}
+
+static void toggle_lock_views_cb(GtkAction *action,
+                                 gpointer data)
+{
+  ReplayWindow *self;
+  ReplayWindowPrivate *priv;
+  gboolean locked;
+
+  g_return_if_fail(REPLAY_IS_WINDOW(data));
+
+  self = REPLAY_WINDOW(data);
+  priv = self->priv;
+
+  locked = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
+  g_object_set(gdl_dock_object_get_master(GDL_DOCK_OBJECT(priv->dock)),
+               "locked", locked, NULL);
 }
 
 static void toggle_absolute_time_cb(GtkAction *action,
