@@ -2054,7 +2054,6 @@ static void toggle_fullscreen_cb(GtkAction *action,
 {
   ReplayWindow *self;
   ReplayWindowPrivate *priv;
-  GtkAction *fullscreen_action;
   gboolean fullscreen;
 
   g_return_if_fail(REPLAY_IS_WINDOW(data));
@@ -2062,9 +2061,7 @@ static void toggle_fullscreen_cb(GtkAction *action,
   self = REPLAY_WINDOW(data);
   priv = self->priv;
 
-  fullscreen_action = gtk_action_group_get_action(priv->global_actions,
-                                                  "FullscreenAction");
-  fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(fullscreen_action));
+  fullscreen = gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action));
   gtk_widget_set_visible(priv->menubar, !fullscreen);
 
   if (fullscreen)
