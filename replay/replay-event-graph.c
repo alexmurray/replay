@@ -58,10 +58,6 @@ struct _ReplayEventGraphPrivate
   gint64 render_start_timestamp;
   gint64 render_end_timestamp;
 
-  /* we can also be called to render to a different cairo context in which case
-   * we do this entirely in the main loop */
-  gboolean main_loop_render;
-
   /* user can mark a region and zoom to that */
   gboolean marking;
   gdouble mark_start; /* pixel location of mark start */
@@ -133,7 +129,7 @@ static void replay_event_graph_select_event(ReplayEventGraph *self,
 static void _draw_event_graph(ReplayEventGraph *self,
                               cairo_t *cr,
                               PangoLayout *layout,
-                              gboolean main_loop);
+                              gboolean async);
 
 static gint replay_event_graph_n_nodes(const ReplayEventGraph *self)
 {
@@ -404,7 +400,7 @@ static void replay_event_graph_draw_region(ReplayEventGraph *self,
       }
     }
 
-    _draw_event_graph(self, cr, layout, FALSE);
+    _draw_event_graph(self, cr, layout, TRUE);
     g_object_unref(layout);
     cairo_destroy(cr);
   }
@@ -2446,7 +2442,7 @@ static gboolean idle_render_intervals(gpointer data)
 static void _draw_event_graph(ReplayEventGraph *self,
                               cairo_t *cr,
                               PangoLayout *layout,
-                              gboolean main_loop)
+                              gboolean async)
 {
   ReplayEventGraphPrivate *priv;
   cairo_operator_t op;
@@ -2456,8 +2452,6 @@ static void _draw_event_graph(ReplayEventGraph *self,
   g_return_if_fail(REPLAY_IS_EVENT_GRAPH(self));
 
   priv = self->priv;
-
-  g_assert(main_loop || priv->render_id == 0);
 
   /* save initial state */
   cairo_save(cr);
@@ -2512,8 +2506,8 @@ static void _draw_event_graph(ReplayEventGraph *self,
                                                          NULL));
     }
   }
-  /* do rendering in an idle callback if not requested to do main loop render */
-  if (!main_loop)
+  /* if async perform rendering in an idle callback */
+  if (async)
   {
     IdleRenderData *idle_data;
 
@@ -2524,7 +2518,12 @@ static void _draw_event_graph(ReplayEventGraph *self,
     idle_data->layout = g_object_ref(layout);
     idle_data->intervals = intervals;
 
-    g_assert(priv->render_id == 0);
+    if (priv->render_id)
+    {
+      /* already doing an idle render - cancel this and do our new one */
+      gboolean ret = g_source_remove(priv->render_id);
+      g_assert(ret);
+    }
     priv->render_id = gdk_threads_add_idle_full(G_PRIORITY_LOW,
                                                 idle_render_intervals,
                                                 idle_data,
@@ -2553,7 +2552,7 @@ void replay_event_graph_draw(ReplayEventGraph *self, cairo_t *cr)
   /* render in main loop */
   layout = create_pango_layout(self, cr);
 
-  _draw_event_graph(self, cr, layout, TRUE);
+  _draw_event_graph(self, cr, layout, FALSE);
   g_object_unref(layout);
 
   draw_marks(self, cr);
