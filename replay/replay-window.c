@@ -865,7 +865,7 @@ slide_toolbar(ReplayWindow *self)
 
   /* should be positioned at a negative index to hide and 0 to show */
   gtk_window_get_size(fs_toolbar, NULL, &min_y);
-  min_y = 1 - min_y;
+  min_y = -min_y;
 
   gtk_window_get_position(fs_toolbar, &x, &y);
   target_y = MAX(min_y, MIN(0, y + priv->slide));
