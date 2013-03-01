@@ -1,0 +1,6 @@
+[Plugin]
+Module=causeway
+Loader=python
+_Name=Causeway Trace Loader
+_Description=Loads Causeway traces
+Authors=Alex Murray <murray.alex@gmail.com>
