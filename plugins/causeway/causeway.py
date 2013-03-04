@@ -4,7 +4,7 @@ from gi.repository import Replay
 import json
 
 class Vat:
-    index = 0
+    color_index = 0
     # some tango colors to look pretty
     colors = [ '#edd400',
                '#f57900',
@@ -16,15 +16,14 @@ class Vat:
 
     @classmethod
     def next_color(cls):
-        color = cls.colors[cls.index]
-        cls.index = (cls.index + 1) % len(cls.colors)
+        color = cls.colors[cls.color_index]
+        cls.color_index = (cls.color_index + 1) % len(cls.colors)
         return color
 
     def __init__(self, name):
         self.name = name
         self.color = self.next_color()
         self.objects = {}
-        self.iter_index = 0
 
     def add(self, obj):
         self.objects[obj.name] = obj
