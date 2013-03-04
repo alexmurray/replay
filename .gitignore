@@ -15,6 +15,7 @@ config.*
 configure
 Makefile
 Makefile.in
+TAGS
 data/au.gov.defence.dsto.parallax.replay.gschema.valid
 data/replay.desktop
 data/replay.pc
