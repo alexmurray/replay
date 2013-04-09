@@ -324,6 +324,7 @@ static void search(ReplaySearchPlugin *self,
   ReplayEventStore *store;
   GtkTreePath *path;
   ReplaySearchPluginPrivate *priv;
+  gboolean ret;
 
   priv = self->priv;
 
@@ -334,9 +335,13 @@ static void search(ReplaySearchPlugin *self,
     return;
 
   store = replay_window_get_event_store(priv->window);
-  /* this returns the iter pointing to an event within a time - go up to get all
-     events at this time */
-  replay_event_store_get_current(store, &priv->iter);
+  /* this returns the iter pointing to an event within a time - go up to get
+     all events at this time */
+  ret = replay_event_store_get_current(store, &priv->iter);
+  if (!ret)
+    /* iter is not valid - bail */
+    return;
+
   path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &priv->iter);
   gtk_tree_path_up(path);
 
