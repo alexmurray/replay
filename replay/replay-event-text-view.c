@@ -115,11 +115,10 @@ void replay_event_text_view_set_absolute_time(ReplayEventTextView *self,
 
 static void replay_event_text_view_init(ReplayEventTextView *self)
 {
-  ReplayEventTextViewPrivate *priv;
   PangoFontDescription *font_desc;
 
   g_return_if_fail(REPLAY_IS_EVENT_TEXT_VIEW(self));
-  self->priv = priv = REPLAY_EVENT_TEXT_VIEW_GET_PRIVATE(self);
+  self->priv = REPLAY_EVENT_TEXT_VIEW_GET_PRIVATE(self);
 
   gtk_text_view_set_editable(GTK_TEXT_VIEW(self), FALSE);
 
