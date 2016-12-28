@@ -186,6 +186,7 @@ AC_CONFIG_FILES([Makefile
                  pixmaps/Makefile
                  plugins/Makefile
                  plugins/export/Makefile
+                 plugins/causeway/Makefile
                  plugins/fdr/Makefile
                  plugins/filters/Makefile
                  plugins/graphviz/Makefile
